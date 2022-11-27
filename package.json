@@ -1,0 +1,30 @@
+{
+  "name": "hello-next",
+  "version": "1.0.0",
+  "description": "This is the starter project for the fullstack tutorial with Next.js and Prisma. You can find the final version of this project in the [`final`](https://github.com/prisma/blogr-nextjs-prisma/tree/final) branch of this repo.",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/client": "^4.6.1",
+    "next": "12.0.10",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-markdown": "8.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.14",
+    "@types/react": "17.0.38",
+    "prisma": "^4.6.1",
+    "typescript": "4.5.5"
+  },
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  }
+}
