@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import Router from "next/router";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 const Draft: React.FC = () => {
   const [title, setTitle] = useState("");
@@ -41,7 +42,7 @@ const Draft: React.FC = () => {
             value={content}
           />
           <input disabled={!content || !title} type="submit" value="Create" />
-          <a className="back" href="#" onClick={() => Router.push("/")}>
+          <a className="back" href="#" onClick={() => Router.push("/home")}>
             or Cancel
           </a>
         </form>
@@ -79,3 +80,5 @@ const Draft: React.FC = () => {
 };
 
 export default Draft;
+
+export const getServerSideProps = withPageAuthRequired();

@@ -1,56 +1,33 @@
-import React from "react";
-import { GetStaticProps } from "next";
+import { useState, useEffect } from "react";
+import {
+  getServerSidePropsWrapper,
+  getSession,
+  useUser,
+} from "@auth0/nextjs-auth0";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import Image from "next/image";
+import landingImgDash from "../assets/landing-img-dash.png";
+import iconBooks from "../assets/icon-books.png";
+import iconPlant from "../assets/icon-plant.png";
+import iconWrite from "../assets/icon-write.png";
+import iconStats from "../assets/icon-stats.png";
+import { route } from "next/dist/server/router";
 import Layout from "../components/Layout";
-import Post, { PostProps } from "../components/Post";
-import prisma from "../lib/prisma";
+import Landing from "../components/Landing";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const feed = await prisma.post.findMany({
-    where: { published: true },
-    include: {
-      author: {
-        select: { name: true },
-      },
-    },
-  });
-  return {
-    props: { feed },
-    revalidate: 10,
-  };
+export default function Home({ loading }) {
+  const [showModal, setShowModal] = useState(false);
+
+  const router = useRouter();
+  const { user, isLoading } = useUser();
+
+  if (user) router.push({ pathname: "/home" });
+  if (loading || isLoading) return "Loading";
+  else return <Landing />;
+}
+
+export const getServerSideProps = ({ req, res }) => {
+  const session = getSession(req, res);
+  return { props: { loading: Boolean(session) } };
 };
-type Props = {
-  feed: PostProps[];
-};
-
-const Blog: React.FC<Props> = (props) => {
-  return (
-    <Layout>
-      <div className="page">
-        <h1>Public Feed</h1>
-        <main>
-          {props.feed.map((post) => (
-            <div key={post.id} className="post">
-              <Post post={post} />
-            </div>
-          ))}
-        </main>
-      </div>
-      <style jsx>{`
-        .post {
-          background: white;
-          transition: box-shadow 0.1s ease-in;
-        }
-
-        .post:hover {
-          box-shadow: 1px 1px 3px #aaa;
-        }
-
-        .post + .post {
-          margin-top: 2rem;
-        }
-      `}</style>
-    </Layout>
-  );
-};
-
-export default Blog;

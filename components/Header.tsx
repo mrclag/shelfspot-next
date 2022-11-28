@@ -12,8 +12,8 @@ const Header: React.FC = () => {
 
   let left = (
     <div className="left">
-      <Link href="/">
-        <a className="bold" data-active={isActive("/")}>
+      <Link href="/home">
+        <a className="bold" data-active={isActive("/home")}>
           Feed
         </a>
       </Link>
@@ -44,8 +44,8 @@ const Header: React.FC = () => {
   if (isLoading) {
     left = (
       <div className="left">
-        <Link href="/">
-          <a className="bold" data-active={isActive("/")}>
+        <Link href="/home">
+          <a className="bold" data-active={isActive("/home")}>
             Feed
           </a>
         </Link>
@@ -116,8 +116,8 @@ const Header: React.FC = () => {
   if (user) {
     left = (
       <div className="left">
-        <Link href="/">
-          <a className="bold" data-active={isActive("/")}>
+        <Link href="/home">
+          <a className="bold" data-active={isActive("/home")}>
             Feed
           </a>
         </Link>

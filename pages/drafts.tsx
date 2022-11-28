@@ -3,37 +3,42 @@ import { GetServerSideProps } from "next";
 import Layout from "../components/Layout";
 import Post, { PostProps } from "../components/Post";
 import prisma from "../lib/prisma";
-import { getSession, useUser } from "@auth0/nextjs-auth0";
+import { getSession, useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
+import Router from "next/router";
 
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const session = await getSession(req, res);
-  if (!session) {
-    res.statusCode = 403;
-    return { props: { drafts: [] } };
-  }
+export const getServerSideProps = withPageAuthRequired({
+  returnTo: "/",
+  async getServerSideProps({ req, res }) {
+    const session = await getSession(req, res);
+    if (!session) {
+      res.statusCode = 403;
+      return { props: { drafts: [] } };
+    }
 
-  const drafts = await prisma.post.findMany({
-    where: {
-      author: { email: session.user.email },
-      published: false,
-    },
-    include: {
-      author: {
-        select: { name: true },
+    const drafts = await prisma.post.findMany({
+      where: {
+        author: { email: session.user.email },
+        published: false,
       },
-    },
-  });
-  return {
-    props: { drafts },
-  };
-};
+      include: {
+        author: {
+          select: { name: true },
+        },
+      },
+    });
+    return {
+      props: { drafts },
+    };
+  },
+});
 
 type Props = {
   drafts: PostProps[];
 };
 
 const Drafts: React.FC<Props> = (props) => {
-  const { user } = useUser();
+  const { user, isLoading } = useUser();
+  if (isLoading) return <div>Loading</div>;
 
   if (!user) {
     return (
