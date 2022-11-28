@@ -1,18 +1,11 @@
-import { useState, useEffect } from "react";
-import {
-  getServerSidePropsWrapper,
-  getSession,
-  useUser,
-} from "@auth0/nextjs-auth0";
+import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Image from "next/image";
 import landingImgDash from "../assets/landing-img-dash.png";
 import iconBooks from "../assets/icon-books.png";
 import iconPlant from "../assets/icon-plant.png";
 import iconWrite from "../assets/icon-write.png";
 import iconStats from "../assets/icon-stats.png";
-import { route } from "next/dist/server/router";
 import Layout from "../components/Layout";
 
 export default function Home() {
@@ -98,19 +91,7 @@ export default function Home() {
           </div>
         </div>
         <div className="footer">Created by Matt Clagett</div>
-        {/* <Modal showModal={showModal} setShowModal={setShowModal}><YouTube videoId='f4QPh1DZptw' opts={opts} /></Modal> */}
       </div>
-
-      {/* <LoadingOverlay visible={isLoading} /> */}
-      {/*
-      {page === "Home" && (
-        <>
-          <CreateFlutter setFlutters={setFlutters} />
-          <Flutters flutters={flutters} setFlutters={setFlutters} />
-        </>
-      )}
-      {page === "Profile" && <Profile />} */}
     </Layout>
-    // </AppShell>
   );
 }
