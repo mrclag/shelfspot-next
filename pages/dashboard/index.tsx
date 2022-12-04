@@ -43,8 +43,6 @@ const Drafts: React.FC<Props> = ({ books }) => {
   const { user, isLoading } = useUser();
   console.log(user);
 
-  const [bookSearchResults, setBookSearchResults] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
   const [selectedSection, setSelectedSection] = useState({
     title: "Current",
     id: "0",

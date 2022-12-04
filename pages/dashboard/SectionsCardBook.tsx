@@ -4,7 +4,7 @@ const SectionsCardBook = ({book}) => {
 
   let width
   if (book && book.pageCount) {
-    const num = Math.min(Math.max(book.pageCount / 7, 40), 90);
+    const num = Math.min(Math.max(book.pageCount / 7, 25 ), 60);
     width = num + 'px';
   } else {
     width = '20px';
