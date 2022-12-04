@@ -32,7 +32,7 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <Image src={landingImgDash} alt="" className="welcome-img" />
+              <Image src={landingImgDash} alt="" />
             </div>
           </div>
         </section>

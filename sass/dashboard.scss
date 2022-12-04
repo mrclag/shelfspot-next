@@ -1,0 +1,278 @@
+.dashboard {
+  padding-top: 60px;
+
+
+  .profile-img {
+    border:solid 2px;
+    border-bottom-color:#ffe;
+    border-left-color:#eed;
+    border-right-color:#eed;
+    border-top-color:#ccb;
+    max-height:100%;
+    max-width:100%;
+  }
+
+  .frame {
+    background-color:#ddc;
+    border:solid 1vmin #eee;
+    border-bottom-color:#fff;
+    border-left-color:#eee;
+    border-radius:2px;
+    border-right-color:#eee;
+    border-top-color:#ddd;
+    box-shadow:0 0 5px 0 rgba(0,0,0,.25) inset, 0 5px 10px 5px rgba(0,0,0,.25);
+    box-sizing:border-box;
+    display:inline-block;
+    height:150px;
+    transform: translateY(-8px);
+    position:relative;
+    text-align:center;
+
+    &:before {
+      border-radius:2px;
+      bottom:-1vmin;
+      box-shadow:0 2px 5px 0 rgba(0,0,0,.25) inset;
+      content:"";
+      left:-1vmin;
+      position:absolute;
+      right:-1vmin;
+      top:-1vmin;
+    }
+    &:after {
+      border-radius:2px;
+      bottom:-1.5vmin;
+      box-shadow: 0 2px 5px 0 rgba(0,0,0,.25);
+      content:"";
+      left:-1.5vmin;
+      position:absolute;
+      right:-1.5vmin;
+      top:-1.5vmin;
+    }
+  }
+
+  .dashboard-topleft {
+    height: 120px;
+    width: 100%;
+    border-radius: 5px;
+    padding-left: 20px;
+    display: flex;
+    align-items: flex-end;
+    .decoration {
+      height: 120px;
+      /* margin-left: 80px; */
+      @media screen and (max-width: 1200px){
+        margin-left: 10px;
+      }
+    }
+
+    .profile-button {
+      height: 24px;
+      color: white;
+      font-size: 12px;
+      padding: 5px 10px;
+      /* line-height: 40px; */
+      background: #516ea2;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 50px;
+      &:hover {
+        background: #6c80a3;
+        cursor: pointer;
+      }
+      @media screen and (max-width: 800px) {
+        font-size: 11px;
+      }
+      i {
+        font-size: 12px;
+        margin-left: 5px;
+      }
+    }
+
+  }
+  .dashboard-topright {
+    width: 100%;
+    height: 120px;
+    border-radius: 5px;
+    text-align: left;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    
+    .slider-title {
+      margin-top: 20px;
+      padding-left: 15px;
+      font-size: 20px;
+    }
+  }
+
+  .dashboard-wrap {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .col1 {
+    width: 340px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    .username {
+      
+      font-size: 20px;
+      padding-left: 15px;
+      margin-bottom: -10px;
+    }
+
+    .profile-card {
+      display: flex;
+      flex-direction: column;
+      color: #333;
+      height: 250px;
+      width: auto;
+      align-items: center;
+      padding-top: 10px;
+
+      .profile-img {
+        border-radius: 50%;
+        height: 100px;
+        width: 100px;
+      }
+
+      .name {
+        margin-top: 0px;
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .profile-info {
+        font-size: 14px;
+        margin-top: 5px;
+        width: 100%;
+        padding-left: 20px;
+        padding-right: 20px;
+
+        .total-books,
+        .bookcase-views {
+          padding-top: 0px;
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+    }
+
+    button {
+      padding: 5px;
+      margin: 5px;
+      cursor: pointer;
+      background: white;
+      border: none;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16);
+      border: 0.5px solid #ddd;
+      &:hover {
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.23);
+      }
+    }
+
+  }
+  .col2 {
+    width: 800px;
+    padding-left: 10px;
+
+    .books-section{
+      display: grid;
+      width: 800px;
+      grid-template-columns: repeat(5, 1fr);
+      // grid-template-rows: repeat(${props => Math.floor(props.numBooks / 5)}, 230px);
+      grid-row-gap:2px;
+      background:
+        repeating-linear-gradient(to bottom,
+          transparent 0,
+          transparent 200px,
+          #452007 200px,
+          #b9672f 232px
+        );
+
+      .add-new-book {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        max-width: 130px;
+        margin: 15px;
+        border: 2px solid darkgreen;
+        background: white;
+        &:hover {
+          cursor: pointer;
+          transform: scale(1.03);
+        }
+        i {
+          font-size: 36px;
+          color: darkgreen;
+          &:hover{ 
+            color: green;
+          }
+        }
+      }
+    }
+
+    .section-title {
+      width: 100%;
+      text-align: left;
+      height: 40px;
+      margin-top: 5px;
+      padding-left: 15px;
+      font-size: 24px;
+    }
+
+    .section-delete {
+      display: flex;
+      float: right;
+      cursor: pointer;
+      font-size: 24px;
+      margin-right: 10px;
+      align-items: center;
+      color: #444;
+      &:hover {
+        color: #ea543f;
+      }
+    }
+    .menu-item {
+      cursor: pointer;
+      background: white;
+      &:hover {
+        color: #ea543f;
+        font-weight: bold;
+      }
+    }
+
+    .section-numbooks{
+      padding-left: 15px;
+      text-align: left;
+    }
+
+    .controls-card {
+      height: 250px;
+    }
+
+    .bookcases {
+      display: flex;
+      flex-direction: row;
+      height: 50px;
+      .bookcase {
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+        width: 150px;
+        &:hover {
+          cursor: pointer;
+          background: #eee;
+        }
+      }
+    }
+  }
+  
+}

@@ -30,7 +30,6 @@ const Header: React.FC = () => {
             Feed
           </a>
         </Link>
-
       </div>
     );
     right = (
@@ -56,6 +55,11 @@ const Header: React.FC = () => {
         <Link href="/home">
           <a className="bold" data-active={isActive("/home")}>
             Feed
+          </a>
+        </Link>
+        <Link href="/dashboard">
+          <a className="bold" data-active={isActive("/dashboard")}>
+            Dashboard
           </a>
         </Link>
         <Link href="/drafts">

@@ -27,6 +27,47 @@ model User {
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")
   posts     Post[]
+  role      Role     @default(USER)
+  books     Book[]
 
   @@map(name: "users")
 }
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Book {
+  id                  String   @id @default(cuid())
+  title               String
+  authors             String[]
+  imageLinks          String[]
+  pageCount           Int
+  industryIdentifiers String[]
+  description         String?
+  subtitle            String?
+  category            String   @default("default")
+  hidden              Boolean  @default(false)
+  sections            String[]
+  rating              Int      @default(0)
+  color               String[]
+  User                User?    @relation(fields: [userId], references: [id])
+  userId              String?
+}
+
+// {
+// title: { type: String },
+// authors: { type: Array },
+// pages: { type: Number },
+// imageLinks: { type: Array },
+// pageCount: { type: Number },
+// industryIdentifiers: { type: Array },
+// description: { type: String },
+// subtitle: { type: String },
+// section: { type: String, default: 'Current' },
+// hide: { type: Boolean, default: false },
+// sections: [{ title: { type: String }, content: { type: Object } }],
+// rating: { type: Number, default: 0 },
+// color: [{ type: Array }],
+// },

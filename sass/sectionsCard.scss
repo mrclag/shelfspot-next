@@ -1,0 +1,129 @@
+.sectionsCard {
+  width: 98%;
+  background-color: #3d1800;
+  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  margin: 0 auto;
+  border-radius: 5px 5px 0px 0px;
+  color: white;
+  padding-bottom: 20px;
+  text-align: center;
+
+  .sections {
+    display: grid;
+    grid-gap: 0.8rem;
+    @media (min-width: 1120px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    padding: 10px;
+  }
+  .sections-title {
+    font-weight: bold;
+    padding-top: 10px;
+  }
+  .books {
+    width: 100%;
+    overflow: hide;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 0;
+  }
+  
+  .menu-item {
+    background: white;
+    &:hover {
+      color: darkblue;
+      font-weight: bold;
+    }
+  }
+
+  .section {
+    position: relative;
+    background-color: #8d6649;
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+    height: 120px;
+    width: 100%;
+    overflow: auto;
+    
+    &:hover {
+      
+      background-color: #c98d62;
+      background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+      cursor: pointer;
+    }
+
+    .section-label {
+      background: white;
+      padding: 5px 0;
+      margin: auto;
+      opacity: 0.9;
+      color: black;
+      border-radius: 5px;
+      width: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .section-title {
+      width: 80%;
+      word-wrap: break-word;
+      font-weight: bold;
+    }
+
+    .section-num-cards {
+    }
+
+    .section-delete {
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      color: #444;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  .selected {
+    background-color: #c98d62;
+  }
+
+  #new-section {
+    border: none;
+    cursor: default;
+    display: flex;
+    justify-content: center;
+    
+    input {
+
+      max-width: 300px;
+      color: white;
+      background: none;
+      border: none;
+      text-align: center;
+      border-bottom: 0.5px solid #eee;
+      &::placeholder {
+        color: #eee;
+        /* font-weight: 0; */
+      }
+      &:focus {
+        outline: none;
+      }
+      &:hover {
+        /* background-color: #c98d62;
+        background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); */
+      }
+    }
+  }
+  /* .add-new {
+    color: green;
+    font-size: 40px;
+    border: none;
+    outline: none;
+    background: white;
+    padding: 0px;
+    line-height: 30px;
+  } */
+}
