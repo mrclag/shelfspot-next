@@ -38,7 +38,7 @@ model User {
 model Bookcase {
   id         String       @id @default(cuid())
   categories Categories[]
-  decoration String
+  decoration String       @default("default")
   books      Book[]
   User       User?        @relation(fields: [userId], references: [id])
   userId     String?
@@ -46,7 +46,8 @@ model Bookcase {
 
 model Categories {
   id         String    @id @default(cuid())
-  bookend    String
+  title      String    @default("Current")
+  bookend    String    @default("default")
   Bookcase   Bookcase? @relation(fields: [bookcaseId], references: [id])
   bookcaseId String?
 }
