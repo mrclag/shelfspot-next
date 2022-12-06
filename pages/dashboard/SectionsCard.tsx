@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 import BookcaseSection from "./BookcaseSection";
 import SectionsCardBook from "./SectionsCardBook";
@@ -17,7 +18,13 @@ const SectionsCard = ({
 }) => {
   const [newSectionTitle, setNewSectionTitle] = useState("");
 
-  const addSection = (section) => {};
+  const addSection = async (section) => {
+    const res = await axios.post("/api/profile/addSection", {
+      title: newSectionTitle,
+      bookcaseId: "334",
+    });
+    console.log(res);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();

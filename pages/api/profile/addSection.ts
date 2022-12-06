@@ -7,6 +7,8 @@ import prisma from '../../../lib/prisma';
 export default async function handle(req, res) {
   const { title, bookcaseId } = req.body;
 
+  console.log(title, bookcaseId)
+
   const session = await getSession(req, res);
   const result = await prisma.categories.create({
     data: {
