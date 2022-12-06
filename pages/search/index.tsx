@@ -8,7 +8,9 @@ const SearchBooks = ({ selectedSection }) => {
   const [searchResultNum, setSearchResultNum] = useState(0);
 
   const fetchBooks = async () => {
-    const result = await axios.get(`/api/googleBooks/${searchTerm}`);
+    const result = await axios.post(`/api/googleBooks`, {
+      searchTerm,
+    });
     console.log(result);
     setSearchResultNum(result.data.totalItems);
     setSearchResult(result.data.items);

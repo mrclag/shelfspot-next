@@ -7,6 +7,7 @@ import "../sass/book2.scss";
 import "../sass/sectionCard.scss";
 import "../sass/sectionsCard.scss";
 import "../sass/sectionCardBook.scss";
+import "../sass/searchBooks.scss";
 import "../sass/slider.scss";
 import { UserProvider } from "@auth0/nextjs-auth0";
 
