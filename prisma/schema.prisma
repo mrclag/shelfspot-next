@@ -45,7 +45,7 @@ model Bookcase {
   categories Categories[]
   decoration Int          @default(0)
   books      Book[]
-  User       User?        @relation(fields: [userId], references: [id])
+  User       User?        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String?
 }
 
@@ -53,7 +53,7 @@ model Categories {
   id         String    @id @default(cuid())
   title      String    @default("Current")
   bookend    String    @default("default")
-  Bookcase   Bookcase? @relation(fields: [bookcaseId], references: [id])
+  Bookcase   Bookcase? @relation(fields: [bookcaseId], references: [id], onDelete: Cascade)
   bookcaseId String?
   books      Book[]
 }
@@ -67,14 +67,14 @@ model Book {
   industryIdentifiers String[]
   description         String?
   subtitle            String?
-  Category            Categories? @relation(fields: [categoryId], references: [id])
+  Category            Categories? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
   categoryId          String?
   hidden              Boolean     @default(false)
   sections            String[]
   rating              Int         @default(0)
   color               String[]
-  User                User?       @relation(fields: [userId], references: [id])
+  User                User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId              String?
-  Bookcase            Bookcase?   @relation(fields: [bookcaseId], references: [id])
+  Bookcase            Bookcase?   @relation(fields: [bookcaseId], references: [id], onDelete: SetNull)
   bookcaseId          String?
 }
