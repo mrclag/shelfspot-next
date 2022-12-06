@@ -3,7 +3,7 @@ import Layout from "../../components/Layout";
 import prisma from "../../lib/prisma";
 import { getSession, useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Router from "next/router";
-import { Book, User } from "@prisma/client";
+import { Book, Bookcase, User } from "@prisma/client";
 import axios from "axios";
 import Link from "next/link";
 import SectionsCard from "./SectionsCard";
@@ -21,25 +21,37 @@ export const getServerSideProps = withPageAuthRequired({
     const session = await getSession(req, res);
     if (!session) {
       res.statusCode = 403;
-      return { props: { books: [] } };
+      return { props: { books: [], bookcase: {} } };
     }
 
-    const books = await prisma.book.findMany({
+    // const books = await prisma.book.findMany({
+    //   where: {
+    //     User: { email: session.user.email },
+    //   },
+    // });
+
+    const bookcase = await prisma.bookcase.findMany({
       where: {
         User: { email: session.user.email },
       },
+      include: {
+        books: true,
+        categories: true,
+      },
     });
+
     return {
-      props: { books: testBooks },
+      props: { books: testBooks, bookcase: bookcase[0] },
     };
   },
 });
 
 type Props = {
   books: Book[];
+  bookcase: Bookcase;
 };
 
-const Drafts: React.FC<Props> = ({ books }) => {
+const Drafts: React.FC<Props> = ({ books, bookcase }) => {
   const { user, isLoading } = useUser();
   console.log(user);
 
@@ -64,17 +76,18 @@ const Drafts: React.FC<Props> = ({ books }) => {
       </Layout>
     );
   }
+  console.log("bookcase", bookcase);
 
   const profile = { user: { _id: "123" }, imgUrl: user.picture };
-  const bookcase = {
-    decoration: 0,
-    color: 0,
-    sections: [
-      { title: "Current", id: "1", hide: false, bookend: "defauls" },
-      { title: "Fiction", id: "2", hide: false, bookend: "robot" },
-      { title: "star wars", id: "2", hide: false, bookend: "robot" },
-    ],
-  };
+  // const bookcase = {
+  //   decoration: 0,
+  //   color: 0,
+  //   sections: [
+  //     { title: "Current", id: "1", hide: false, bookend: "defauls" },
+  //     { title: "Fiction", id: "2", hide: false, bookend: "robot" },
+  //     { title: "star wars", id: "2", hide: false, bookend: "robot" },
+  //   ],
+  // };
 
   return (
     <Layout>
@@ -101,7 +114,7 @@ const Drafts: React.FC<Props> = ({ books }) => {
                 Edit Profile
               </Link> */}
               <Image
-                src={shelfDecorations[bookcase.decoration]?.icon}
+                src={shelfDecorations[bookcase.decoration || 0]?.icon}
                 alt=""
                 className="decoration"
                 width="120px"

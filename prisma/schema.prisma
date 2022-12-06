@@ -35,10 +35,15 @@ model User {
   @@map(name: "users")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
 model Bookcase {
   id         String       @id @default(cuid())
   categories Categories[]
-  decoration String       @default("default")
+  decoration Int          @default(0)
   books      Book[]
   User       User?        @relation(fields: [userId], references: [id])
   userId     String?
@@ -50,15 +55,11 @@ model Categories {
   bookend    String    @default("default")
   Bookcase   Bookcase? @relation(fields: [bookcaseId], references: [id])
   bookcaseId String?
-}
-
-enum Role {
-  USER
-  ADMIN
+  books      Book[]
 }
 
 model Book {
-  id                  String    @id @default(cuid())
+  id                  String      @id @default(cuid())
   title               String
   authors             String[]
   imageLinks          String[]
@@ -66,13 +67,14 @@ model Book {
   industryIdentifiers String[]
   description         String?
   subtitle            String?
-  category            String    @default("default")
-  hidden              Boolean   @default(false)
+  Category            Categories? @relation(fields: [categoryId], references: [id])
+  categoryId          String?
+  hidden              Boolean     @default(false)
   sections            String[]
-  rating              Int       @default(0)
+  rating              Int         @default(0)
   color               String[]
-  User                User?     @relation(fields: [userId], references: [id])
+  User                User?       @relation(fields: [userId], references: [id])
   userId              String?
-  Bookcase            Bookcase? @relation(fields: [bookcaseId], references: [id])
+  Bookcase            Bookcase?   @relation(fields: [bookcaseId], references: [id])
   bookcaseId          String?
 }

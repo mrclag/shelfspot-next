@@ -21,10 +21,12 @@ const SectionsCard = ({
   const addSection = async (section) => {
     const res = await axios.post("/api/profile/addSection", {
       title: newSectionTitle,
-      bookcaseId: "334",
+      bookcaseId: bookcase.id,
     });
     console.log(res);
   };
+
+  console.log('bookcase', bookcase);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +40,7 @@ const SectionsCard = ({
     <div className="sectionsCard">
       <div className="sections-title"></div>
       <div className="sections">
-        {bookcase.sections.map((section, i) => (
+        {bookcase.categories?.map((section, i) => (
           <BookcaseSection
             section={section}
             books={books}
