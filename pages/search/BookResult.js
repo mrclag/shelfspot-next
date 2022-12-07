@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 
 const BookResult = ({ selectedSection, result }) => {
@@ -11,8 +12,10 @@ const BookResult = ({ selectedSection, result }) => {
     ? imageLinks.smallThumbnail
     : 'https://picsum.photos/150';
 
+  console.log(result.volumeInfo)
+
   const addBook = () => {
-    const res = prisa.
+    const res = axios.post('/api/bookcase/addBook', {...result.volumeInfo})
 
   }
 
@@ -22,7 +25,7 @@ const BookResult = ({ selectedSection, result }) => {
     <div className='book-result'>
       <div className="book-content tooltip">
         <div className="book-img">
-        <span className="tooltiptext">{title} by {authors[0]}</span>
+        <span className="tooltiptext">{title} by {author}</span>
           <img src={bookPicture} alt="Book result" />
         </div>
       </div>

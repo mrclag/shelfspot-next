@@ -62,9 +62,10 @@ model Book {
   id                  String      @id @default(cuid())
   title               String
   authors             String[]
-  imageLinks          String[]
+  imageLinks          Json[]
+  volumeLink          String?
   pageCount           Int
-  industryIdentifiers String[]
+  industryIdentifiers Json[]
   description         String?
   subtitle            String?
   Category            Categories? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
