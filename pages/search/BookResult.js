@@ -11,7 +11,10 @@ const BookResult = ({ selectedSection, result }) => {
     ? imageLinks.smallThumbnail
     : 'https://picsum.photos/150';
 
-  const addBook = () => {}
+  const addBook = () => {
+    const res = prisa.
+
+  }
 
   const author = authors.length > 0 ? authors.join(', ') : authors[0]
 
