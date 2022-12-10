@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import prisma from "../../lib/prisma";
 import { getSession, useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
@@ -65,6 +65,8 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
     bookcase.categories[0]
   );
   const [showSectionModal, setShowSectionModal] = useState(false);
+  const [editTitle, setEditTitle] = useState(false);
+  const [newTitle, setNewTitle] = useState(selectedSection.title);
   const [showSearchModal, setShowSearchModal] = useState(false);
 
   // @ts-ignore
@@ -72,6 +74,11 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
   const sectionBooks = books?.filter(
     (book) => book.categoryId === selectedSection.id
   );
+
+  useEffect(() => {
+    setEditTitle(false);
+    setNewTitle(selectedSection.title);
+  }, [selectedSection]);
 
   const deleteSection = async (sectionId) => {
     const res = await axios
@@ -82,6 +89,21 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
       })
       .then((res) => {
         router.replace(router.asPath);
+      });
+    console.log(res);
+  };
+
+  const updateSectionName = async (sectionId) => {
+    console.log(newTitle);
+    console.log(sectionId);
+    const res = await axios
+      .put("/api/profile/updateSection", {
+        sectionId: sectionId,
+        title: newTitle,
+      })
+      .then((res) => {
+        router.replace(router.asPath);
+        setEditTitle(false);
       });
     console.log(res);
   };
@@ -158,9 +180,27 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
             {/* <button onClick={refreshData}>Refresh</button> */}
 
             <div style={{ display: "flex", flexDirection: "row" }}>
-              <div className="section-title">
-                {selectedSection.title} section
-              </div>
+              {editTitle ? (
+                <div className="section-title">
+                  <input
+                    type="text"
+                    value={newTitle}
+                    onChange={(e) => setNewTitle(e.target.value)}
+                  />
+                  <i
+                    className="fas fa-check"
+                    onClick={() => updateSectionName(selectedSection.id)}
+                  ></i>
+                </div>
+              ) : (
+                <div className="section-title">
+                  {selectedSection.title} section
+                  <i
+                    className="fas fa-pen"
+                    onClick={() => setEditTitle(true)}
+                  ></i>
+                </div>
+              )}
               <div
                 className="section-delete"
                 onClick={() => setShowSectionModal(true)}
