@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Layout from "../../components/Layout";
 import prisma from "../../lib/prisma";
 import { getSession, useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
-import Router from "next/router";
+import Router, { useRouter } from "next/router";
 import { Book, Bookcase, User } from "@prisma/client";
 import axios from "axios";
 import Link from "next/link";
@@ -13,7 +13,7 @@ import { shelfDecorations } from "./Customizations";
 import Modal from "../../components/layout/Modal";
 import { testBooks } from "../api/testData";
 import Image from "next/image";
-import SearchBooks from "../search";
+import SearchBooks from "../../components/search";
 
 export const getServerSideProps = withPageAuthRequired({
   returnTo: "/",
@@ -21,7 +21,7 @@ export const getServerSideProps = withPageAuthRequired({
     const session = await getSession(req, res);
     if (!session) {
       res.statusCode = 403;
-      return { props: { books: [], bookcase: {} } };
+      return { props: { bookcase: {} } };
     }
 
     // const books = await prisma.book.findMany({
@@ -35,13 +35,17 @@ export const getServerSideProps = withPageAuthRequired({
         User: { email: session.user.email },
       },
       include: {
-        books: true,
+        books: {
+          include: {
+            Category: true,
+          },
+        },
         categories: true,
       },
     });
 
     return {
-      props: { books: testBooks, bookcase: bookcase[0] },
+      props: { bookcase: bookcase[0] },
     };
   },
 });
@@ -51,20 +55,30 @@ type Props = {
   bookcase: Bookcase;
 };
 
-const Drafts: React.FC<Props> = ({ books, bookcase }) => {
+const Drafts: React.FC<Props> = ({ bookcase }) => {
   const { user, isLoading } = useUser();
   console.log(user);
 
-  const [selectedSection, setSelectedSection] = useState({
-    title: "Current",
-    id: "0",
-  });
+  const [selectedSection, setSelectedSection] = useState(
+    // @ts-ignore
+    bookcase.categories[0]
+  );
   const [showSectionModal, setShowSectionModal] = useState(false);
   const [showSearchModal, setShowSearchModal] = useState(false);
 
+  // @ts-ignore
+  const books = bookcase.books;
   const sectionBooks = books?.filter(
-    (book) => book.category === selectedSection.title
+    (book) => book.categoryId === selectedSection.id
   );
+
+  const router = useRouter();
+
+  const refreshData = () => {
+    router.replace(router.asPath);
+  };
+
+  console.log("selectedSection", selectedSection);
 
   if (isLoading) return <div>Loading</div>;
 
@@ -79,15 +93,6 @@ const Drafts: React.FC<Props> = ({ books, bookcase }) => {
   console.log("bookcase", bookcase);
 
   const profile = { user: { _id: "123" }, imgUrl: user.picture };
-  // const bookcase = {
-  //   decoration: 0,
-  //   color: 0,
-  //   sections: [
-  //     { title: "Current", id: "1", hide: false, bookend: "defauls" },
-  //     { title: "Fiction", id: "2", hide: false, bookend: "robot" },
-  //     { title: "star wars", id: "2", hide: false, bookend: "robot" },
-  //   ],
-  // };
 
   return (
     <Layout>
@@ -133,6 +138,7 @@ const Drafts: React.FC<Props> = ({ books, bookcase }) => {
             <div className="dashboard-topright">
               <Slider />
             </div>
+            <button onClick={refreshData}>Refresh</button>
 
             <div style={{ display: "flex", flexDirection: "row" }}>
               <div className="section-title">
@@ -191,7 +197,7 @@ const Drafts: React.FC<Props> = ({ books, bookcase }) => {
           </div>
         </div>
         <Modal showModal={showSearchModal} setShowModal={setShowSearchModal}>
-          <SearchBooks selectedSection={selectedSection} />
+          <SearchBooks bookcase={bookcase} selectedCategory={selectedSection} />
         </Modal>{" "}
       </div>
     </Layout>

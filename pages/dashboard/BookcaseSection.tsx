@@ -13,8 +13,7 @@ const BookcaseSection = ({
   selectedSection,
   setSelectedSection,
 }) => {
-  const sectionBooks = books?.filter((book) => book.category === section.title);
-  console.log("section books", sectionBooks);
+  const sectionBooks = books?.filter((book) => book.categoryId === section.id);
 
   return (
     <div

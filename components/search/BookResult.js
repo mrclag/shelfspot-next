@@ -1,31 +1,36 @@
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import React from 'react';
 
-const BookResult = ({ selectedSection, result }) => {
+const BookResult = ({ categoryId, bookcaseId, result }) => {
+  if(!result?.volumeInfo) return <div></div>
   const {
     authors,
     imageLinks,
     title,
   } = result.volumeInfo;
 
+  const router = useRouter()
+
   const bookPicture = imageLinks
     ? imageLinks.smallThumbnail
     : 'https://picsum.photos/150';
 
-  console.log(result.volumeInfo)
-
   const addBook = () => {
-    const res = axios.post('/api/bookcase/addBook', {...result.volumeInfo})
-
+    const res = axios.post('/api/bookcase/addBook', {...result.volumeInfo, categoryId, bookcaseId})
+    if(res){
+      router.replace(router.asPath);
+      console.log('refreshed')
+    }
   }
 
-  const author = authors.length > 0 ? authors.join(', ') : authors[0]
+  // const author = authors?.length > 0 ? authors?.join(', ') : authors[0]
 
   return (
     <div className='book-result'>
       <div className="book-content tooltip">
         <div className="book-img">
-        <span className="tooltiptext">{title} by {author}</span>
+        <span className="tooltiptext">{title} by {authors[0]}</span>
           <img src={bookPicture} alt="Book result" />
         </div>
       </div>

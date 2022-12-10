@@ -8,7 +8,9 @@ import getCommonImgColor from '../../../utils/getCommonImgColor'
 // Optional fields in body: content
 export default async function handle(req, res) {
   const newBook = req.body;
-  const categoryId = 'clbbkzqbn0000pg0z6kdu0f65'
+  // const categoryId = 'clbbkzqbn0000pg0z6kdu0f65'
+  const categoryId = req.body.categoryId;
+  const bookcaseId = req.body.bookcaseId;
   const HIDDEN = false
 
 
@@ -33,7 +35,8 @@ export default async function handle(req, res) {
       hidden: HIDDEN,
       color,
       Category: { connect: { id: categoryId} },
-      User: {connect: {email: session?.user?.email}}
+      User: {connect: {email: session?.user?.email}},
+      Bookcase: {connect: {id: bookcaseId}}
     },
   });
   res.json(result);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import BookResult from "./BookResult";
 
-const SearchBooks = ({ selectedSection }) => {
+const SearchBooks = ({ bookcase, selectedCategory }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [searchResultNum, setSearchResultNum] = useState(0);
@@ -26,7 +26,7 @@ const SearchBooks = ({ selectedSection }) => {
       <div className="search-bar">
         <form onSubmit={(e) => onSubmitHandler(e)} className="search-form">
           <h2 className="search-title">Find Books for your Bookcase</h2>
-          <input
+          <input 
             className="search-input"
             type="search"
             placeholder="Search"
@@ -49,9 +49,10 @@ const SearchBooks = ({ selectedSection }) => {
       <div>
         {searchResult.length > 0 ? (
           <div className="book-results">
-            {searchResult.map((result, i) => (
+            {searchResult?.map((result, i) => (
               <BookResult
-                selectedSection={selectedSection}
+                categoryId={selectedCategory.id}
+                bookcaseId={bookcase.id}
                 key={i}
                 result={result}
               />

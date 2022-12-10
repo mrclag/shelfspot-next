@@ -26,7 +26,6 @@ const SectionsCard = ({
     console.log(res);
   };
 
-  console.log('bookcase', bookcase);
 
   const onSubmit = (e) => {
     e.preventDefault();
