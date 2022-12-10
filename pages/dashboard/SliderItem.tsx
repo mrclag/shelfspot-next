@@ -3,12 +3,26 @@ import React from "react";
 // import styled from 'styled-components'
 // import {changeDecoration} from '../../actions/profile'
 import Image from "next/image";
+import axios from "axios";
+import { useRouter } from "next/router";
 
-const SliderItem = ({ item }) => {
+const SliderItem = ({ item, bookcaseId }) => {
   const decoration = "";
   const active = item.id === decoration ? true : false;
 
+  const router = useRouter();
+
+  console.log("item", item);
+
   const onClick = (item) => {
+    const res = axios
+      .put("/api/bookcase/swapDecoration", {
+        bookcaseId,
+        decoration: item.id,
+      })
+      .then((res) => {
+        router.replace(router.asPath);
+      });
     // changeDecoration(item.id)
   };
   return (

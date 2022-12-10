@@ -14,6 +14,7 @@ import Modal from "../../components/layout/Modal";
 import { testBooks } from "../api/testData";
 import Image from "next/image";
 import SearchBooks from "../../components/search";
+import Head from "next/head";
 
 export const getServerSideProps = withPageAuthRequired({
   returnTo: "/",
@@ -108,6 +109,10 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
 
   return (
     <Layout>
+      <Head>
+        <title>Dashboard - ShelfSpot</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="dashboard">
         <link
           rel="stylesheet"
@@ -148,9 +153,9 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
 
           <div className="col2">
             <div className="dashboard-topright">
-              <Slider />
+              <Slider bookcaseId={bookcase.id} />
             </div>
-            <button onClick={refreshData}>Refresh</button>
+            {/* <button onClick={refreshData}>Refresh</button> */}
 
             <div style={{ display: "flex", flexDirection: "row" }}>
               <div className="section-title">
