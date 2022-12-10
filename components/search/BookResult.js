@@ -17,11 +17,11 @@ const BookResult = ({ categoryId, bookcaseId, result }) => {
     : 'https://picsum.photos/150';
 
   const addBook = () => {
-    const res = axios.post('/api/bookcase/addBook', {...result.volumeInfo, categoryId, bookcaseId})
-    if(res){
-      router.replace(router.asPath);
-      console.log('refreshed')
-    }
+    const res = axios.post('/api/bookcase/addBook', {...result.volumeInfo, categoryId, bookcaseId}).then(res => {
+      console.log('refreshing')
+      router.replace(router.asPath)
+    })
+
   }
 
   const author = authors?.length > 0 ? authors?.join(', ') : Array.isArray(authors) ? authors[0] : author ? author : 'No author'

@@ -72,6 +72,18 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
     (book) => book.categoryId === selectedSection.id
   );
 
+  const deleteSection = async (sectionId) => {
+    const res = await axios
+      .delete("/api/profile/deleteSection", {
+        data: {
+          sectionId: sectionId,
+        },
+      })
+      .then((res) => {
+        router.replace(router.asPath);
+      });
+    console.log(res);
+  };
   const router = useRouter();
 
   const refreshData = () => {
@@ -173,7 +185,7 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
                   >
                     <div
                       className="menu-item"
-                      // onClick={() => deleteSection(selectedSection.id)}
+                      onClick={() => deleteSection(selectedSection.id)}
                     >
                       Delete
                     </div>

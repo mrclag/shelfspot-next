@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import BookcaseSection from "./BookcaseSection";
 import SectionsCardBook from "./SectionsCardBook";
@@ -18,14 +19,19 @@ const SectionsCard = ({
 }) => {
   const [newSectionTitle, setNewSectionTitle] = useState("");
 
+  const router = useRouter();
+
   const addSection = async (section) => {
-    const res = await axios.post("/api/profile/addSection", {
-      title: newSectionTitle,
-      bookcaseId: bookcase.id,
-    });
+    const res = await axios
+      .post("/api/profile/addSection", {
+        title: newSectionTitle,
+        bookcaseId: bookcase.id,
+      })
+      .then((res) => {
+        router.replace(router.asPath);
+      });
     console.log(res);
   };
-
 
   const onSubmit = (e) => {
     e.preventDefault();
