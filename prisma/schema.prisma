@@ -64,7 +64,7 @@ model Book {
   authors             String[]
   imageLinks          Json[]
   volumeLink          String?
-  pageCount           Int
+  pageCount           Int?
   industryIdentifiers Json[]
   description         String?
   subtitle            String?

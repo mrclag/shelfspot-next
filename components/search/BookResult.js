@@ -24,13 +24,13 @@ const BookResult = ({ categoryId, bookcaseId, result }) => {
     }
   }
 
-  // const author = authors?.length > 0 ? authors?.join(', ') : authors[0]
+  const author = authors?.length > 0 ? authors?.join(', ') : Array.isArray(authors) ? authors[0] : author ? author : 'No author'
 
   return (
     <div className='book-result'>
       <div className="book-content tooltip">
         <div className="book-img">
-        <span className="tooltiptext">{title} by {authors[0]}</span>
+        <span className="tooltiptext">{title} by {author}</span>
           <img src={bookPicture} alt="Book result" />
         </div>
       </div>
