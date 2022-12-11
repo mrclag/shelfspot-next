@@ -2,6 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { getSession, useUser } from "@auth0/nextjs-auth0";
+import logo from "../public/static/img/logo2.png";
+import Image from "next/image";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -11,10 +13,25 @@ const Header: React.FC = () => {
   const { user, isLoading } = useUser();
 
   let left = (
-    <div className="left">
+    <div className="left flex-center">
+      <div className="flex nav-logo" style={{ marginRight: "20px" }}>
+        <Image
+          src={logo}
+          alt=""
+          className="decoration"
+          width="40px"
+          height="40px"
+        />
+        <div className="nav-logo-font">ShelfSpot</div>
+      </div>
       <Link href="/home">
         <a className="bold" data-active={isActive("/home")}>
           Feed
+        </a>
+      </Link>
+      <Link href="/profiles">
+        <a className="bold" data-active={isActive("/profiles")}>
+          Profiles
         </a>
       </Link>
     </div>
@@ -24,10 +41,25 @@ const Header: React.FC = () => {
 
   if (isLoading) {
     left = (
-      <div className="left">
+      <div className="left flex-center">
+        <div className="flex nav-logo" style={{ marginRight: "20px" }}>
+          <Image
+            src={logo}
+            alt=""
+            className="decoration"
+            width="40px"
+            height="40px"
+          />
+          <div className="nav-logo-font">ShelfSpot</div>
+        </div>
         <Link href="/home">
           <a className="bold" data-active={isActive("/home")}>
             Feed
+          </a>
+        </Link>
+        <Link href="/profiles">
+          <a className="bold" data-active={isActive("/profiles")}>
+            Profiles
           </a>
         </Link>
       </div>
@@ -51,7 +83,17 @@ const Header: React.FC = () => {
 
   if (user) {
     left = (
-      <div className="left">
+      <div className="left flex-center">
+        <div className="flex nav-logo" style={{ marginRight: "20px" }}>
+          <Image
+            src={logo}
+            alt=""
+            className="decoration"
+            width="40px"
+            height="40px"
+          />
+          <div className="nav-logo-font">ShelfSpot</div>
+        </div>
         <Link href="/home">
           <a className="bold" data-active={isActive("/home")}>
             Feed

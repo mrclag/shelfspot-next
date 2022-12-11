@@ -56,6 +56,11 @@ model Categories {
   Bookcase   Bookcase? @relation(fields: [bookcaseId], references: [id], onDelete: Cascade)
   bookcaseId String?
   books      Book[]
+  createdAt  DateTime  @default(now()) @map(name: "created_at")
+  updatedAt  DateTime  @default(now()) @updatedAt @map(name: "updated_at")
+  // orderIndex Int       @unique // ordering of the category sections in db
+
+  @@unique([bookcaseId, title]) // category for each bookcase must have unique titles
 }
 
 model Book {
@@ -78,4 +83,6 @@ model Book {
   userId              String?
   Bookcase            Bookcase?   @relation(fields: [bookcaseId], references: [id], onDelete: SetNull)
   bookcaseId          String?
+  createdAt           DateTime    @default(now()) @map(name: "created_at")
+  updatedAt           DateTime    @default(now()) @updatedAt @map(name: "updated_at")
 }

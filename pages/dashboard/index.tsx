@@ -11,7 +11,6 @@ import Book2 from "./Book2";
 import Slider from "./Slider";
 import { shelfDecorations } from "./Customizations";
 import Modal from "../../components/layout/Modal";
-import { testBooks } from "../api/testData";
 import Image from "next/image";
 import SearchBooks from "../../components/search";
 import Head from "next/head";
@@ -25,12 +24,6 @@ export const getServerSideProps = withPageAuthRequired({
       return { props: { bookcase: {} } };
     }
 
-    // const books = await prisma.book.findMany({
-    //   where: {
-    //     User: { email: session.user.email },
-    //   },
-    // });
-
     const bookcase = await prisma.bookcase.findMany({
       where: {
         User: { email: session.user.email },
@@ -41,12 +34,20 @@ export const getServerSideProps = withPageAuthRequired({
             Category: true,
           },
         },
-        categories: true,
+        categories: {
+          orderBy: [
+            {
+              updatedAt: "desc",
+            },
+          ],
+        },
       },
     });
 
+    const jsonBookcase = JSON.parse(JSON.stringify(bookcase));
+
     return {
-      props: { bookcase: bookcase[0] },
+      props: { bookcase: jsonBookcase[0] },
     };
   },
 });
@@ -94,8 +95,6 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
   };
 
   const updateSectionName = async (sectionId) => {
-    console.log(newTitle);
-    console.log(sectionId);
     const res = await axios
       .put("/api/profile/updateSection", {
         sectionId: sectionId,
@@ -104,16 +103,12 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
       .then((res) => {
         router.replace(router.asPath);
         setEditTitle(false);
+
+        // @ts-ignore
       });
-    console.log(res);
   };
+
   const router = useRouter();
-
-  const refreshData = () => {
-    router.replace(router.asPath);
-  };
-
-  console.log("selectedSection", selectedSection);
 
   if (isLoading) return <div>Loading</div>;
 
@@ -125,7 +120,6 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
       </Layout>
     );
   }
-  console.log("bookcase", bookcase);
 
   const profile = { user: { _id: "123" }, imgUrl: user.picture };
 
@@ -148,15 +142,13 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
               <Link href={`/profile/${profile.user._id}`}>
                 <div className="frame" style={{ height: "100px" }}>
                   <img
-                    src={profile.imgUrl}
+                    src={user.picture}
                     alt="Mona Lisa"
                     className="profile-img"
                   />
                 </div>
               </Link>
-              {/* <Link href="/edit-profile">
-                Edit Profile
-              </Link> */}
+              <Link href="/edit-profile">Edit Profile</Link>
               <Image
                 src={shelfDecorations[bookcase.decoration || 0]?.icon}
                 alt=""
@@ -188,15 +180,15 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
                     onChange={(e) => setNewTitle(e.target.value)}
                   />
                   <i
-                    className="fas fa-check"
+                    className="fas fa-check check-title"
                     onClick={() => updateSectionName(selectedSection.id)}
                   ></i>
                 </div>
               ) : (
                 <div className="section-title">
-                  {selectedSection.title} section
+                  {selectedSection.title}
                   <i
-                    className="fas fa-pen"
+                    className="fas fa-pen edit-title"
                     onClick={() => setEditTitle(true)}
                   ></i>
                 </div>

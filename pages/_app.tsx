@@ -36,6 +36,11 @@ const App = ({ Component, pageProps }: AppProps) => {
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC&display=swap"
+          rel="stylesheet"
+        />
       </Head>
       <Component {...pageProps} />
     </UserProvider>
