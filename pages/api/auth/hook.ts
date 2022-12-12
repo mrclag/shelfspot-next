@@ -18,6 +18,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     await prisma.user.create({
       data: { email, imageUrl, name },
     });
+    
+    await prisma.bookcase.create({
+      data: {
+        User: {connect: {email: email }},
+        categories: {create: [{ title: 'Current' }]}
+      }
+    })
+
     return res.status(200).json({
       message: `User with email: ${email} has been created successfully!`,
     });

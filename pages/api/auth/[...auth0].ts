@@ -4,4 +4,4 @@ export default handleAuth({
   async login(req, res) {
     await handleLogin(req, res, { returnTo: "/dashboard", });
   },
-});
+}); 
