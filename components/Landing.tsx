@@ -85,7 +85,7 @@ export default function Home() {
             </div>
             <div className="demo-title">Check out a quick demo</div>
             <div className="demo-text">
-              Shelfspot is free to sign up, but if you want to tour the app
+              ShelfSpot is free to sign up, but if you want to tour the app
               before you sign up, press play.
             </div>
           </div>

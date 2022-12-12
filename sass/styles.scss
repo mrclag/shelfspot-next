@@ -387,7 +387,8 @@ a + a {
 
 .profile-page {
   background: white;
-  width: 800px;
+  width: 100vh;
+  height: 100%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.23);
   padding: 20px 50px;
   margin-top: 70px;
@@ -439,7 +440,6 @@ a + a {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    /* margin: auto; */
   }
   .button {
     height: 50px;
@@ -448,10 +448,12 @@ a + a {
     line-height: 50px;
     text-align: center;
     border: 1px solid #ccc;
+
     &:hover {
       cursor: pointer;
       border: 1px solid darkblue;
     }
+    
   }
   .button {
     margin-top: 10px;
@@ -471,4 +473,8 @@ a + a {
       }
     }
   }
+}
+
+.page-wrapper {
+  margin: 40px auto;
 }

@@ -6,14 +6,13 @@ import { User } from "@prisma/client";
 import axios from "axios";
 import prisma from "../../lib/prisma";
 import Layout from "../../components/Layout";
+import Head from "next/head";
 
 export const getServerSideProps = async ({ req, res }) => {
   const profiles = await prisma.user.findMany({
     skip: 0,
     take: 10,
   });
-
-  console.log(profiles);
 
   const initialProfiles = JSON.parse(JSON.stringify(profiles));
 
@@ -46,6 +45,10 @@ const Profiles = ({ initialProfiles }) => {
 
   return (
     <Layout>
+      <Head>
+        <title>Profiles - ShelfSpot</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className="profiles-page container">
         <div className="search-bar">
           <form className="search-form" onSubmit={(e) => onSubmit(e)}>

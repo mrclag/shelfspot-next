@@ -31,6 +31,7 @@ model User {
   role       Role       @default(USER)
   books      Book[]
   categories String[]
+  slug       String?     @unique
   Bookcase   Bookcase[]
 
   @@map(name: "users")

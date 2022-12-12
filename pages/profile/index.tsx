@@ -4,6 +4,8 @@ import Link from "next/link";
 import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import prisma from "../../lib/prisma";
 import Layout from "../../components/Layout";
+import Image from "next/image";
+import defaultProfile from "../../public/static/img/default.jpg";
 
 export const getServerSideProps = withPageAuthRequired({
   returnTo: "/",
@@ -11,7 +13,7 @@ export const getServerSideProps = withPageAuthRequired({
     const session = await getSession(req, res);
     if (!session) {
       res.statusCode = 403;
-      return { props: { profile: {} } };
+      return { props: { initialProfile: {} } };
     }
 
     const profile = await prisma.user.findUnique({
@@ -20,37 +22,57 @@ export const getServerSideProps = withPageAuthRequired({
 
     const jsonProfile = JSON.parse(JSON.stringify(profile));
 
-    return { props: { profile: jsonProfile } };
+    return { props: { initialProfile: jsonProfile } };
   },
 });
 
-const EditProfile = ({ profile }) => {
+const EditProfile = ({ initialProfile }) => {
+  const [imageUrl, setImageUrl] = useState(initialProfile.imageUrl);
+
   const onSubmit = (e) => {
     e.preventDefault();
   };
 
-  console.log(profile);
-
   return (
     <Layout>
-      <div className="container profile-page">
+      <div className="page-wrapper profile-page">
         <h1 className="large text-primary my-1">Your Profile</h1>
         <form className="form" onSubmit={(e) => onSubmit(e)}>
           <div className="form-group">
-            <div className="form-input-title">Profile Image URL</div>
-            <input
+            <div className="flex">
+              <div style={{ borderRadius: "7px", overflow: "none" }}>
+                <Image
+                  src={imageUrl || defaultProfile}
+                  alt="Profile Image"
+                  width="100px"
+                  height="100px"
+                />
+              </div>
+              <div style={{ fontSize: "24px", margin: "20px" }}>
+                {initialProfile.name}
+              </div>
+            </div>
+            {/* <div>{JSON.stringify(initialProfile)}</div> */}
+
+            <div>About</div>
+            <div>Tags/Interests</div>
+            <div>Number of Books (chart based on when added)</div>
+
+            {/* <input
               type="text"
               placeholder="https://via.placeholder.com/150"
               className="imgUrl"
+              value={imageUrl}
+              onChange={setImageUrl}
               name="imgUrl"
-            />
+            /> */}
             <small className="form-text"></small>
           </div>
 
           <input type="submit" className="btn btn-primary my-1" />
-          <div className="btn btn-light my-1">
+          {/* <div className="btn btn-light my-1">
             <Link href="/dashboard">Go Back</Link>
-          </div>
+          </div> */}
         </form>
         <div className="my-2">
           <button className="button delete">

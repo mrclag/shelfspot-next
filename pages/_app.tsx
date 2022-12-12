@@ -9,6 +9,7 @@ import "../sass/sectionsCard.scss";
 import "../sass/sectionCardBook.scss";
 import "../sass/searchBooks.scss";
 import "../sass/slider.scss";
+import "../sass/inputs.scss";
 import { UserProvider } from "@auth0/nextjs-auth0";
 import Head from "next/head";
 

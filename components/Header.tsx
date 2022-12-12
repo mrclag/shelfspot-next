@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { getSession, useUser } from "@auth0/nextjs-auth0";
+import { useUser } from "@auth0/nextjs-auth0";
 import logo from "../public/static/img/logo2.png";
 import Image from "next/image";
 
@@ -11,8 +11,6 @@ const Header: React.FC = () => {
     router.pathname === pathname;
 
   const { user, isLoading } = useUser();
-
-  console.log("user", user);
 
   return (
     <nav>
@@ -50,9 +48,7 @@ const Header: React.FC = () => {
         {user ? (
           <>
             <p>
-              <Link href={`/profile`}>
-                {user.name || user.email}
-              </Link>
+              <Link href={`/profile`}>{user.name || user.email}</Link>
             </p>
             {/* <Link href="/create">
               <button>

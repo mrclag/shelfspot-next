@@ -16,7 +16,7 @@ const SearchBooks = ({ bookcase, selectedCategory }) => {
     setSearchResult(result.data.items);
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
     fetchBooks();
   };
@@ -24,9 +24,9 @@ const SearchBooks = ({ bookcase, selectedCategory }) => {
   return (
     <div className="search-books container">
       <div className="search-bar">
-        <form onSubmit={(e) => onSubmitHandler(e)} className="search-form">
+        <form onSubmit={onSubmitHandler} className="search-form">
           <h2 className="search-title">Find Books for your Bookcase</h2>
-          <input 
+          <input
             className="search-input"
             type="search"
             placeholder="Search"

@@ -18,10 +18,8 @@ const BookResult = ({ categoryId, bookcaseId, result }) => {
 
   const addBook = () => {
     const res = axios.post('/api/bookcase/addBook', {...result.volumeInfo, categoryId, bookcaseId}).then(res => {
-      console.log('refreshing')
       router.replace(router.asPath)
     })
-
   }
 
   const author = authors?.length > 0 ? authors?.join(', ') : Array.isArray(authors) ? authors[0] : author ? author : 'No author'
@@ -37,7 +35,7 @@ const BookResult = ({ categoryId, bookcaseId, result }) => {
       <button
         className="add-button"
         style={{ borderRadius: '5px' }}
-        onClick={() => addBook(result)}
+        onClick={() => addBook()}
       >
         Add
       </button>

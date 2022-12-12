@@ -19,6 +19,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       data: { email, imageUrl, name },
     });
     
+    // Create a bookcase with a current category in it.
     await prisma.bookcase.create({
       data: {
         User: {connect: {email: email }},
