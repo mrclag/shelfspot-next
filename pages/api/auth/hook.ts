@@ -2,7 +2,7 @@ import  prisma from '../../../lib/prisma';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { email, secret } = req.body;
+  const { email, imageUrl, name, secret } = req.body;
 
   // 1 validate the request is post
   if (req.method !== 'POST') {
@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (email) {
     // 4 create a new user record
     await prisma.user.create({
-      data: { email },
+      data: { email, imageUrl, name },
     });
     return res.status(200).json({
       message: `User with email: ${email} has been created successfully!`,

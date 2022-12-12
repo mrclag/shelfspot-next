@@ -8,12 +8,11 @@ import { useRouter } from "next/router";
 import Landing from "../components/Landing";
 
 export default function Home({ loading }) {
-  const [showModal, setShowModal] = useState(false);
 
   const router = useRouter();
   const { user, isLoading } = useUser();
 
-  if (user) router.push({ pathname: "/home" });
+  if (user) router.push({ pathname: "/dashboard" });
   if (loading || isLoading) return "Loading";
   else return <Landing />;
 }

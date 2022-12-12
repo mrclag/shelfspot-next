@@ -148,7 +148,8 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
                   />
                 </div>
               </Link>
-              <Link href="/edit-profile">Edit Profile</Link>
+              <div style={{ width: "40px" }}></div>
+              {/* <Link href="/edit-profile">Edit Profile</Link> */}
               <Image
                 src={shelfDecorations[bookcase.decoration || 0]?.icon}
                 alt=""

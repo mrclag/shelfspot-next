@@ -59,6 +59,7 @@ body {
     Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
     "Segoe UI Symbol";
   background: rgba(0, 0, 0, 0.05);
+  overflow-y: scroll;
 }
 
 input,
@@ -380,6 +381,94 @@ a + a {
     }
     .interests2 {
       display: none;
+    }
+  }
+}
+
+.profile-page {
+  background: white;
+  width: 800px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.23);
+  padding: 20px 50px;
+  margin-top: 70px;
+  @media screen and (max-width: 800px) {
+    padding: 20px 15px;
+    margin-top: 60px;
+    width: 100%;
+  }
+
+  input {
+    border-radius: 5px;
+    height: 150px;
+    padding: 12px 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    height: 50px;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    &::placeholder {
+      font-size: 16px;
+      font-family: 'Raleway', sans-serif;
+    }
+  }
+  textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px 10px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+    font-size: 16px;
+    font-family: 'Raleway', sans-serif;
+    &::placeholder {
+      font-size: 16px;
+      font-family: 'Raleway', sans-serif;
+    }
+  }
+
+  .form-input-title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 25px;
+  }
+  .button-group {
+    width: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* margin: auto; */
+  }
+  .button {
+    height: 50px;
+    width: 60px;
+    margin: auto;
+    line-height: 50px;
+    text-align: center;
+    border: 1px solid #ccc;
+    &:hover {
+      cursor: pointer;
+      border: 1px solid darkblue;
+    }
+  }
+  .button {
+    margin-top: 10px;
+    color: black;
+    height: 40px;
+    padding: 5px 10px;
+    line-height: 30px;
+      border-radius: 5px;
+      width: 150px;
+    &.delete {
+      color: #9f0000;
+      background: white;
+      border: none;
+      &:hover {
+        color: #e91825;
+        cursor: pointer;
+      }
     }
   }
 }
