@@ -9,7 +9,7 @@ import Link from "next/link";
 import SectionsCard from "./SectionsCard";
 import Book2 from "./Book2";
 import Slider from "./Slider";
-import { shelfDecorations } from "./Customizations";
+import { shelfDecorations } from "../../utils/Customizations";
 import Modal from "../../components/layout/Modal";
 import Image from "next/image";
 import SearchBooks from "../../components/search";

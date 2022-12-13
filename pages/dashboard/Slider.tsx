@@ -2,7 +2,7 @@ import React from "react";
 // import styled from 'styled-components'
 import ScrollItem from "./SliderItem";
 
-import { shelfDecorations } from "./Customizations";
+import { shelfDecorations } from "../../utils/Customizations";
 
 const Slider = ({ bookcaseId }) => {
   return (
