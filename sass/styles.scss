@@ -3,10 +3,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Varela+Round&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Helvetica&display=swap');
 
-.page {
-  background: var(--geist-background);
-  padding: 2rem;
+* {
+  box-sizing: border-box;
 }
+
 
 .actions {
   margin-top: 2rem;

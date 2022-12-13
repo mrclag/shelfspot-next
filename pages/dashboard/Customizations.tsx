@@ -27,7 +27,3 @@ export const shelfDecorations = [
   { id: 5, icon: pusheen },
   { id: 6, icon: spikey },
 ];
-
-// export const shelfDecorations = {
-//   default: { icon: plant },
-// };

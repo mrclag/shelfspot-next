@@ -14,6 +14,7 @@ import Modal from "../../components/layout/Modal";
 import Image from "next/image";
 import SearchBooks from "../../components/search";
 import Head from "next/head";
+import { Loader } from "../../components/layout/Loader";
 
 export const getServerSideProps = withPageAuthRequired({
   returnTo: "/",
@@ -110,7 +111,7 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
 
   const router = useRouter();
 
-  if (isLoading) return <div>Loading</div>;
+  if (isLoading) return <Loader />;
 
   if (!user) {
     return (

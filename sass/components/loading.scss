@@ -1,0 +1,85 @@
+$lightorange: rgb(249, 163, 3);
+$orange: #FC7A1E;
+$darkorange: rgb(204, 114, 3);
+
+.book-loader {
+  border: 4px solid #333;
+  width: 60px;
+  height: 46px;
+  position: relative;
+  perspective: 150px;
+  margin: 5% auto 30px;
+  background: darkorange;
+
+  .page {
+    display: block;
+    width: 30px;
+    height: 46px;
+    border: 4px solid #333;
+    border-left: 1px solid $lightorange;
+    margin: 0;
+    position: absolute;
+    right: -4px;
+    top: -4px;
+    overflow: hidden;
+    background: $lightorange;
+    transform-style: preserve-3d;
+    -webkit-transform-origin: left center;
+    transform-origin: left center;
+
+    &:nth-child(1) {
+      -webkit-animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 2.2s infinite;
+      animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 2.2s infinite;
+    }
+    &:nth-child(2) {
+      -webkit-animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 2.0s infinite;
+      animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 2.0s infinite;
+    }
+    &:nth-child(3) {
+      -webkit-animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 1.8s infinite;
+      animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 1.8s infinite;
+    }
+  }
+
+}
+
+
+
+/* Page turn */
+
+@-webkit-keyframes pageTurn {
+  0% {
+    -webkit-transform: rotateY( 0deg);
+    transform: rotateY( 0deg);
+  }
+  20% {
+    background: $darkorange;
+  }
+  40% {
+    background: orange;
+    -webkit-transform: rotateY( -180deg);
+    transform: rotateY( -180deg);
+  }
+  100% {
+    background: orange;
+    -webkit-transform: rotateY( -180deg);
+    transform: rotateY( -180deg);
+  }
+}
+
+@keyframes pageTurn {
+  0% {
+    transform: rotateY( 0deg);
+  }
+  20% {
+    background: $darkorange;
+  }
+  40% {
+    background: orange;
+    transform: rotateY( -180deg);
+  }
+  100% {
+    background: orange;
+    transform: rotateY( -180deg);
+  }
+}
