@@ -15,7 +15,10 @@
     Your digital bookshelf.
     <br />
     <br />
-    <a href="https://shelfspotapp.com">View Deployed Site</a>
+    <a href="http://shelfspotapp.com">View Old Deployment</a>
+     | 
+    <a href="http://shelfspotapp-vercel.app">View New</a>
+     | 
     <a href="https://github.com/mrclag/shelfspot-next/issues">Request Feature</a>
   </p>
 </div>
@@ -50,7 +53,6 @@ Originally this project was created in 2019 using the MERN stack build on CRA, w
 
 ### Built With
 
-
 - [![Next][next.js]][next-url]
 - [![React][react.js]][react-url]
 - [![Typescript][typescript]][typescript-url]
@@ -58,7 +60,6 @@ Originally this project was created in 2019 using the MERN stack build on CRA, w
 - [![Postgres][postgres]][postgres-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 <!-- ROADMAP -->
 
@@ -68,7 +69,6 @@ Originally this project was created in 2019 using the MERN stack build on CRA, w
 - [ ] Take photo of bookshelf - Image recognition to auto-add books
 - [ ] Drag and drop books to other sections
 - [ ] Mobile-friendly
-
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
