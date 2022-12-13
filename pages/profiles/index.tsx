@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import ProfileItem from "./ProfileItem";
+import ProfileItem from "../../components/ProfileItem";
 import { useUser } from "@auth0/nextjs-auth0";
 import { User } from "@prisma/client";
 import axios from "axios";

@@ -14,7 +14,7 @@ const SectionsCardBook = ({ book }) => {
   return (
     <div
       className="section-card-book"
-      style={{ width: width, background: book.color[0] }}
+      style={{ width: width, background: book.color[0]  }}
     ></div>
   );
 };

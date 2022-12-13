@@ -6,9 +6,9 @@ import Router, { useRouter } from "next/router";
 import { Book, Bookcase, User } from "@prisma/client";
 import axios from "axios";
 import Link from "next/link";
-import SectionsCard from "./SectionsCard";
-import Book2 from "./Book2";
-import Slider from "./Slider";
+import SectionsCard from "../../components/SectionsCard";
+import Book2 from "../../components/Book2";
+import Slider from "../../components/Slider";
 import { shelfDecorations } from "../../utils/Customizations";
 import Modal from "../../components/layout/Modal";
 import Image from "next/image";
@@ -22,7 +22,13 @@ export const getServerSideProps = withPageAuthRequired({
     const session = await getSession(req, res);
     if (!session) {
       res.statusCode = 403;
-      return { props: { bookcase: {} } };
+      return {
+        props: {
+          bookcase: {
+            categories: [],
+          },
+        },
+      };
     }
 
     const bookcase = await prisma.bookcase.findMany({
@@ -46,6 +52,8 @@ export const getServerSideProps = withPageAuthRequired({
     });
 
     const jsonBookcase = JSON.parse(JSON.stringify(bookcase));
+
+    console.log(typeof jsonBookcase[0]);
 
     return {
       props: { bookcase: jsonBookcase[0] },
