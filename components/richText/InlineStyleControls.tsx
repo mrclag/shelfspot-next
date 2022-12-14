@@ -20,6 +20,7 @@ type Props = {
 };
 
 const InlineStyleControls = ({ editorState, onToggle }: Props) => {
+
   const currentStyle = editorState.getCurrentInlineStyle();
 
   return (

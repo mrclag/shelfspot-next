@@ -81,7 +81,7 @@ model Book {
   sections            String[]
   rating              Int         @default(0)
   color               String[]
-  userContent         Json[]
+  userContent         String?
   User                User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId              String?
   Bookcase            Bookcase?   @relation(fields: [bookcaseId], references: [id], onDelete: SetNull)

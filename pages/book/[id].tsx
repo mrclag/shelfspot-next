@@ -10,6 +10,7 @@ import { Book } from "@prisma/client";
 import RichText from "../../components/richText/RichText2";
 import Head from "next/head";
 import axios from "axios";
+import { convertFromRaw, EditorState } from "draft-js";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await prisma.book.findMany({});
@@ -53,7 +54,7 @@ type Props = {
   book: Book;
 };
 
-const Post: React.FC<Props> = ({ book }) => {
+const Book: React.FC<Props> = ({ book }) => {
   const { user, isLoading } = useUser();
   if (isLoading) {
     return <div>Authenticating ...</div>;
@@ -65,14 +66,20 @@ const Post: React.FC<Props> = ({ book }) => {
   const [content, setContent] = useState({});
 
   const saveBook = async () => {
+    console.log("CONTENT", content);
     const res = await axios.post("/api/bookcase/saveBook", {
       bookId: book.id,
-      content,
+      content: JSON.stringify(content),
     });
     console.log(res);
   };
 
-  console.log(content);
+  let bookContent;
+  if (book.userContent.length > 0) {
+    bookContent = EditorState.createWithContent(
+      convertFromRaw(JSON.parse(book.userContent))
+    );
+  }
 
   return (
     <Layout>
@@ -93,7 +100,7 @@ const Post: React.FC<Props> = ({ book }) => {
         <button onClick={saveBook}>Save</button>
 
         {/* <RichText /> */}
-        <RichText setContent={setContent} />
+        <RichText setContent={setContent} initialContent={bookContent} />
 
         {userHasValidSession && postBelongsToUser && (
           <button onClick={() => deletePost(book.id)}>Delete</button>
@@ -103,4 +110,4 @@ const Post: React.FC<Props> = ({ book }) => {
   );
 };
 
-export default Post;
+export default Book;

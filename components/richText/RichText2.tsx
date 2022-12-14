@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 import {
   Editor,
@@ -20,11 +20,21 @@ import InlineStyleControls from "./InlineStyleControls";
 
 type Props = {
   setContent: (state: RawDraftContentState) => void;
+  initialContent: any;
 };
 
-const RTEditor = ({ setContent }: Props) => {
+const RTEditor = ({
+  setContent,
+  initialContent = EditorState.createEmpty(),
+}: Props) => {
   const editorRef = useRef(null);
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const [editorState, setEditorState] = useState(initialContent);
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setLoading(false), 3000);
+  }, []);
 
   const styleMap = {
     CODE: {
@@ -83,16 +93,18 @@ const RTEditor = ({ setContent }: Props) => {
 
   return (
     <div className="RichEditor-root">
-      <div className="RichEditor-control-group">
-        <BlockStyleControls
-          editorState={editorState}
-          onToggle={toggleBlockType}
-        />
-        <InlineStyleControls
-          editorState={editorState}
-          onToggle={toggleInlineStyle}
-        />
-      </div>
+      {editorRef && (
+        <div className="RichEditor-control-group">
+          <BlockStyleControls
+            editorState={editorState}
+            onToggle={toggleBlockType}
+          />
+          <InlineStyleControls
+            editorState={editorState}
+            onToggle={toggleInlineStyle}
+          />
+        </div>
+      )}
       <Editor
         ref={editorRef}
         editorState={editorState}

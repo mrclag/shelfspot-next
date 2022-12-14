@@ -36,7 +36,8 @@ export default async function handle(req, res) {
       color,
       Category: { connect: { id: categoryId} },
       User: {connect: {email: session?.user?.email}},
-      Bookcase: {connect: {id: bookcaseId}}
+      Bookcase: {connect: {id: bookcaseId}},
+      userContent: ''
     },
   });
   res.json(result);
