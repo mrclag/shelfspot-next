@@ -136,7 +136,6 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
     <Layout>
       <Head>
         <title>Dashboard - ShelfSpot</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="dashboard">
         <link

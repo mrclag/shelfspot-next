@@ -12,16 +12,16 @@
   margin-top: 2rem;
 }
 
-button {
-  background: #ececec;
-  border: 0;
-  border-radius: 0.125rem;
-  padding: 1rem 2rem;
-}
+// button {
+//   background: #ececec;
+//   border: 0;
+//   border-radius: 0.125rem;
+//   padding: 1rem 2rem;
+// }
 
-button + button {
-  margin-left: 1rem;
-}
+// button + button {
+//   margin-left: 1rem;
+// }
 
 .bold {
   font-weight: bold;
@@ -150,9 +150,9 @@ p {
   border-radius: 3px;
 }
 
-button {
-  border: none;
-}
+// button {
+//   border: none;
+// }
 
 nav {
   display: flex;
@@ -477,4 +477,32 @@ a + a {
 
 .page-wrapper {
   margin: 40px auto;
+}
+
+body {
+  margin: 0;
+  background: #eee;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, '.SFNSText-Regular',
+    sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 24px;
+  color: #333;
+}
+
+.ltr {
+  text-align: left;
+}
+
+.rtl {
+  text-align: right;
 }
