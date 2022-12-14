@@ -24,11 +24,11 @@ const InlineStyleControls = ({ editorState, onToggle }: Props) => {
 
   return (
     <div className="RichEditor-controls">
-      {INLINE_STYLES.map((type) => (
+      {INLINE_STYLES.map((type, index) => (
         <StyleButton
           active={currentStyle.has(type.style)}
           // @ts-ignore
-          key={type.label}
+          key={index}
           // @ts-ignoreß
           label={type.label}
           onToggle={onToggle}

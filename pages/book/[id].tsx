@@ -9,6 +9,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 import { Book } from "@prisma/client";
 import RichText from "../../components/richText/RichText2";
 import Head from "next/head";
+import axios from "axios";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await prisma.book.findMany({});
@@ -63,6 +64,16 @@ const Post: React.FC<Props> = ({ book }) => {
 
   const [content, setContent] = useState({});
 
+  const saveBook = async () => {
+    const res = await axios.post("/api/bookcase/saveBook", {
+      bookId: book.id,
+      content,
+    });
+    console.log(res);
+  };
+
+  console.log(content);
+
   return (
     <Layout>
       <Head>
@@ -79,6 +90,7 @@ const Post: React.FC<Props> = ({ book }) => {
             : "Unknown author"}
         </p>
         {/* <ReactMarkdown children={props.content} /> */}
+        <button onClick={saveBook}>Save</button>
 
         {/* <RichText /> */}
         <RichText setContent={setContent} />

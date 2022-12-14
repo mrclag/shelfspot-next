@@ -31,7 +31,7 @@ model User {
   role       Role       @default(USER)
   books      Book[]
   categories String[]
-  slug       String?     @unique
+  slug       String?    @unique
   Bookcase   Bookcase[]
 
   @@map(name: "users")
@@ -81,6 +81,7 @@ model Book {
   sections            String[]
   rating              Int         @default(0)
   color               String[]
+  userContent         Json[]
   User                User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId              String?
   Bookcase            Bookcase?   @relation(fields: [bookcaseId], references: [id], onDelete: SetNull)
