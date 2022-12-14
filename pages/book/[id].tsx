@@ -61,14 +61,14 @@ const Post: React.FC<Props> = ({ book }) => {
   // const postBelongsToUser = user?.email === props.author?.email;
   const postBelongsToUser = true;
 
-  const [content, setContent] = useState(false);
+  const [content, setContent] = useState({});
 
   return (
     <Layout>
       <Head>
         <title>ShelfSpot {book.title && `- ${book.title}`}</title>
       </Head>
-      <div className="post">
+      <div className="page-wrapper">
         <h2>{book.title || "Untitled"}</h2>
         <p>
           By{" "}

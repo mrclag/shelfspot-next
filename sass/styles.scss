@@ -72,10 +72,6 @@ button {
 }
 
 
-div.post {
-  color: inherit;
-  padding: 2rem;
-}
 
 a {
   text-decoration: none;
@@ -184,18 +180,6 @@ a + a {
   margin-left: auto;
 }
 
-.post {
-  background: var(--geist-background);
-  transition: box-shadow 0.1s ease-in;
-}
-
-.post:hover {
-  box-shadow: 1px 1px 3px #aaa;
-}
-
-.post + .post {
-  margin-top: 2rem;
-}
 
 .profiles-page {
   text-align: center;
@@ -475,9 +459,6 @@ a + a {
   }
 }
 
-.page-wrapper {
-  margin: 40px auto;
-}
 
 body {
   margin: 0;
