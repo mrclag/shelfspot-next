@@ -20,8 +20,8 @@
     margin: auto;
     background: white;
     border: 1px solid #ccc;
+    max-height: 85vh;
     border-radius: 10px;
-    padding: 20px;
   }
   
   .exit {
@@ -30,7 +30,7 @@
     right: 10px;
     cursor: pointer;
     color: #333;
-    font-size: 24px;
+    font-size: 22px;
   }
   
   .exit:hover {

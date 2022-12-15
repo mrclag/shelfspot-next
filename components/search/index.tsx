@@ -43,11 +43,11 @@ const SearchBooks = ({ bookcase, selectedCategory }) => {
         </form>
         <form onSubmit={onSubmitHandler} />
       </div>
-      <div>
-        {searchResultNum > 0 && searchResultNum + " results (showing 10)"}{" "}
-      </div>
-      <div>
-        {searchResult.length > 0 ? (
+      {searchResult.length > 0 && (
+        <div className="search-bottom">
+          <div className="num-results">
+            {searchResultNum > 0 && searchResultNum + " results (showing 10)"}{" "}
+          </div>
           <div className="book-results">
             {searchResult?.map((result, i) => (
               <BookResult
@@ -58,13 +58,8 @@ const SearchBooks = ({ bookcase, selectedCategory }) => {
               />
             ))}
           </div>
-        ) : (
-          <div className="bg-icon">
-            {/* <i className="fas fa-book-medical"></i>
-            <div className="bg-text">Search Books</div> */}
-          </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 };
