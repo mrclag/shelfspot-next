@@ -1,5 +1,19 @@
 @use './base/layout.scss';
+@use './base/typography.scss';
+@use './base/index.scss';
 
 
 @use './components/loading.scss';
 @use './components/richtext.scss';
+@use './components/sidepanel.scss';
+@use './components/book2.scss';
+@use './components/dashboard.scss';
+@use './components/landing.scss';
+@use './components/searchBooks.scss';
+@use './components/slider.scss';
+@use './components/sectionCardBook.scss';
+@use './components/modal.scss';
+@use './components/sectionsCard.scss';
+@use './components/profiles.scss';
+@use './components/navbar.scss';
+@use './components/profile.scss';

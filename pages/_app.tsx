@@ -1,18 +1,8 @@
 import { AppProps } from "next/app";
-import "../sass/landing.scss";
-import "../sass/styles.scss";
-import "../sass/dashboard.scss";
-import "../sass/modal.scss";
-import "../sass/book2.scss";
-import "../sass/sectionCard.scss";
-import "../sass/sectionsCard.scss";
-import "../sass/sectionCardBook.scss";
-import "../sass/searchBooks.scss";
-import "../sass/slider.scss";
-import "../sass/inputs.scss";
-import "../sass/style.scss";
 import { UserProvider } from "@auth0/nextjs-auth0";
+import { Toaster } from "react-hot-toast";
 import Head from "next/head";
+import "../sass/style.scss";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -44,6 +34,7 @@ const App = ({ Component, pageProps }: AppProps) => {
           rel="stylesheet"
         />
       </Head>
+      <Toaster />
       <Component {...pageProps} />
     </UserProvider>
   );

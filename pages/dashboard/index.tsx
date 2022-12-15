@@ -14,6 +14,7 @@ import Modal from "../../components/layout/Modal";
 import Image from "next/image";
 import SearchBooks from "../../components/search";
 import Head from "next/head";
+import toast, { Toaster } from "react-hot-toast";
 import { Loader } from "../../components/layout/Loader";
 
 export const getServerSideProps = withPageAuthRequired({
@@ -52,8 +53,6 @@ export const getServerSideProps = withPageAuthRequired({
     });
 
     const jsonBookcase = JSON.parse(JSON.stringify(bookcase));
-
-    console.log(typeof jsonBookcase[0]);
 
     return {
       props: { bookcase: jsonBookcase[0] },
@@ -137,7 +136,7 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
       <Head>
         <title>Dashboard - ShelfSpot</title>
       </Head>
-      <div className="dashboard">
+      <div className="dashboard flex">
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"
@@ -254,6 +253,7 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
             </div>
           </div>
         </div>
+        <div className="side-panel">test</div>
         <Modal showModal={showSearchModal} setShowModal={setShowSearchModal}>
           <SearchBooks bookcase={bookcase} selectedCategory={selectedSection} />
         </Modal>{" "}
