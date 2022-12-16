@@ -79,7 +79,7 @@ model Book {
   categoryId          String?
   hidden              Boolean     @default(false)
   sections            String[]
-  rating              Int         @default(0)
+  rating              Float       @default(0)
   color               String[]
   userContent         String?
   User                User?       @relation(fields: [userId], references: [id], onDelete: Cascade)

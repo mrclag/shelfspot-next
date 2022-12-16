@@ -5,7 +5,7 @@ import prisma from '../../../lib/prisma';
 // Required fields in body: title
 // Optional fields in body: content
 export default async function handle(req, res) {
-  const { bookId, content } = req.body;
+  const { bookId, content, rating } = req.body;
 
 
   const session = await getSession(req, res);
@@ -14,7 +14,8 @@ export default async function handle(req, res) {
       id: bookId
     },
     data: {
-      userContent: content
+      userContent: content,
+      rating,
     },
   });
   res.json(result);

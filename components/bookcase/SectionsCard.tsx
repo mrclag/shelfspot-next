@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import BookcaseSection from "./BookcaseSection";
 import SectionsCardBook from "./SectionsCardBook";
+import toast, { Toaster } from "react-hot-toast";
+
 // import { swapBookend, bookends } from '../../utils/swapBookend';
 // import {
 //   addSection,
@@ -22,15 +24,21 @@ const SectionsCard = ({
   const router = useRouter();
 
   const addSection = async (section) => {
-    const res = await axios
-      .post("/api/profile/addSection", {
-        title: newSectionTitle,
-        bookcaseId: bookcase.id,
-      })
-      .then((res) => {
-        router.replace(router.asPath);
-      });
-    console.log(res);
+    toast.promise(
+      axios
+        .post("/api/profile/addSection", {
+          title: newSectionTitle,
+          bookcaseId: bookcase.id,
+        })
+        .then((res) => {
+          router.replace(router.asPath);
+        }),
+      {
+        loading: "Adding shelf...",
+        success: "Shelf added!",
+        error: `Something went wrong 😥 Please try again`,
+      }
+    );
   };
 
   const onSubmit = (e) => {

@@ -33,17 +33,13 @@ const SearchBooks = ({ bookcase, selectedCategory }) => {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
-          <button
-            type="submit"
-            className="search-button"
-            style={{ borderRadius: "5px", marginLeft: "5px" }}
-          >
+          <button type="submit" className="search-button">
             <i className="fas fa-search"></i>
           </button>
         </form>
         <form onSubmit={onSubmitHandler} />
       </div>
-      {searchResult.length > 0 && (
+      {searchResult?.length > 0 && (
         <div className="search-bottom">
           <div className="num-results">
             {searchResultNum > 0 && searchResultNum + " results (showing 10)"}{" "}

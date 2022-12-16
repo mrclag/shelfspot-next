@@ -3,7 +3,7 @@ import React from "react";
 // import { Link } from 'react-router-dom';
 import Link from "next/link";
 
-const Book2 = ({ book, profile }) => {
+const Book2 = ({ book }) => {
   return (
     <div className="book-2">
       <Link key={book.id} href={`/book/${book.id}`}>

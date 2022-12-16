@@ -65,7 +65,7 @@ type Props = {
   bookcase: Bookcase;
 };
 
-const Drafts: React.FC<Props> = ({ bookcase }) => {
+const Dashboard: React.FC<Props> = ({ bookcase }) => {
   const { user, isLoading } = useUser();
   console.log(user);
 
@@ -90,30 +90,47 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
   }, [selectedSection]);
 
   const deleteSection = async (sectionId) => {
-    const res = await axios
-      .delete("/api/profile/deleteSection", {
-        data: {
-          sectionId: sectionId,
-        },
-      })
-      .then((res) => {
-        router.replace(router.asPath);
-      });
-    console.log(res);
+    // @ts-ignore
+    if (bookcase.categories.length === 1)
+      return toast.error("Your bookcase must have at least one shelf.");
+    toast.promise(
+      axios
+        .delete("/api/profile/deleteSection", {
+          data: {
+            sectionId: sectionId,
+          },
+        })
+        .then((res) => {
+          router.replace(router.asPath);
+          setShowSectionModal(false);
+          // @ts-ignore
+          setSelectedSection(bookcase.categories[0]);
+        }),
+      {
+        loading: "Removing shelf...",
+        success: "Shelf removed",
+        error: `Something went wrong 😥 Please try again`,
+      }
+    );
   };
 
   const updateSectionName = async (sectionId) => {
-    const res = await axios
-      .put("/api/profile/updateSection", {
-        sectionId: sectionId,
-        title: newTitle,
-      })
-      .then((res) => {
-        router.replace(router.asPath);
-        setEditTitle(false);
-
-        // @ts-ignore
-      });
+    toast.promise(
+      axios
+        .put("/api/profile/updateSection", {
+          sectionId: sectionId,
+          title: newTitle,
+        })
+        .then(() => {
+          router.replace(router.asPath);
+          setEditTitle(false);
+        }),
+      {
+        loading: "Updating shelf name...",
+        success: "Shelf name updated",
+        error: `Something went wrong 😥 Please try again`,
+      }
+    );
   };
 
   const router = useRouter();
@@ -241,7 +258,7 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
             <div>
               <div className="books-section">
                 {sectionBooks.map((book, i) => {
-                  return <Book2 key={i} book={book} profile={profile} />;
+                  return <Book2 key={i} book={book} />;
                 })}
                 <div
                   onClick={(showModal) => setShowSearchModal(true)}
@@ -253,7 +270,7 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
             </div>
           </div>
         </div>
-        <div className="side-panel">test</div>
+        {/* <div className="side-panel">test</div> */}
         <Modal showModal={showSearchModal} setShowModal={setShowSearchModal}>
           <SearchBooks bookcase={bookcase} selectedCategory={selectedSection} />
         </Modal>{" "}
@@ -262,4 +279,4 @@ const Drafts: React.FC<Props> = ({ bookcase }) => {
   );
 };
 
-export default Drafts;
+export default Dashboard;

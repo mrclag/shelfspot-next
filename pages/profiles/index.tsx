@@ -60,15 +60,7 @@ const Profiles = ({ initialProfiles }) => {
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
             />
-            <button
-              type="submit"
-              className="search-button btn btn-primary"
-              style={{
-                borderRadius: "5px",
-                marginLeft: "5px",
-                transform: "translateX(2px)",
-              }}
-            >
+            <button type="submit" className="search-button">
               <i className="fas fa-search"></i>
             </button>
           </form>

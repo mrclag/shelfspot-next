@@ -14,27 +14,23 @@ import {
   RawDraftContentState,
 } from "draft-js";
 import "draft-js/dist/Draft.css";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 
 import BlockStyleControls from "./BlockStyleControls";
 import InlineStyleControls from "./InlineStyleControls";
 
 type Props = {
-  setContent: (state: RawDraftContentState) => void;
+  // setContent: (state: RawDraftContentState) => void;
   initialContent: any;
+  bookId: string;
 };
 
-const RTEditor = ({
-  setContent,
-  initialContent = EditorState.createEmpty(),
-}: Props) => {
+const RTEditor = ({ bookId, initialContent = "" }: Props) => {
   const editorRef = useRef(null);
-  const [editorState, setEditorState] = useState(initialContent);
-
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 3000);
-  }, []);
+  const [editorState, setEditorState] = useState(
+    EditorState.createWithContent(convertFromRaw(JSON.parse(initialContent)))
+  );
 
   const styleMap = {
     CODE: {
@@ -56,7 +52,6 @@ const RTEditor = ({
 
   const onChange = (state: EditorState) => {
     setEditorState(state);
-    setContent(convertToRaw(editorState.getCurrentContent()));
   };
 
   const mapKeyToEditorCommand = (e: any): string | null => {
@@ -92,32 +87,61 @@ const RTEditor = ({
   };
 
   return (
-    <div className="RichEditor-root">
-      {editorRef && (
-        <div className="RichEditor-control-group">
-          <BlockStyleControls
-            editorState={editorState}
-            onToggle={toggleBlockType}
-          />
-          <InlineStyleControls
-            editorState={editorState}
-            onToggle={toggleInlineStyle}
-          />
-        </div>
-      )}
-      <Editor
-        ref={editorRef}
-        editorState={editorState}
-        placeholder="Tell a story..."
-        customStyleMap={styleMap}
-        blockStyleFn={(block: ContentBlock) => getBlockStyle(block)}
-        keyBindingFn={(e) => mapKeyToEditorCommand(e)}
-        onChange={onChange}
-        spellCheck={true}
-        handleKeyCommand={handleKeyCommand}
-      />
-    </div>
+    <>
+      <div className="RichEditor-root">
+        {editorRef && (
+          <div className="RichEditor-control-group">
+            <BlockStyleControls
+              editorState={editorState}
+              onToggle={toggleBlockType}
+            />
+            <InlineStyleControls
+              editorState={editorState}
+              onToggle={toggleInlineStyle}
+            />
+          </div>
+        )}
+        <Editor
+          ref={editorRef}
+          editorState={editorState}
+          placeholder="Tell a story..."
+          customStyleMap={styleMap}
+          blockStyleFn={(block: ContentBlock) => getBlockStyle(block)}
+          keyBindingFn={(e) => mapKeyToEditorCommand(e)}
+          onChange={onChange}
+          spellCheck={true}
+          handleKeyCommand={handleKeyCommand}
+        />
+      </div>
+      <button
+        onClick={() =>
+          saveBook(bookId, { content: editorState.getCurrentContent() })
+        }
+      >
+        Save
+      </button>
+    </>
   );
 };
 
 export default React.memo(RTEditor);
+
+export const saveBook = async (
+  bookId: string,
+  bookUpdates: { content?: ContentState | undefined; rating?: number }
+) => {
+  const { content, rating } = bookUpdates;
+
+  toast.promise(
+    axios.post("/api/bookcase/saveBook", {
+      bookId,
+      content: content ? JSON.stringify(convertToRaw(content)) : undefined,
+      rating: rating,
+    }),
+    {
+      loading: "Saving...",
+      success: "Book saved! 🎉",
+      error: `Something went wrong 😥 Please try again`,
+    }
+  );
+};

@@ -7,11 +7,17 @@ import { PostProps } from "../../components/Post";
 import prisma from "../../lib/prisma";
 import { useUser } from "@auth0/nextjs-auth0";
 import { Book } from "@prisma/client";
-import RichText from "../../components/richText/RichText2";
+import RichText, { saveBook } from "../../components/richText/RichText2";
 import Head from "next/head";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
-import { convertFromRaw, EditorState } from "draft-js";
+import {
+  ContentState,
+  convertFromRaw,
+  convertToRaw,
+  EditorState,
+  RawDraftContentState,
+} from "draft-js";
 import Image from "next/image";
 import ReactStars from "react-stars";
 
@@ -39,20 +45,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-async function publishPost(id: string): Promise<void> {
-  await fetch(`/api/publish/${id}`, {
-    method: "PUT",
-  });
-  await Router.push("/home");
-}
-
-async function deletePost(id: string): Promise<void> {
-  await fetch(`/api/post/${id}`, {
-    method: "DELETE",
-  });
-  Router.push("/home");
-}
-
 type Props = {
   book: Book;
 };
@@ -66,22 +58,10 @@ const Book: React.FC<Props> = ({ book }) => {
   // const postBelongsToUser = user?.email === props.author?.email;
   const postBelongsToUser = true;
 
-  const [content, setContent] = useState({});
+  const [content, setContent] = useState<ContentState>(
+    ContentState.createFromText(book.userContent || "")
+  );
   const [rating, setRating] = useState(book.rating);
-
-  const saveBook = async () => {
-    toast.promise(
-      axios.post("/api/bookcase/saveBook", {
-        bookId: book.id,
-        content: JSON.stringify(content),
-      }),
-      {
-        loading: "Saving...",
-        success: "Book saved! 🎉",
-        error: `Something went wrong 😥 Please try again`,
-      }
-    );
-  };
 
   const deleteBook = async () => {
     toast.promise(
@@ -91,23 +71,17 @@ const Book: React.FC<Props> = ({ book }) => {
         })
         .then(() => Router.push("/dashboard")),
       {
-        loading: "Saving...",
+        loading: "Removing book...",
         success: "Book removed from shelf! 🎉",
         error: `Something went wrong 😥 Please try again`,
       }
     );
   };
 
-  const ratingChanged = (starValue) => {
-    setRating(starValue);
+  const ratingChanged = (starValue: number) => {
+    // setRating(starValue);
+    saveBook(book.id, { rating: starValue });
   };
-
-  let bookContent;
-  if (book.userContent.length > 0) {
-    bookContent = EditorState.createWithContent(
-      convertFromRaw(JSON.parse(book.userContent))
-    );
-  }
 
   const author =
     book?.authors?.length > 0
@@ -141,19 +115,17 @@ const Book: React.FC<Props> = ({ book }) => {
         <p>By {author}</p>
 
         <ReactStars
-          value={rating}
           count={5}
+          value={book.rating}
           onChange={ratingChanged}
           size={24}
           color2={"#ffd700"}
         />
-        {/* <ReactMarkdown children={props.content} /> */}
 
-        {/* <RichText /> */}
-        <RichText setContent={setContent} initialContent={bookContent} />
+        {/* @ts-ignore */}
+        <RichText bookId={book.id} initialContent={book.userContent} />
 
         <div className="flex">
-          <button onClick={saveBook}>Save</button>
           <button onClick={deleteBook}>Delete</button>
         </div>
       </div>

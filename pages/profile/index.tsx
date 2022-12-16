@@ -69,12 +69,9 @@ const EditProfile = ({ initialProfile }) => {
             <small className="form-text"></small>
           </div>
 
-          <input type="submit" className="btn btn-primary my-1" />
-          {/* <div className="btn btn-light my-1">
-            <Link href="/dashboard">Go Back</Link>
-          </div> */}
+          <input type="submit" />
         </form>
-        <div className="my-2">
+        <div>
           <button className="button delete">
             <i className="fas fa-trash"> Delete My Account</i>
           </button>
