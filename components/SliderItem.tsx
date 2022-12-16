@@ -12,8 +12,6 @@ const SliderItem = ({ item, bookcaseId }) => {
 
   const router = useRouter();
 
-  console.log("item", item);
-
   const onClick = (item) => {
     const res = axios
       .put("/api/bookcase/swapDecoration", {
@@ -23,7 +21,6 @@ const SliderItem = ({ item, bookcaseId }) => {
       .then((res) => {
         router.replace(router.asPath);
       });
-    // changeDecoration(item.id)
   };
   return (
     <div

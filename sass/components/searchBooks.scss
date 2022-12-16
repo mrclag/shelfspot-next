@@ -85,20 +85,7 @@
     margin-top: 8px;
   }
 
-  .add-button {
-    outline: none;
-    border: none;
-    background: #e8442d;
-    font-size: 12px;
-    &:hover {
-      background: #cd4128
-    }
 
-    &.disabled {
-    cursor: default;
-        background: #e5816fbf;
-    }
-  }
 
 .book-info {
   margin-left: 10px;

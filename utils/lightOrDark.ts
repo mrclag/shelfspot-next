@@ -32,4 +32,4 @@ const lightOrDark = (color) => {
   }
 };
 
-module.exports = lightOrDark;
+export default lightOrDark

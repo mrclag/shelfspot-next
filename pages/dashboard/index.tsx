@@ -3,7 +3,7 @@ import Layout from "../../components/Layout";
 import prisma from "../../lib/prisma";
 import { getSession, useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Router, { useRouter } from "next/router";
-import { Book, Bookcase, User } from "@prisma/client";
+import { Book, Bookcase, Categories, User } from "@prisma/client";
 import axios from "axios";
 import Link from "next/link";
 import SectionsCard from "../../components/bookcase/SectionsCard";
@@ -62,15 +62,17 @@ export const getServerSideProps = withPageAuthRequired({
 
 type Props = {
   books: Book[];
-  bookcase: Bookcase;
+  bookcase: Bookcase & {
+    categories: Categories[];
+    books: Book[] & {
+      categories: Categories[];
+    };
+  };
 };
 
 const Dashboard: React.FC<Props> = ({ bookcase }) => {
   const { user, isLoading } = useUser();
-  console.log(user);
-
   const [selectedSection, setSelectedSection] = useState(
-    // @ts-ignore
     bookcase.categories[0]
   );
   const [showSectionModal, setShowSectionModal] = useState(false);
@@ -78,7 +80,6 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
   const [newTitle, setNewTitle] = useState(selectedSection.title);
   const [showSearchModal, setShowSearchModal] = useState(false);
 
-  // @ts-ignore
   const books = bookcase.books;
   const sectionBooks = books?.filter(
     (book) => book.categoryId === selectedSection.id
@@ -90,7 +91,6 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
   }, [selectedSection]);
 
   const deleteSection = async (sectionId) => {
-    // @ts-ignore
     if (bookcase.categories.length === 1)
       return toast.error("Your bookcase must have at least one shelf.");
     toast.promise(
@@ -103,8 +103,11 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
         .then((res) => {
           router.replace(router.asPath);
           setShowSectionModal(false);
-          // @ts-ignore
-          setSelectedSection(bookcase.categories[0]);
+          const category = bookcase.categories.filter(
+            (cat) => cat.id !== sectionId
+          )[0];
+
+          setSelectedSection(category);
         }),
       {
         loading: "Removing shelf...",
@@ -124,6 +127,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
         .then(() => {
           router.replace(router.asPath);
           setEditTitle(false);
+          setSelectedSection({ ...selectedSection, title: newTitle });
         }),
       {
         loading: "Updating shelf name...",
@@ -146,8 +150,6 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
     );
   }
 
-  const profile = { user: { _id: "123" }, imgUrl: user.picture };
-
   return (
     <Layout>
       <Head>
@@ -163,7 +165,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
         <div className="dashboard-wrap">
           <div className="col1">
             <div className="dashboard-topleft">
-              <Link href={`/profile/${profile.user._id}`}>
+              <Link href={`/profile/${bookcase.userId}`}>
                 <div className="frame" style={{ height: "100px" }}>
                   <img
                     src={user.picture}

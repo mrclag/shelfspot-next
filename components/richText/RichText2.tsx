@@ -31,6 +31,7 @@ const RTEditor = ({ bookId, initialContent = "" }: Props) => {
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(convertFromRaw(JSON.parse(initialContent)))
   );
+  const [loading, setLoading] = useState(false);
 
   const styleMap = {
     CODE: {
@@ -114,9 +115,15 @@ const RTEditor = ({ bookId, initialContent = "" }: Props) => {
         />
       </div>
       <button
+        className={`button ${loading ? "disabled" : ""}`}
         onClick={() =>
-          saveBook(bookId, { content: editorState.getCurrentContent() })
+          saveBook(
+            bookId,
+            { content: editorState.getCurrentContent() },
+            setLoading
+          )
         }
+        disabled={loading}
       >
         Save
       </button>
@@ -128,16 +135,19 @@ export default React.memo(RTEditor);
 
 export const saveBook = async (
   bookId: string,
-  bookUpdates: { content?: ContentState | undefined; rating?: number }
+  bookUpdates: { content?: ContentState | undefined; rating?: number },
+  setLoading: React.Dispatch<React.SetStateAction<boolean>> = () => {}
 ) => {
   const { content, rating } = bookUpdates;
-
+  setLoading(true);
   toast.promise(
-    axios.post("/api/bookcase/saveBook", {
-      bookId,
-      content: content ? JSON.stringify(convertToRaw(content)) : undefined,
-      rating: rating,
-    }),
+    axios
+      .post("/api/bookcase/saveBook", {
+        bookId,
+        content: content ? JSON.stringify(convertToRaw(content)) : undefined,
+        rating: rating,
+      })
+      .then(() => setLoading(false)),
     {
       loading: "Saving...",
       success: "Book saved! 🎉",

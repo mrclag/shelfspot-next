@@ -10,10 +10,7 @@
   }
 }
 
-
-
 .search-button {
-  // transform: translateY(-1px);
   color: white;
   border-radius: 0px 5px 5px 0px;
   background: #2a9d8f;
@@ -22,9 +19,41 @@
   border: none;
   &:hover {
     background: #31ccb9;
-    border: 1px solid #31ccb9;
   }
   @media screen and (max-width: 800px) {
     display: none;
   }
 }
+
+.add-button {
+  outline: none;
+  border: none;
+  background: #e8442d;
+  font-size: 12px;
+  &:hover {
+    background: #cd4128
+  }
+
+  &.disabled {
+    cursor: default;
+    background: #e5816fbf;
+  }
+}
+
+.button {
+  color: white;
+  border-radius: 0px 5px 5px 0px;
+  background: #2a9d8f;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: none;
+  &:hover {
+    background: #31ccb9;
+  }
+  
+  &.disabled {
+    cursor: default;
+    background: gray;
+  }
+}
+

@@ -2,7 +2,6 @@ import ColorThief from 'colorthief'
 import lightOrDark from './lightOrDark';
 
 const getCommonImgColor = async (imgUrl) => {
-  console.log('URL:', imgUrl);
   const color = await ColorThief.getColor(imgUrl)
     .then((color) => {
       return 'rgb(' + color.join(',') + ')';

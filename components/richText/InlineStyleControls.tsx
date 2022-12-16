@@ -20,7 +20,6 @@ type Props = {
 };
 
 const InlineStyleControls = ({ editorState, onToggle }: Props) => {
-
   const currentStyle = editorState.getCurrentInlineStyle();
 
   return (
@@ -28,9 +27,7 @@ const InlineStyleControls = ({ editorState, onToggle }: Props) => {
       {INLINE_STYLES.map((type, index) => (
         <StyleButton
           active={currentStyle.has(type.style)}
-          // @ts-ignore
           key={index}
-          // @ts-ignoreß
           label={type.label}
           onToggle={onToggle}
           style={type.style}

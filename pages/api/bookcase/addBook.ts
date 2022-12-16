@@ -1,5 +1,6 @@
 import { getSession } from '@auth0/nextjs-auth0';
 import { Book } from '@prisma/client';
+import { ContentState, convertToRaw } from 'draft-js';
 import prisma from '../../../lib/prisma';
 import getCommonImgColor from '../../../utils/getCommonImgColor'
 
@@ -37,7 +38,7 @@ export default async function handle(req, res) {
       Category: { connect: { id: categoryId} },
       User: {connect: {email: session?.user?.email}},
       Bookcase: {connect: {id: bookcaseId}},
-      userContent: ''
+      userContent: JSON.stringify(convertToRaw(ContentState.createFromText('')))
     },
   });
   res.json(result);

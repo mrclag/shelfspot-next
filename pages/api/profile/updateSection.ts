@@ -7,7 +7,6 @@ import prisma from '../../../lib/prisma';
 export default async function handle(req, res) {
   const { sectionId, title } = req.body;
 
-  console.log('id', sectionId)
   const session = await getSession(req, res);
   const result = await prisma.categories.update({
     where: {

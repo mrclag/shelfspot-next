@@ -11,7 +11,6 @@ const SearchBooks = ({ bookcase, selectedCategory }) => {
     const result = await axios.post(`/api/googleBooks`, {
       searchTerm,
     });
-    console.log(result);
     setSearchResultNum(result.data.totalItems);
     setSearchResult(result.data.items);
   };

@@ -3,7 +3,7 @@ import React from "react";
 type Props = {
   active: boolean;
   style: string;
-  label: string;
+  label: any;
   onToggle: (bockType: string) => void;
 };
 

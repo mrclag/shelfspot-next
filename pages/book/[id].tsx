@@ -1,24 +1,14 @@
-import React, { useState } from "react";
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from "next";
-import ReactMarkdown from "react-markdown";
+import React from "react";
+import { GetStaticPaths, GetStaticProps } from "next";
 import Router from "next/router";
 import Layout from "../../components/Layout";
-import { PostProps } from "../../components/Post";
 import prisma from "../../lib/prisma";
 import { useUser } from "@auth0/nextjs-auth0";
 import { Book } from "@prisma/client";
 import RichText, { saveBook } from "../../components/richText/RichText2";
 import Head from "next/head";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import axios from "axios";
-import {
-  ContentState,
-  convertFromRaw,
-  convertToRaw,
-  EditorState,
-  RawDraftContentState,
-} from "draft-js";
-import Image from "next/image";
 import ReactStars from "react-stars";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -39,6 +29,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const book = JSON.parse(JSON.stringify(bookResult));
 
+  console.log(book);
+
   return {
     props: { book },
     revalidate: 10,
@@ -58,11 +50,6 @@ const Book: React.FC<Props> = ({ book }) => {
   // const postBelongsToUser = user?.email === props.author?.email;
   const postBelongsToUser = true;
 
-  const [content, setContent] = useState<ContentState>(
-    ContentState.createFromText(book.userContent || "")
-  );
-  const [rating, setRating] = useState(book.rating);
-
   const deleteBook = async () => {
     toast.promise(
       axios
@@ -79,7 +66,6 @@ const Book: React.FC<Props> = ({ book }) => {
   };
 
   const ratingChanged = (starValue: number) => {
-    // setRating(starValue);
     saveBook(book.id, { rating: starValue });
   };
 
@@ -122,7 +108,6 @@ const Book: React.FC<Props> = ({ book }) => {
           color2={"#ffd700"}
         />
 
-        {/* @ts-ignore */}
         <RichText bookId={book.id} initialContent={book.userContent} />
 
         <div className="flex">

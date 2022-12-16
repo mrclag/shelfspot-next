@@ -2,10 +2,7 @@ import { getSession } from '@auth0/nextjs-auth0';
 import prisma from '../../../lib/prisma';
 
 export default async function handle(req, res) {
-  console.log('params', req.params)
-  console.log('data', req)
   const {searchValue, skip, take} = req.body
-
 
   if (req.method === 'POST') {
 
