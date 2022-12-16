@@ -16,7 +16,7 @@ const ProfileItem = ({
           <div className="name">{name || email}</div>
           {/* <p>{bio && (bio.length < 80 ? bio : bio.slice(0, 100) + '...')}</p> */}
         </div>
-        <i className="fas fa-ellipsis-h"></i>
+        {/* <i className="fas fa-ellipsis-h"></i> */}
       </div>
     </Link>
   );

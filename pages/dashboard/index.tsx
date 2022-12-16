@@ -80,6 +80,8 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
   const [newTitle, setNewTitle] = useState(selectedSection.title);
   const [showSearchModal, setShowSearchModal] = useState(false);
 
+  const [mobileDisplayShelf, setMobileDisplayShelf] = useState(false);
+
   const books = bookcase.books;
   const sectionBooks = books?.filter(
     (book) => book.categoryId === selectedSection.id
@@ -150,20 +152,19 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
     );
   }
 
+  // when on mobile, default show bookshelf.
+  // when click on shelf, show shelf
+  // display a back button on the shelf
+  // new shelf design on mobile
+
   return (
     <Layout>
       <Head>
         <title>Dashboard - ShelfSpot</title>
       </Head>
       <div className="dashboard flex">
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css"
-          integrity="sha256-PF6MatZtiJ8/c9O9HQ8uSUXr++R9KBYu4gbNG5511WE="
-          crossOrigin="anonymous"
-        />
         <div className="dashboard-wrap">
-          <div className="col1">
+          <div className={`col1 ${!mobileDisplayShelf ? "disMob" : ""}`}>
             <div className="dashboard-topleft">
               <Link href={`/profile/${bookcase.userId}`}>
                 <div className="frame" style={{ height: "100px" }}>
@@ -187,17 +188,27 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
             <SectionsCard
               bookcase={bookcase}
               selectedSection={selectedSection}
-              setSelectedSection={setSelectedSection}
+              setSelectedSection={(bool) => {
+                setMobileDisplayShelf(true);
+                setSelectedSection(bool);
+              }}
               books={books}
             />
           </div>
 
-          <div className="col2">
+          <div className={`col2 ${mobileDisplayShelf ? "disMob" : ""}`}>
             <div className="dashboard-topright">
               <Slider bookcaseId={bookcase.id} />
             </div>
             {/* <button onClick={refreshData}>Refresh</button> */}
-
+            {mobileDisplayShelf && (
+              <div
+                className="back-to-shelf"
+                onClick={() => setMobileDisplayShelf(false)}
+              >
+                <i className="fas fa-chevron-left"></i> Back
+              </div>
+            )}
             <div style={{ display: "flex", flexDirection: "row" }}>
               {editTitle ? (
                 <div className="section-title">

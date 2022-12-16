@@ -62,6 +62,7 @@ const Profiles = ({ initialProfiles }) => {
             />
             <button type="submit" className="search-button">
               <i className="fas fa-search"></i>
+              Search
             </button>
           </form>
         </div>

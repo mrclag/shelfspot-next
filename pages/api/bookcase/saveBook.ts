@@ -1,9 +1,8 @@
 import { getSession } from '@auth0/nextjs-auth0';
 import prisma from '../../../lib/prisma';
 
-// POST /api/post
-// Required fields in body: title
-// Optional fields in body: content
+// POST /api/bookcase/saveBook
+
 export default async function handle(req, res) {
   const { bookId, content, rating } = req.body;
 

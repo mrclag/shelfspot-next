@@ -91,22 +91,27 @@ const Book: React.FC<Props> = ({ book }) => {
           paddingTop: "30px",
         }}
       >
-        <img
-          // @ts-ignore
-          src={book.imageLinks[0]?.smallThumbnail}
-          className="book-image"
-          alt="book"
-        />
-        <h2>{book.title || "Untitled"}</h2>
-        <p>By {author}</p>
+        <div className="flex" style={{ width: "600px", marginBottom: "20px" }}>
+          <img
+            // @ts-ignore
+            src={book.imageLinks[0]?.smallThumbnail}
+            className="book-image"
+            alt="book"
+          />
+          <div style={{ marginLeft: "30px" }}>
+            <h2>{book.title || "Untitled"}</h2>
+            <p>By {author}</p>
 
-        <ReactStars
-          count={5}
-          value={book.rating}
-          onChange={ratingChanged}
-          size={24}
-          color2={"#ffd700"}
-        />
+            <ReactStars
+              count={5}
+              value={book.rating}
+              onChange={ratingChanged}
+              size={24}
+              color2={"#ffd700"}
+            />
+            <div>(hidden toggle)</div>
+          </div>
+        </div>
 
         <RichText bookId={book.id} initialContent={book.userContent} />
 

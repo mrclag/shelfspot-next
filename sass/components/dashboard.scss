@@ -117,10 +117,25 @@
     justify-content: center;
   }
 
+  .back-to-shelf {
+    display: none;
+    @media screen and (max-width: 800px) {
+      display: block;
+    }
+  }
+
   .col1 {
     width: 340px;
     margin-top: 10px;
     margin-bottom: 20px;
+
+    @media screen and (max-width: 800px) {
+      display: none;
+      width: 95vw;
+      &.disMob {
+        display: block;
+      }
+    }
 
     .username {
       
@@ -184,9 +199,16 @@
     width: 800px;
     padding-left: 10px;
 
+    @media screen and (max-width: 800px) {
+      display: none;
+      &.disMob {
+        display: block;
+      }
+    }
+
     .books-section{
       display: grid;
-      width: 800px;
+      max-width: 800px;
       grid-template-columns: repeat(5, 1fr);
       // grid-template-rows: repeat(${props => Math.floor(props.numBooks / 5)}, 230px);
       grid-row-gap:2px;
@@ -198,12 +220,19 @@
           #b9672f 232px
         );
 
+        @media screen and (max-width: 800px) {
+          display: flex;
+          flex-wrap: wrap;
+          width: 95vw;
+        }
+
       .add-new-book {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 200px;
         max-width: 130px;
+        min-width: 120px;
         margin: 15px;
         border: 2px solid darkgreen;
         background: white;
