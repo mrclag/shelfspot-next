@@ -14,7 +14,7 @@ export const Loader = (props: Props) => {
 
       <div>
         <Image src={loader} />
-        <div>Loading...</div>
+        <div style={{ color: "#333" }}>Loading Shelf...</div>
       </div>
     </div>
   );
