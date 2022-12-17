@@ -16,6 +16,7 @@ import SearchBooks from "../../components/search";
 import Head from "next/head";
 import toast, { Toaster } from "react-hot-toast";
 import { Loader } from "../../components/layout/Loader";
+import useMediaQuery from "../../utils/useMediaQuery";
 
 export const getServerSideProps = withPageAuthRequired({
   returnTo: "/",
@@ -86,6 +87,8 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
   const sectionBooks = books?.filter(
     (book) => book.categoryId === selectedSection.id
   );
+
+  const isMobile = useMediaQuery("(max-width: 800px)");
 
   useEffect(() => {
     setEditTitle(false);
@@ -197,9 +200,11 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
           </div>
 
           <div className={`col2 ${mobileDisplayShelf ? "disMob" : ""}`}>
-            <div className="dashboard-topright">
-              <Slider bookcaseId={bookcase.id} />
-            </div>
+            {!isMobile && (
+              <div className="dashboard-topright">
+                <Slider bookcaseId={bookcase.id} />
+              </div>
+            )}
             {/* <button onClick={refreshData}>Refresh</button> */}
             {mobileDisplayShelf && (
               <div
@@ -246,7 +251,9 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
                     style={{
                       color: "black",
                       marginBottom: "10px",
+                      padding: "10px 20px",
                       borderBottom: "0.5px solid #555",
+                      fontSize: "20px",
                     }}
                   >
                     {selectedSection.title}
@@ -254,8 +261,9 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
                   <div
                     style={{
                       width: "100px",
+                      color: "#333",
                       lineHeight: "50px",
-                      color: "black",
+                      padding: "10px 20px",
                     }}
                   >
                     <div

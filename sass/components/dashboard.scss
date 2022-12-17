@@ -109,7 +109,7 @@
   }
 
   .dashboard-wrap {
-    padding-top: 30px;
+    padding-top: 20px;
     margin: auto;
     display: flex;
     flex-direction: row;
@@ -119,6 +119,7 @@
 
   .back-to-shelf {
     display: none;
+    padding: 10px;
     @media screen and (max-width: 800px) {
       display: block;
     }
@@ -201,6 +202,7 @@
 
     @media screen and (max-width: 800px) {
       display: none;
+      width: unset;
       &.disMob {
         display: block;
       }
