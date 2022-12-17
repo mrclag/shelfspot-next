@@ -12,9 +12,25 @@ export const Loader = (props: Props) => {
       <figure className="page"></figure>
     */}
 
-      <div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Image src={loader} />
-        <div style={{ color: "#333" }}>Loading Shelf...</div>
+        <div
+          style={{
+            color: "#333",
+            marginTop: "6px",
+            marginLeft: "5px",
+            fontSize: "18px",
+          }}
+        >
+          Loading Shelf...
+        </div>
       </div>
     </div>
   );

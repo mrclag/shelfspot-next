@@ -24,11 +24,9 @@ export default function Home() {
                   Easily organize, summarize, and share what you read with the
                   world.
                 </div>
-                {/* <Link className="create-account-button" href='/api/auth/signup'>Create an Account</Link> */}
                 <div className="or-login">
-                  or{" "}
                   <Link href="/api/auth/login">
-                    <div className="or-login-link">click here to log in.</div>
+                    <div className="or-login-link">Click here to log in.</div>
                   </Link>
                 </div>
               </div>
