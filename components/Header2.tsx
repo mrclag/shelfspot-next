@@ -9,7 +9,7 @@ import useOnClickOutside from "../utils/useOnClickOutside";
 
 const Header: React.FC = () => {
   const router = useRouter();
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
 

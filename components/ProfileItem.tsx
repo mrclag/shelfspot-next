@@ -9,7 +9,7 @@ const ProfileItem = ({
   // bio,
 }) => {
   return (
-    <Link href={`profile/${id}`}>
+    <Link href={`/profiles/${id}`}>
       <div className="profile-item">
         {/* <img src={imgUrl} alt="" className="avatar" /> */}
         <div className="profile-info">
