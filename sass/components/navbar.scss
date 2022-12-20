@@ -9,19 +9,25 @@ nav {
   
   .desktop-nav {
     display: flex;
-    padding: 1rem 2rem;
+    padding: 1rem 10%;
     align-items: center;
-    border-bottom: 1px solid #ccc;
     background: white;
+
+    @media screen and (max-width: 800px) {
+      padding: 1rem 2rem;
+    }
   }
 
 
 
   .right {
     margin-left: auto;
+    display: flex;
+    align-items: center;
+    text-align: center;
     a {
-      border: 1px solid var(--geist-foreground);
       color: #555;
+      border: 1px solid var(--geist-foreground);
       padding: 0.5rem 1rem;
       border-radius: 3px;
       min-width: 100px;
@@ -30,7 +36,7 @@ nav {
   }
 
   a[data-active="true"] {
-    color: black;
+    color: #333;
   }
 
   .nav-logo {

@@ -82,7 +82,7 @@ const Book: React.FC<Props> = ({ book }) => {
         <title>ShelfSpot {book.title && `- ${book.title}`}</title>
       </Head>
       <div
-        className="page-wrapper"
+        className="page-wrappern book-page"
         style={{
           display: "flex",
           flexDirection: "column",

@@ -5,7 +5,7 @@ import {
   useUser,
 } from "@auth0/nextjs-auth0";
 import { useRouter } from "next/router";
-import Landing from "../components/Landing";
+import Landing from "../components/Landing2";
 import { Loader } from "../components/layout/Loader";
 
 export default function Home({ loading }) {

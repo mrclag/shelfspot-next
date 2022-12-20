@@ -12,7 +12,7 @@ const Header: React.FC = () => {
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
 
-  const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(2); 
+  const { buttonProps, itemProps, isOpen, setIsOpen } = useDropdownMenu(2);
 
   const { user, isLoading } = useUser();
 
@@ -88,7 +88,12 @@ const Header: React.FC = () => {
             <p>Validating session ...</p>
           ) : (
             <Link href="/api/auth/login">
-              <a data-active={isActive("/signup")}>Log in</a>
+              <a
+                className="create-account-button"
+                data-active={isActive("/signup")}
+              >
+                Log in
+              </a>
             </Link>
           )}
         </div>

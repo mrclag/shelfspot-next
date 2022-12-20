@@ -170,12 +170,8 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
           <div className={`col1 ${!mobileDisplayShelf ? "disMob" : ""}`}>
             <div className="dashboard-topleft">
               <Link href={`/profiles/${bookcase.userId}`}>
-                <div className="frame" style={{ height: "100px" }}>
-                  <img
-                    src={user.picture}
-                    alt="Mona Lisa"
-                    className="profile-img"
-                  />
+                <div className="frame">
+                  <Image src={user.picture} layout="fill" objectFit="cover" />
                 </div>
               </Link>
               <div style={{ width: "40px" }}></div>
