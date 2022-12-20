@@ -12,6 +12,13 @@ export const getServerSideProps = async ({ req, res }) => {
   const profiles = await prisma.user.findMany({
     skip: 0,
     take: 10,
+    include: {
+      books: {
+        include: {
+          Category: true,
+        },
+      },
+    },
   });
 
   const initialProfiles = JSON.parse(JSON.stringify(profiles));
@@ -50,9 +57,9 @@ const Profiles = ({ initialProfiles }) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="profiles-page container">
-        <div className="search-bar">
-          <form className="search-form" onSubmit={(e) => onSubmit(e)}>
-            <div className="search-title">Search Profiles</div>
+        <form className="search-form" onSubmit={(e) => onSubmit(e)}>
+          <div className="search-title">Search Profiles</div>
+          <div className="search-bar">
             <input
               className="search-input"
               type="search"
@@ -62,10 +69,10 @@ const Profiles = ({ initialProfiles }) => {
             />
             <button type="submit" className="search-button">
               <i className="fas fa-search"></i>
-              Search
+              {/* Search */}
             </button>
-          </form>
-        </div>
+          </div>
+        </form>
 
         {results.length > 0 &&
           results.map((profile) => (

@@ -12,6 +12,11 @@ nav {
     padding: 1rem 10%;
     align-items: center;
     background: white;
+    z-index: 500;
+
+    @media screen and (max-width: 800px) {
+      
+    }
 
     @media screen and (max-width: 800px) {
       padding: 1rem 2rem;
@@ -106,3 +111,5 @@ nav {
   }
 
 }
+
+

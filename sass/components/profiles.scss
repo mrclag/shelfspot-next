@@ -46,7 +46,6 @@
   }
 
   .search-form {
-    margin-bottom: 5px;
     text-align: center;
   }
   .search-title {
@@ -104,9 +103,13 @@
     background: #eefefe
   }
 
+  @media screen and (max-width: 800px) {
+    width: 90vw;
+   }
+
   .avatar {
-    height: 80px;
-    width: 80px;
+    height: 65px;
+    width: 65px;
     margin-right: 20px;
   }
 

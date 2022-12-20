@@ -152,12 +152,9 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
                 {sectionBooks.map((book, i) => {
                   return <Book2 key={i} book={book} />;
                 })}
-                <div
-                  onClick={(showModal) => setShowSearchModal(true)}
-                  className="add-new-book"
-                >
-                  <i className="fas fa-plus-circle"></i>
-                </div>
+                {sectionBooks.length === 0 && (
+                  <div className="book-placeholder"></div>
+                )}
               </div>
             </div>
           </div>

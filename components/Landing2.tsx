@@ -15,6 +15,9 @@ export default function Home() {
     <Layout>
       <div className="landing2">
         <section className="slanted">
+          <div className="shape-blob"></div>
+          <div className="shape-blob one"></div>
+          <div className="shape-blob two"></div>
           <div className="landing-welcome">
             <div className="welcome-content">
               <div className="welcome-text">
@@ -30,7 +33,9 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <Image src={landingImgDash} alt="" />
+              <div className="welcome-img">
+                <Image src={landingImgDash} alt="" />
+              </div>
             </div>
           </div>
         </section>

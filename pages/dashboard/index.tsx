@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Layout from "../../components/Layout";
 import prisma from "../../lib/prisma";
 import { getSession, useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
@@ -88,6 +88,8 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
     (book) => book.categoryId === selectedSection.id
   );
 
+  const titleRef = useRef();
+
   const isMobile = useMediaQuery("(max-width: 800px)");
 
   useEffect(() => {
@@ -123,6 +125,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
   };
 
   const updateSectionName = async (sectionId) => {
+    if (selectedSection.title === newTitle) return setEditTitle(false);
     toast.promise(
       axios
         .put("/api/profile/updateSection", {
@@ -212,21 +215,23 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
             )}
             <div style={{ display: "flex", flexDirection: "row" }}>
               {editTitle ? (
-                <div className="section-title">
+                <form className="section-title">
                   <input
                     type="text"
                     value={newTitle}
+                    autoFocus
                     onChange={(e) => setNewTitle(e.target.value)}
                   />
                   <i
                     className="fas fa-check check-title"
                     onClick={() => updateSectionName(selectedSection.id)}
                   ></i>
-                </div>
+                </form>
               ) : (
                 <div className="section-title">
                   {selectedSection.title}
                   <i
+                    ref={titleRef}
                     className="fas fa-pen edit-title"
                     onClick={() => setEditTitle(true)}
                   ></i>
@@ -248,6 +253,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
                       color: "black",
                       marginBottom: "10px",
                       padding: "10px 20px",
+                      paddingRight: "40px",
                       borderBottom: "0.5px solid #555",
                       fontSize: "20px",
                     }}

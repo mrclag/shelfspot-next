@@ -6,7 +6,9 @@
   @media screen and (max-width: 800px) {
     margin-top: 30px;
   }
-  .search-bar {
+ 
+  .search-form {
+    text-align: center;
     padding: 20px 50px;
     border-bottom: 1px solid #c3c3c3;
     background: white;
@@ -16,20 +18,23 @@
       padding: 20px 20px;
     }
   }
-  .search-form {
-    margin-bottom: 5px;
-    text-align: center;
-  }
   .search-title {
     font-size: 20px;
-    margin-bottom: 8px;
+    margin-bottom: 8px; 
   }
-  
+  .search-bar {
+    display: flex;
+    // height: 20px;
+    height: auto;
+  }
 
 .num-results {
   padding: 5px 20px;
   color: #444;
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  height: 20px;
 }
 
  
@@ -89,7 +94,7 @@
 
 .book-info {
   margin-left: 10px;
-  max-width: 500px;
+  max-width: 300px;
   display: flex;
   justify-content: center;
   flex-direction: column;

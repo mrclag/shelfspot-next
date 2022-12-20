@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import BookResult from "./BookResult";
+import SmallSpinner from "../layout/SmallSpinner";
 
 const SearchBooks = ({ bookcase, selectedCategory }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [searchResultNum, setSearchResultNum] = useState(0);
+  const [page, setPage] = useState(0);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const maxResults = 15;
 
-  const fetchBooks = async () => {
+  const fetchBooks = async (searchTerm, page, maxResults) => {
     const result = await axios.post(`/api/googleBooks`, {
       searchTerm,
+      page,
+      maxResults,
     });
     setSearchResultNum(result.data.totalItems);
     setSearchResult(result.data.items);
@@ -17,14 +23,31 @@ const SearchBooks = ({ bookcase, selectedCategory }) => {
 
   const onSubmitHandler = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    fetchBooks();
+    fetchBooks(searchTerm, page, maxResults);
   };
+
+  const increasePage = async () => {
+    setLoadingMore(true);
+    await fetchBooks(searchTerm, page + 1, maxResults);
+    setPage(page + 1);
+    setLoadingMore(false);
+  };
+
+  const decrementPage = async () => {
+    if (page > 0) {
+      setLoadingMore(true);
+      await fetchBooks(searchTerm, page - 1, maxResults);
+      setPage(page - 1);
+      setLoadingMore(false);
+    }
+  };
+  const resultStart = page * maxResults + 1;
 
   return (
     <div className="search-books container">
-      <div className="search-bar">
-        <form onSubmit={onSubmitHandler} className="search-form">
-          <h2 className="search-title">Find Books for your Bookcase</h2>
+      <form onSubmit={onSubmitHandler} className="search-form">
+        <h2 className="search-title">Find Books for your Bookcase</h2>
+        <div className="search-bar">
           <input
             className="search-input"
             type="search"
@@ -35,13 +58,31 @@ const SearchBooks = ({ bookcase, selectedCategory }) => {
           <button type="submit" className="search-button">
             <i className="fas fa-search"></i>
           </button>
-        </form>
-        <form onSubmit={onSubmitHandler} />
-      </div>
+        </div>
+      </form>
+      <form onSubmit={onSubmitHandler} />
       {searchResult?.length > 0 && (
         <div className="search-bottom">
-          <div className="num-results">
-            {searchResultNum > 0 && searchResultNum + " results (showing 10)"}{" "}
+          <div className="flex-apart">
+            <div className="num-results">
+              {searchResultNum > 0 &&
+                `Results ${resultStart} - ${resultStart + maxResults - 1}`}
+              <div style={{ marginLeft: "10px" }}>
+                {loadingMore && <SmallSpinner />}
+              </div>
+            </div>
+
+            <div className="flex-center">
+              <button
+                disabled={page < 1 || loadingMore}
+                onClick={decrementPage}
+              >
+                {"<"}
+              </button>
+              <button disabled={loadingMore} onClick={increasePage}>
+                {">"}
+              </button>
+            </div>
           </div>
           <div className="book-results">
             {searchResult?.map((result, i) => (

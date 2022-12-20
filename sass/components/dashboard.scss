@@ -228,7 +228,16 @@
           flex-wrap: wrap;
           width: 95vw;
         }
+      .book-placeholder {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 200px;
+        max-width: 130px;
+        min-width: 120px;
+        margin: 15px;
 
+      }
       .add-new-book {
         display: flex;
         justify-content: center;
@@ -273,6 +282,12 @@
         cursor: pointer;
         color: green;
         margin-left: 6px;
+      }
+      input {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #333;
+        font-size: 24px;
       }
     }
 
