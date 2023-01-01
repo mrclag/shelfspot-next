@@ -136,6 +136,9 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
 
           <div className={`col2 ${mobileDisplayShelf ? "disMob" : ""}`}>
             {/* <button onClick={refreshData}>Refresh</button> */}
+            <div className="dashboard-topright">
+              {/* <Slider bookcaseId={bookcase.id} /> */}
+            </div>
             {mobileDisplayShelf && (
               <div
                 className="back-to-shelf"

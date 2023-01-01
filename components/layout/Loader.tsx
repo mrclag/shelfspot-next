@@ -29,7 +29,7 @@ export const Loader = (props: Props) => {
             fontSize: "18px",
           }}
         >
-          Loading Shelf...
+          Loading Book Shelf...
         </div>
       </div>
     </div>

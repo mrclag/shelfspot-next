@@ -75,7 +75,7 @@ model Book {
   industryIdentifiers Json[]
   description         String?
   subtitle            String?
-  Category            Categories? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  Category            Categories? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId          String?
   hidden              Boolean     @default(false)
   sections            String[]
@@ -84,7 +84,7 @@ model Book {
   userContent         String      @default("")
   User                User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId              String?
-  Bookcase            Bookcase?   @relation(fields: [bookcaseId], references: [id], onDelete: SetNull)
+  Bookcase            Bookcase?   @relation(fields: [bookcaseId], references: [id], onDelete: Cascade)
   bookcaseId          String?
   createdAt           DateTime    @default(now()) @map(name: "created_at")
   updatedAt           DateTime    @default(now()) @updatedAt @map(name: "updated_at")

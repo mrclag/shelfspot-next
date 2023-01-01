@@ -30,16 +30,18 @@ const Header: React.FC = () => {
     <nav>
       <div className="desktop-nav">
         <div className="left flex-center">
-          <div className="flex nav-logo">
-            <Image
-              src={logo}
-              alt=""
-              className="decoration"
-              width="40px"
-              height="40px"
-            />
-            <div className="nav-logo-font">ShelfSpot</div>
-          </div>
+          <Link href="/">
+            <div className="flex nav-logo">
+              <Image
+                src={logo}
+                alt=""
+                className="decoration"
+                width="40px"
+                height="40px"
+              />
+              <div className="nav-logo-font">ShelfSpot</div>
+            </div>
+          </Link>
         </div>
 
         <div className="right">

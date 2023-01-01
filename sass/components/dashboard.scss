@@ -58,6 +58,7 @@
     padding-left: 20px;
     display: flex;
     align-items: flex-end;
+    justify-content: space-between;
     .decoration {
       height: 120px;
       /* margin-left: 80px; */
@@ -133,7 +134,8 @@
 
     @media screen and (max-width: 800px) {
       display: none;
-      width: 95vw;
+      width: 100vw;
+      
       &.disMob {
         display: block;
       }
