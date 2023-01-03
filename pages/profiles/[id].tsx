@@ -130,6 +130,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
                 setMobileDisplayShelf(true);
                 setSelectedSection(bool);
               }}
+              isUsers={false}
               books={books}
             />
           </div>

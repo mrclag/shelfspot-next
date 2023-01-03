@@ -46,6 +46,7 @@ const Book: React.FC<Props> = ({ book }) => {
   if (isLoading) {
     return <div>Authenticating ...</div>;
   }
+  const display = true;
   const userHasValidSession = Boolean(user);
   // const postBelongsToUser = user?.email === props.author?.email;
   const postBelongsToUser = true;
@@ -81,42 +82,36 @@ const Book: React.FC<Props> = ({ book }) => {
       <Head>
         <title>ShelfSpot {book.title && `- ${book.title}`}</title>
       </Head>
-      <div
-        className="page-wrappern book-page"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: "30px",
-        }}
-      >
-        <div className="flex" style={{ width: "600px", marginBottom: "20px" }}>
-          <img
-            // @ts-ignore
-            src={book.imageLinks[0]?.smallThumbnail}
-            className="book-image"
-            alt="book"
-          />
-          <div style={{ marginLeft: "30px" }}>
-            <h2>{book.title || "Untitled"}</h2>
-            <p>By {author}</p>
-
-            <ReactStars
-              count={5}
-              value={book.rating}
-              onChange={ratingChanged}
-              size={24}
-              color2={"#ffd700"}
+      <div className="page-wrapper book-page">
+        <div className="book-page-content">
+          <div className="book-page-info">
+            <img
+              // @ts-ignore
+              src={book.imageLinks[0]?.smallThumbnail}
+              className="book-page-image"
+              alt="book"
             />
-            <div>(hidden toggle)</div>
+            <div>
+              <h3>{book.title || "Untitled"}</h3>
+              <p>By {author}</p>
+
+              <ReactStars
+                count={5}
+                value={book.rating}
+                onChange={ratingChanged}
+                size={24}
+                color2={"#ffd700"}
+              />
+              <input type="checkbox" checked={display} />
+              <div>(hidden toggle)</div>
+            </div>
           </div>
-        </div>
 
-        <RichText bookId={book.id} initialContent={book.userContent} />
+          <RichText bookId={book.id} initialContent={book.userContent} />
 
-        <div className="flex">
-          <button onClick={deleteBook}>Delete</button>
+          <div className="flex">
+            <button onClick={deleteBook}>Delete</button>
+          </div>
         </div>
       </div>
     </Layout>

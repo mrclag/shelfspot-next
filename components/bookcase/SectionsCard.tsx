@@ -18,6 +18,7 @@ const SectionsCard = ({
   books,
   selectedSection,
   setSelectedSection,
+  isUsers = true,
 }) => {
   const [newSectionTitle, setNewSectionTitle] = useState("");
 
@@ -61,19 +62,21 @@ const SectionsCard = ({
             selectedSection={selectedSection}
           />
         ))}
-        <form
-          onSubmit={(e) => onSubmit(e)}
-          className="section bold"
-          id="new-section"
-        >
-          <input
-            type="text"
-            className="new-section-input"
-            placeholder="New Section"
-            value={newSectionTitle}
-            onChange={(e) => setNewSectionTitle(e.target.value)}
-          />
-        </form>
+        {isUsers && (
+          <form
+            onSubmit={(e) => onSubmit(e)}
+            className="section bold"
+            id="new-section"
+          >
+            <input
+              type="text"
+              className="new-section-input"
+              placeholder="New Section"
+              value={newSectionTitle}
+              onChange={(e) => setNewSectionTitle(e.target.value)}
+            />
+          </form>
+        )}
       </div>
     </div>
   );
