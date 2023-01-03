@@ -29,8 +29,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
   const book = JSON.parse(JSON.stringify(bookResult));
 
-  console.log(book);
-
   return {
     props: { book },
     revalidate: 10,
@@ -83,7 +81,7 @@ const Book: React.FC<Props> = ({ book }) => {
         <title>ShelfSpot {book.title && `- ${book.title}`}</title>
       </Head>
       <div className="page-wrapper book-page">
-        <div className="book-page-content">
+        <div className="book-page-content notebook">
           <div className="book-page-info">
             <img
               // @ts-ignore
@@ -94,7 +92,6 @@ const Book: React.FC<Props> = ({ book }) => {
             <div>
               <h3>{book.title || "Untitled"}</h3>
               <p>By {author}</p>
-
               <ReactStars
                 count={5}
                 value={book.rating}
@@ -102,15 +99,15 @@ const Book: React.FC<Props> = ({ book }) => {
                 size={24}
                 color2={"#ffd700"}
               />
-              <input type="checkbox" checked={display} />
-              <div>(hidden toggle)</div>
+              <input type="checkbox" checked={display} /> Display
+              {/* <div>(hidden toggle)</div> */}
             </div>
           </div>
 
           <RichText bookId={book.id} initialContent={book.userContent} />
 
-          <div className="flex">
-            <button onClick={deleteBook}>Delete</button>
+          <div className="flex-center" style={{ margin: "20px auto" }}>
+            <button onClick={deleteBook}>Remove Book</button>
           </div>
         </div>
       </div>

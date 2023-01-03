@@ -1,13 +1,12 @@
-
 .profiles-page {
   text-align: center;
   background: white;
   width: fit-content;
   margin: 20px auto;
-  padding:  0px;
+  padding: 0px;
   border-radius: 7px;
   @media screen and (max-width: 800px) {
-    margin-top:10px;
+    margin-top: 10px;
   }
   .search-bar {
     padding: 20px 0px;
@@ -59,7 +58,6 @@
     font-size: 20px;
     margin-bottom: 5px;
   }
-  
 
   .search-page-content {
     display: flex;
@@ -101,12 +99,12 @@
   width: 600px;
 
   &:hover {
-    background: #fafafa
+    background: #fafafa;
   }
 
   @media screen and (max-width: 800px) {
     width: 90vw;
-   }
+  }
 
   .avatar {
     height: 55px;
@@ -130,7 +128,6 @@
       font-size: 14px;
       line-height: 16px;
     }
-    
   }
   i {
     font-size: 20px;
@@ -164,4 +161,102 @@
       display: none;
     }
   }
+}
+
+.notebook {
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  background-color: #946947;
+  background: linear-gradient(175deg, #fff, rgb(255, 255, 255)); /*#C9A8A1*/
+  width: 650px;
+  min-width: none;
+  // height: 580px;
+  min-height: 600px;
+  box-shadow: 1px -1px 5px #555;
+  border-top: 1px solid #946947;
+  display: flex;
+  flex-direction: column;
+  // justify-content: center;
+  border-radius: 7px;
+  padding: 30px 40px;
+}
+
+.notebook:after {
+  position: absolute;
+  content: "";
+  bottom: -1px;
+  left: 0px;
+  height: 4px;
+  width: 100%;
+  background-size: 3px 1px;
+  background-image: -webkit-radial-gradient(
+    40% 100%,
+    circle,
+    transparent 20%,
+    #ccc 35%
+  );
+  background-image: -moz-radial-gradient(
+    40% 100%,
+    circle,
+    transparent 20%,
+    #ccc 35%
+  );
+  background-image: -ms-radial-gradient(
+    40% 100%,
+    circle,
+    transparent 20%,
+    #ccc 35%
+  );
+  background-image: -o-radial-gradient(
+    40% 100%,
+    circle,
+    transparent 20%,
+    #ccc 35%
+  );
+  background-image: radial-gradient(
+    40% 100%,
+    circle,
+    transparent 20%,
+    #ccc 35%
+  );
+}
+
+.notebook:before {
+  position: absolute;
+  content: "";
+  top: -5px;
+  left: 0;
+  height: 10px;
+  width: 99%;
+  background-size: 9px 12px;
+  background-image: -webkit-radial-gradient(
+    5% 40%,
+    circle,
+    transparent 70%,
+    #555 20%
+  );
+  background-image: -moz-radial-gradient(
+    5% 40%,
+    circle,
+    transparent 70%,
+    #555 20%
+  );
+  background-image: -ms-radial-gradient(
+    5% 40%,
+    circle,
+    transparent 70%,
+    #555 20%
+  );
+  background-image: -o-radial-gradient(
+    5% 40%,
+    circle,
+    transparent 70%,
+    #555 20%
+  );
+  background-image: radial-gradient(
+    circle at 5% 40%,
+    transparent 70%,
+    #555 20%
+  );
 }

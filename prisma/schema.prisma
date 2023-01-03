@@ -79,6 +79,7 @@ model Book {
   categoryId          String?
   hidden              Boolean     @default(false)
   sections            String[]
+  orderIndex          Int         @default(0)
   rating              Float       @default(0)
   color               String[]
   userContent         String      @default("")

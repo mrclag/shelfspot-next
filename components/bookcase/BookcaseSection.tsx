@@ -1,5 +1,5 @@
 import { Book } from "@prisma/client";
-import React from "react";
+import React, { useState } from "react";
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import SectionsCardBook from "./SectionsCardBook";
 
@@ -26,26 +26,28 @@ const BookcaseSection = ({
       }
       onClick={() => setSelectedSection(section)}
     >
-      <Droppable droppableId={sectionIndex} direction="horizontal">
+      <Droppable droppableId={section.id} direction="horizontal">
         {(provided, snapshot) => (
           <div
             className="books"
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
-            {sectionBooks.map((book, i) => {
-              return (
-                <div
-                  style={{
-                    height: "100%",
-                    display: "flex",
-                    alignItems: "flex-end",
-                  }}
-                >
-                  <SectionsCardBook key={i} book={book} provided={provided} />
-                </div>
-              );
-            })}
+            {sectionBooks
+              .sort((a, b) => a.orderIndex - b.orderIndex)
+              .map((book, i) => {
+                return (
+                  <div
+                    style={{
+                      height: "100%",
+                      display: "flex",
+                      alignItems: "flex-end",
+                    }}
+                  >
+                    <SectionsCardBook key={i} book={book} />
+                  </div>
+                );
+              })}
             {provided.placeholder}
           </div>
         )}

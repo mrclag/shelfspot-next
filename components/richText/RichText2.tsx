@@ -116,6 +116,7 @@ const RTEditor = ({ bookId, initialContent = "" }: Props) => {
       </div>
       <button
         className={`button ${loading ? "disabled" : ""}`}
+        style={{ margin: "0 auto" }}
         onClick={() =>
           saveBook(
             bookId,

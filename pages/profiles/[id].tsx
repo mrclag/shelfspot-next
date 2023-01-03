@@ -6,7 +6,7 @@ import Router, { useRouter } from "next/router";
 import { Book, Bookcase, Categories, User } from "@prisma/client";
 import axios from "axios";
 import Link from "next/link";
-import SectionsCard from "../../components/bookcase/SectionsCard";
+import SectionsCard from "../../components/bookcase/Bookcase";
 import Book2 from "../../components/bookcase/Book2";
 import Slider from "../../components/Slider";
 import { shelfDecorations } from "../../utils/Customizations";
@@ -98,7 +98,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
   return (
     <Layout>
       <Head>
-        <title>Dashboard - ShelfSpot</title>
+        <title>ShelfSpot</title>
       </Head>
       <div className="dashboard flex">
         <div className="dashboard-wrap">
