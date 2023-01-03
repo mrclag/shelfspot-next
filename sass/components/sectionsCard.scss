@@ -1,7 +1,7 @@
 .sectionsCard {
   width: 100%;
   background-color: #3d1800;
-  background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+  background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
   margin: 0 auto;
   border-radius: 5px 5px 0px 0px;
   color: white;
@@ -10,7 +10,7 @@
 
   .sections {
     display: grid;
-    grid-gap: 0.8rem;
+    // grid-gap: 0.8rem;
     @media (min-width: 1120px) {
       grid-template-columns: repeat(1, 1fr);
     }
@@ -20,15 +20,48 @@
     font-weight: bold;
     padding-top: 10px;
   }
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #915b1d #a6845e;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 5px;
+    height: 1rem;
+  }
+
+  *::-webkit-scrollbar-track {
+    background-color: #3d1800;
+    background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #321a084e;
+    // background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+
+    border-radius: 10px;
+    border: 1px solid #c2b8b1;
+    &:hover {
+      background-color: #8e6e2f;
+      // background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+  }
   .books {
     width: 100%;
     overflow: hide;
     display: flex;
     flex-direction: row;
     position: absolute;
+    overflow-x: scroll;
     bottom: 0;
+    height: 100%;
+    /* Firefox */
   }
-  
+
   .menu-item {
     background: white;
     &:hover {
@@ -40,15 +73,14 @@
   .section {
     position: relative;
     background-color: #8d6649;
-    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-    height: 120px;
+    background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
+    height: 130px;
     width: 100%;
     overflow: auto;
-    
+
     &:hover {
-      
       background-color: #c98d62;
-      background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+      // background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
       cursor: pointer;
     }
 
@@ -72,8 +104,6 @@
       font-weight: bold;
     }
 
-   
-
     .section-delete {
       position: absolute;
       right: 5px;
@@ -94,9 +124,8 @@
     cursor: default;
     display: flex;
     justify-content: center;
-    
-    input {
 
+    input {
       color: white;
       background: none;
       border: none;

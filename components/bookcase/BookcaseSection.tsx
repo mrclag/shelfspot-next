@@ -1,5 +1,6 @@
 import { Book } from "@prisma/client";
 import React from "react";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 import SectionsCardBook from "./SectionsCardBook";
 
 // type Props = {
@@ -12,6 +13,7 @@ const BookcaseSection = ({
   section,
   selectedSection,
   setSelectedSection,
+  sectionIndex,
 }) => {
   const sectionBooks = books?.filter((book) => book.categoryId === section.id);
 
@@ -24,11 +26,30 @@ const BookcaseSection = ({
       }
       onClick={() => setSelectedSection(section)}
     >
-      <div className="books">
-        {sectionBooks.map((book, i) => {
-          return <SectionsCardBook key={i} book={book} />;
-        })}
-      </div>
+      <Droppable droppableId={sectionIndex} direction="horizontal">
+        {(provided, snapshot) => (
+          <div
+            className="books"
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+          >
+            {sectionBooks.map((book, i) => {
+              return (
+                <div
+                  style={{
+                    height: "100%",
+                    display: "flex",
+                    alignItems: "flex-end",
+                  }}
+                >
+                  <SectionsCardBook key={i} book={book} provided={provided} />
+                </div>
+              );
+            })}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
 
       {/* Section label */}
       <div className="section-label">

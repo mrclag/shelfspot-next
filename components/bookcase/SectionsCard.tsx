@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import BookcaseSection from "./BookcaseSection";
 import SectionsCardBook from "./SectionsCardBook";
 import toast, { Toaster } from "react-hot-toast";
+import { DragDropContext } from "react-beautiful-dnd";
 
 // import { swapBookend, bookends } from '../../utils/swapBookend';
 // import {
@@ -12,6 +13,7 @@ import toast, { Toaster } from "react-hot-toast";
 //   // changeBookend,
 // } from '../../actions/profile';
 // import Modal from '../layout/Modal'
+window["__react-beautiful-dnd-disable-dev-warnings"] = true;
 
 const SectionsCard = ({
   bookcase,
@@ -50,35 +52,44 @@ const SectionsCard = ({
     }
   };
 
+  const handleDragEnd = ({ destination, source /* draggableId */ }) => {
+    console.log("DRAGGING");
+  };
+
+  const handleDragStart = (/*{ destination, source, draggableId }*/) => {};
+
   return (
-    <div className="sectionsCard">
-      <div className="sections-title"></div>
-      <div className="sections">
-        {bookcase.categories?.map((section, i) => (
-          <BookcaseSection
-            section={section}
-            books={books}
-            setSelectedSection={setSelectedSection}
-            selectedSection={selectedSection}
-          />
-        ))}
-        {isUsers && (
-          <form
-            onSubmit={(e) => onSubmit(e)}
-            className="section bold"
-            id="new-section"
-          >
-            <input
-              type="text"
-              className="new-section-input"
-              placeholder="New Section"
-              value={newSectionTitle}
-              onChange={(e) => setNewSectionTitle(e.target.value)}
+    <DragDropContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+      <div className="sectionsCard">
+        <div className="sections-title"></div>
+        <div className="sections">
+          {bookcase.categories?.map((section, i) => (
+            <BookcaseSection
+              section={section}
+              books={books}
+              setSelectedSection={setSelectedSection}
+              selectedSection={selectedSection}
+              sectionIndex={i}
             />
-          </form>
-        )}
+          ))}
+          {isUsers && (
+            <form
+              onSubmit={(e) => onSubmit(e)}
+              className="section bold"
+              id="new-section"
+            >
+              <input
+                type="text"
+                className="new-section-input"
+                placeholder="New Section"
+                value={newSectionTitle}
+                onChange={(e) => setNewSectionTitle(e.target.value)}
+              />
+            </form>
+          )}
+        </div>
       </div>
-    </div>
+    </DragDropContext>
   );
 };
 

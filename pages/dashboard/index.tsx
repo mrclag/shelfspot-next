@@ -17,6 +17,7 @@ import Head from "next/head";
 import toast, { Toaster } from "react-hot-toast";
 import { Loader } from "../../components/layout/Loader";
 import useMediaQuery from "../../utils/useMediaQuery";
+import Dnd from "../../components/bookcase/Dnd";
 
 export const getServerSideProps = withPageAuthRequired({
   returnTo: "/",
@@ -203,6 +204,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
               books={books}
             />
           </div>
+          {/* <Dnd /> */}
 
           <div className={`col2 ${mobileDisplayShelf ? "disMob" : ""}`}>
             {!isMobile && <div className="dashboard-topright"></div>}

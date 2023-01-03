@@ -1,6 +1,7 @@
+import { Droppable, Draggable } from "react-beautiful-dnd";
 import React, { useEffect } from "react";
 
-const SectionsCardBook = ({ book }) => {
+const SectionsCardBook = ({ book, provided }) => {
   let width;
   if (book && book.pageCount) {
     const num = Math.min(Math.max(book.pageCount / 7, 25), 45);
@@ -19,10 +20,31 @@ const SectionsCardBook = ({ book }) => {
   const imageHeight = Math.max(Math.min(70 + distFromOne * 60, 120), 60) + "px";
 
   return (
-    <div
-      className="section-card-book"
-      style={{ width: width, background: book.color[0], height: imageHeight }}
-    ></div>
+    <Draggable
+      key={book.id}
+      index={book.id}
+      draggableId={book.id}
+      isDragDisabled={false}
+    >
+      {(provided2, snapshot) => {
+        return (
+          <div
+            ref={provided2.innerRef}
+            {...provided2.draggableProps}
+            {...provided2.dragHandleProps}
+          >
+            <div
+              className="section-card-book"
+              style={{
+                width: width,
+                background: book.color[0],
+                height: imageHeight,
+              }}
+            ></div>
+          </div>
+        );
+      }}
+    </Draggable>
   );
 };
 
