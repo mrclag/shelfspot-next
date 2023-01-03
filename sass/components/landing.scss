@@ -354,8 +354,8 @@
       padding-right: 10px;
       display: flex;
       flex-direction: row;
-      width: 900px;
-      height: 400px;
+      flex-wrap: wrap;
+      width: min(1200px, 90vw);
       position: relative;
       justify-content: center;
       z-index: 2;
@@ -372,10 +372,12 @@
       .feature {
         padding: 30px;
         padding-top: 50px;
-        min-width: 250px;
+        min-width: 230px;
         border-radius: 8px;
         /* border: 1px solid black; */
         text-align: center;
+        max-width: 150px;
+      height: 300px;
       background: white;
       margin: 5px;
         // height: 100%;

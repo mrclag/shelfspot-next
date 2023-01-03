@@ -97,12 +97,12 @@
     
     input {
 
-      max-width: 300px;
       color: white;
       background: none;
       border: none;
       text-align: center;
       border-bottom: 0.5px solid #eee;
+      width: 100%;
       &::placeholder {
         color: #eee;
         /* font-weight: 0; */

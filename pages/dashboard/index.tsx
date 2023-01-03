@@ -80,6 +80,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
   const [editTitle, setEditTitle] = useState(false);
   const [newTitle, setNewTitle] = useState(selectedSection.title);
   const [showSearchModal, setShowSearchModal] = useState(false);
+  const [showSliderModal, setShowSliderModal] = useState(false);
 
   const [mobileDisplayShelf, setMobileDisplayShelf] = useState(false);
 
@@ -179,13 +180,18 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
               </Link>
               <div style={{ width: "40px" }}></div>
               {/* <Link href="/edit-profile">Edit Profile</Link> */}
-              <Image
-                src={shelfDecorations[bookcase.decoration || 0]?.icon}
-                alt=""
-                className="decoration"
-                width="120px"
-                height="120px"
-              />
+              <div
+                onClick={() => setShowSliderModal(true)}
+                style={{ height: "120px" }}
+              >
+                <Image
+                  src={shelfDecorations[bookcase.decoration || 0]?.icon}
+                  alt=""
+                  className="decoration"
+                  width="120px"
+                  height="120px"
+                />
+              </div>
             </div>
             <SectionsCard
               bookcase={bookcase}
@@ -199,18 +205,14 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
           </div>
 
           <div className={`col2 ${mobileDisplayShelf ? "disMob" : ""}`}>
-            {!isMobile && (
-              <div className="dashboard-topright">
-                <Slider bookcaseId={bookcase.id} />
-              </div>
-            )}
+            {!isMobile && <div className="dashboard-topright"></div>}
             {/* <button onClick={refreshData}>Refresh</button> */}
             {mobileDisplayShelf && (
               <div
                 className="back-to-shelf"
                 onClick={() => setMobileDisplayShelf(false)}
               >
-                <i className="fas fa-chevron-left"></i> Back
+                <i className="fas fa-chevron-left"></i>
               </div>
             )}
             <div style={{ display: "flex", flexDirection: "row" }}>
@@ -287,7 +289,8 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
                   onClick={(showModal) => setShowSearchModal(true)}
                   className="add-new-book"
                 >
-                  <i className="fas fa-plus-circle"></i>
+                  {/* <i className="fas fa-plus-circle"></i> */}
+                  Add Book
                 </div>
               </div>
             </div>
@@ -296,6 +299,10 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
         {/* <div className="side-panel">test</div> */}
         <Modal showModal={showSearchModal} setShowModal={setShowSearchModal}>
           <SearchBooks bookcase={bookcase} selectedCategory={selectedSection} />
+        </Modal>{" "}
+        <Modal showModal={showSliderModal} setShowModal={setShowSliderModal}>
+          <div>Select Decoration</div>
+          <Slider bookcaseId={bookcase.id} />
         </Modal>{" "}
       </div>
     </Layout>

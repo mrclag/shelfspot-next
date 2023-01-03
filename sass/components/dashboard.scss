@@ -53,9 +53,12 @@
   }
 
   .dashboard-topleft {
+    
+    max-height: 120px;
     height: 120px;
     border-radius: 5px;
     padding-left: 20px;
+    padding-right: 20px;
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -93,11 +96,10 @@
   }
   .dashboard-topright {
     width: 100%;
-    height: 120px;
-    // height: 70px;
+    height: 70px;
     border-radius: 5px;
     text-align: left;
-    font-size: 20px;
+    font-size: 24px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -106,7 +108,7 @@
     .slider-title {
       margin-top: 20px;
       padding-left: 15px;
-      font-size: 20px;
+      font-size: 24px;
     }
   }
 
@@ -122,14 +124,23 @@
   .back-to-shelf {
     display: none;
     padding: 10px;
+    border: 1px solid #888;
+    background: white;
+    width: fit-content;
+    width: 15px;
+    height: 15px;
+    margin-left: 10px;
     @media screen and (max-width: 800px) {
-      display: block;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
     }
+
   }
 
   .col1 {
-    width: 340px;
-    margin-top: 10px;
+    width: 420px;
     margin-bottom: 20px;
 
     @media screen and (max-width: 800px) {
@@ -206,17 +217,20 @@
     @media screen and (max-width: 800px) {
       display: none;
       width: unset;
+      padding-left: 0px;
       &.disMob {
         display: block;
       }
     }
 
     .books-section{
-      display: grid;
+      // display: grid;
+      display: flex;
+      flex-wrap: wrap;
       max-width: 800px;
-      grid-template-columns: repeat(5, 1fr);
+      min-width: unset;
+      width: fit-content;
       // grid-template-rows: repeat(${props => Math.floor(props.numBooks / 5)}, 230px);
-      grid-row-gap:2px;
       background:
         repeating-linear-gradient(to bottom,
           transparent 0,
@@ -224,11 +238,18 @@
           #452007 200px,
           #b9672f 232px
         );
-
         @media screen and (max-width: 800px) {
-          display: flex;
+          display: block;
           flex-wrap: wrap;
-          width: 95vw;
+          width: 100vw;
+          grid-row-gap: 1px;
+          background:
+          repeating-linear-gradient(to bottom,
+            transparent 0,
+            transparent 134px,
+            #452007 134px,
+            #b9672f 150px
+          );
         }
       .book-placeholder {
         display: flex;
@@ -249,7 +270,9 @@
         min-width: 120px;
         margin: 15px;
         border: 2px solid darkgreen;
-        background: white;
+        color: darkgreen;
+          border-radius: 5px;
+          background: white;
         &:hover {
           cursor: pointer;
           transform: scale(1.03);
@@ -261,16 +284,27 @@
             color: green;
           }
         }
+        @media screen and (max-width: 800px) {
+          height: 70px;
+          min-width: 80px;
+          margin: 15px auto;
+          border-radius: 5px;
+        }
       }
+
+      
     }
 
     .section-title {
       width: 100%;
       text-align: left;
       height: 40px;
-      margin-top: 5px;
+      margin-top: 0px;
       padding-left: 15px;
       font-size: 24px;
+      display: flex;
+      align-items: center;
+      color: #333;
 
       .edit-title {
         font-size: 18px;

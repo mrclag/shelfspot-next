@@ -28,9 +28,7 @@ export const Loader = (props: Props) => {
             marginLeft: "5px",
             fontSize: "18px",
           }}
-        >
-          Loading Book Shelf...
-        </div>
+        ></div>
       </div>
     </div>
   );

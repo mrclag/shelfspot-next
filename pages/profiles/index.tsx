@@ -58,12 +58,11 @@ const Profiles = ({ initialProfiles }) => {
       </Head>
       <div className="profiles-page container">
         <form className="search-form" onSubmit={(e) => onSubmit(e)}>
-          <div className="search-title">Search Profiles</div>
           <div className="search-bar">
             <input
               className="search-input"
               type="search"
-              placeholder="Matt Clagett"
+              placeholder="Search Profiles"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
             />

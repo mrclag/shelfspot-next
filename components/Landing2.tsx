@@ -42,20 +42,20 @@ export default function Home() {
         <div className="landing-features">
           <div className="features-box">
             <div className="feature">
-              <Image src={iconBooks} alt="" />
-              <div className="feature-title">Organize</div>
-              <div className="feature-text">
-                Bring order to your library, by creating sections for topics and
-                interests. Create tags for books to read, for your wish list,
-                and more.
-              </div>
-            </div>
-            <div className="feature">
               <Image src={iconWrite} alt="" />
               <div className="feature-title">Summarize</div>
               <div className="feature-text">
                 Create reviews and chapter summaries as you read with a built-in
-                rich text editor. Always remember what what you have read!{" "}
+                rich text editor.{" "}
+              </div>
+            </div>
+            <div className="feature">
+              <Image src={iconBooks} alt="" />
+              <div className="feature-title">Organize</div>
+              <div className="feature-text">
+                Order your library by creating sections for topics and
+                interests. Create tags for books to read, for your wish list,
+                and more.
               </div>
             </div>
             <div className="feature">
@@ -63,8 +63,7 @@ export default function Home() {
               <div className="feature-title">Customize</div>
               <div className="feature-text">
                 Make your shelf feel like home by customizing things like
-                bookcase covor, shelftop decorations, and profile picture
-                frames.
+                bookcase color, decorations, and profile picture frames.
               </div>
             </div>
             <div className="feature">

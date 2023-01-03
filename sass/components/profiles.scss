@@ -1,22 +1,29 @@
 
 .profiles-page {
   text-align: center;
-  margin-top: 70px;
+  background: white;
+  width: fit-content;
+  margin: 20px auto;
+  padding:  0px;
+  border-radius: 7px;
   @media screen and (max-width: 800px) {
-    margin-top: 60px;
+    margin-top:10px;
   }
   .search-bar {
-    padding: 20px 50px;
-    width: 800px;
+    padding: 20px 0px;
+    // width: 800px;
+    width: 600px;
+    max-width: 100%;
     margin: auto;
     justify-content: center;
+    border-bottom: 1px solid #eee;
     /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.23); */
     margin-bottom: 10px;
     background: transparent;
-    border-radius: 4px;
+    display: flex;
+    align-items: center;
     @media screen and (max-width: 800px) {
-      padding: 20px 20px;
-      width: 80vw;
+      padding: 20px 10px;
     }
   }
 
@@ -86,21 +93,15 @@
   display: flex;
   flex-direction: row;
   margin: 2px auto;
-  // border: 1px solid #ddd;
-  /* border-radius: 20px; */
   padding: 10px;
   color: black;
   cursor: pointer;
   border-radius: 10px;
-  /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.23); */
   background: white;
-  width: 900px;
+  width: 600px;
 
   &:hover {
-    /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
-    transform: translateY(-1px);
-    border: 1px solid #ddd; */
-    background: #eefefe
+    background: #fafafa
   }
 
   @media screen and (max-width: 800px) {
@@ -108,9 +109,10 @@
    }
 
   .avatar {
-    height: 65px;
-    width: 65px;
+    height: 55px;
+    width: 55px;
     margin-right: 20px;
+    border-radius: 5px;
   }
 
   .profile-info {

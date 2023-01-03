@@ -7,15 +7,15 @@ import { shelfDecorations } from "../utils/Customizations";
 const Slider = ({ bookcaseId }) => {
   return (
     <div className="slider">
-      <div className="leftitems">
+      {/* <div className="leftitems">
         <i className="fas fa-arrow-alt-circle-left"></i>
-      </div>
+      </div> */}
       {shelfDecorations.map((item, key) => (
         <ScrollItem key={key} item={item} bookcaseId={bookcaseId} />
       ))}
-      <div className="rightitems">
+      {/* <div className="rightitems">
         <i className="fas fa-arrow-alt-circle-right"></i>
-      </div>
+      </div> */}
     </div>
   );
 };

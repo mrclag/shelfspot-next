@@ -13,5 +13,5 @@ export const shelfDecorations = [
   { id: 3, icon: bamboo },
   { id: 4, icon: budda },
   { id: 5, icon: pusheen },
-  { id: 6, icon: spikey },
+  // { id: 6, icon: spikey },
 ];

@@ -105,11 +105,11 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
           <div className={`col1 ${!mobileDisplayShelf ? "disMob" : ""}`}>
             <div className="dashboard-topleft">
               <Link href={`/profiles/${bookcase.userId}`}>
-                <div className="frame" style={{ height: "100px" }}>
-                  <img
+                <div className="frame">
+                  <Image
                     src={bookcase.User.imageUrl}
-                    alt="Mona Lisa"
-                    className="profile-img"
+                    layout="fill"
+                    objectFit="cover"
                   />
                 </div>
               </Link>
@@ -136,18 +136,16 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
 
           <div className={`col2 ${mobileDisplayShelf ? "disMob" : ""}`}>
             {/* <button onClick={refreshData}>Refresh</button> */}
-            <div className="dashboard-topright">
-              {/* <Slider bookcaseId={bookcase.id} /> */}
-            </div>
-            {mobileDisplayShelf && (
-              <div
-                className="back-to-shelf"
-                onClick={() => setMobileDisplayShelf(false)}
-              >
-                <i className="fas fa-chevron-left"></i> Back
-              </div>
-            )}
+            {!isMobile && <div className="dashboard-topright"></div>}
             <div style={{ display: "flex", flexDirection: "row" }}>
+              {mobileDisplayShelf && (
+                <div
+                  className="back-to-shelf"
+                  onClick={() => setMobileDisplayShelf(false)}
+                >
+                  <i className="fas fa-chevron-left"></i>
+                </div>
+              )}
               <div className="section-title">{selectedSection.title}</div>
             </div>
             <div>

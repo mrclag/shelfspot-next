@@ -16,8 +16,8 @@ const ProfileItem = ({
         <img src={imageUrl} alt="" className="avatar" />
         <div className="profile-info">
           <div className="name">{name || email}</div>
-          <div style={{ marginTop: "5px", color: "#555" }}>
-            {books.length} books
+          <div style={{ marginTop: "5px", color: "#555", fontSize: "14px" }}>
+            {books?.length || "0"} Books
           </div>
           {/* <p>{bio && (bio.length < 80 ? bio : bio.slice(0, 100) + '...')}</p> */}
         </div>

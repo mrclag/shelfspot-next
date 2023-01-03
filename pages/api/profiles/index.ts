@@ -20,7 +20,14 @@ export default async function handle(req, res) {
         ]
       },
       skip,
-      take
+      take,
+      include: {
+        books: {
+          include: {
+            Category: true,
+          },
+        },
+      },
      
     });
 
