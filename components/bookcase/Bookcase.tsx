@@ -18,7 +18,7 @@ import prisma from "../../lib/prisma";
 window["__react-beautiful-dnd-disable-dev-warnings"] = true;
 
 // a little function to help us with reordering the result
-const reorder = async (list: Book[], source, destination) => {
+const reorder = (list: Book[], source, destination) => {
   const destId = destination.droppableId;
   const sourceId = source.droppableId;
   const newValues = {};
@@ -37,22 +37,16 @@ const reorder = async (list: Book[], source, destination) => {
     // @ts-ignore
     const sourceWithIndexes = sourceBooks.map((book, i) => ({
       ...book,
-      index: i,
+      orderIndex: i,
     }));
     const newList = list
       .filter((book) => book.categoryId !== sourceId)
       .concat(...sourceWithIndexes);
 
-    for (let i = 0; i < sourceBooks.length; i++) {
-      await prisma.book.update({
-        where: {
-          id: sourceBooks[i].id,
-        },
-        data: {
-          orderIndex: i,
-        },
-      });
-    }
+    // const res = await axios.post("/api/bookcase/updateIndex", {
+    //   sourceWithIndexes,
+    //   destinationBooks: null,
+    // });
 
     return newList;
   } else if (sourceId !== destId) {
@@ -62,6 +56,28 @@ const reorder = async (list: Book[], source, destination) => {
     const destBooks = Array.from(
       list.filter((book) => book.categoryId === destId)
     );
+
+    const [removed] = sourceBooks.splice(source.index, 1);
+    destBooks.splice(destination.index, 0, removed);
+
+    const sourceWithIndexes = sourceBooks.map((book, i) => ({
+      ...book,
+      orderIndex: i,
+    }));
+
+    const destWithIndexes = destBooks.map((book, i) => ({
+      ...book,
+      orderIndex: i,
+      categoryId: destId,
+    }));
+
+    const newList = list
+      .filter(
+        (book) => book.categoryId !== sourceId && book.categoryId !== destId
+      )
+      .concat(...sourceWithIndexes, destWithIndexes);
+
+    return newList;
   }
 };
 
@@ -74,6 +90,7 @@ const Bookcase = ({
 }) => {
   const [newSectionTitle, setNewSectionTitle] = useState("");
   const [books, setBooks] = useState(initialBooks);
+  console.log(books);
 
   const router = useRouter();
 
@@ -110,8 +127,8 @@ const Bookcase = ({
     }
 
     const newItems = reorder(books, result.source, result.destination);
-
-    // setBooks(newItems);
+    console.log("newitems", newItems);
+    setBooks(newItems);
   };
 
   const handleDragStart = (/*{ destination, source, draggableId }*/) => {};
