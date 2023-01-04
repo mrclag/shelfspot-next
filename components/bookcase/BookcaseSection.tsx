@@ -43,7 +43,10 @@ const BookcaseSection = ({
       {/* Section label */}
       <div className="section-label">
         <span className="section-title">{section.title}</span>
-        <div className="section-num-cards">{sectionBooks.length} books</div>
+        <span style={{ color: "#555", fontSize: "14px" }}>
+          {" "}
+          ({sectionBooks.length}){" "}
+        </span>
       </div>
     </div>
   );

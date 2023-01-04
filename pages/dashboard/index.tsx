@@ -182,7 +182,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
               {/* <Link href="/edit-profile">Edit Profile</Link> */}
               <div
                 onClick={() => setShowSliderModal(true)}
-                style={{ height: "120px" }}
+                style={{ height: "120px", cursor: "pointer" }}
               >
                 <Image
                   src={shelfDecorations[bookcase.decoration || 0]?.icon}

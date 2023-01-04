@@ -10,7 +10,7 @@
 
   .sections {
     display: grid;
-    // grid-gap: 0.8rem;
+    grid-gap: 0.8rem;
     @media (min-width: 1120px) {
       grid-template-columns: repeat(1, 1fr);
     }
@@ -57,7 +57,7 @@
     flex-direction: row;
     position: absolute;
     min-width: 100%;
-    overflow-x: scroll;
+    overflow-x: auto;
     bottom: 0;
     height: 100%;
   }

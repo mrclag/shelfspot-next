@@ -31,7 +31,7 @@ const SectionsCardBook = ({ book }) => {
       key={book.id}
       index={book.orderIndex}
       draggableId={book.id}
-      isDragDisabled={book.User?.email === user.email}
+      isDragDisabled={book.User?.email === user?.email}
     >
       {(provided2, snapshot) => {
         return (
