@@ -9,9 +9,15 @@ import underline from "../../public/static/icons/type-underline.svg";
 import mono from "../../public/static/icons/chat-square-quote.svg";
 
 const INLINE_STYLES = [
-  { label: <Image src={bold} alt="bold" />, style: "BOLD" },
-  { label: <Image src={italic} />, style: "ITALIC" },
-  { label: <Image src={underline} />, style: "UNDERLINE" },
+  {
+    label: <i title="Bold" className="fas fa-bold"></i>,
+    style: "BOLD",
+  },
+  { label: <i title="Italics" className="fas fa-italic"></i>, style: "ITALIC" },
+  {
+    label: <i title="Underlined" className="fas fa-underline"></i>,
+    style: "UNDERLINE",
+  },
 ];
 
 type Props = {

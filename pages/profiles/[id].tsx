@@ -21,7 +21,7 @@ import useMediaQuery from "../../utils/useMediaQuery";
 export const getServerSideProps = async ({ req, res, params }) => {
   const bookcase = await prisma.bookcase.findMany({
     where: {
-      User: { id: String(params?.id) },
+      User: { id: String(params?.id) }, 
     },
     include: {
       books: {

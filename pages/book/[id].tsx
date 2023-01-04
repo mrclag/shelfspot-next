@@ -4,7 +4,7 @@ import Router from "next/router";
 import Layout from "../../components/Layout";
 import prisma from "../../lib/prisma";
 import { useUser } from "@auth0/nextjs-auth0";
-import { Book } from "@prisma/client";
+import { Book, User } from "@prisma/client";
 import RichText, { saveBook } from "../../components/richText/RichText2";
 import Head from "next/head";
 import toast from "react-hot-toast";
@@ -25,6 +25,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     where: {
       id: String(params?.id),
     },
+    include: {
+      User: { select: { email: true } },
+    },
   });
 
   const book = JSON.parse(JSON.stringify(bookResult));
@@ -36,7 +39,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 type Props = {
-  book: Book;
+  book: Book & {
+    User: User;
+  };
 };
 
 const Book: React.FC<Props> = ({ book }) => {
@@ -46,8 +51,10 @@ const Book: React.FC<Props> = ({ book }) => {
   }
   const display = true;
   const userHasValidSession = Boolean(user);
-  // const postBelongsToUser = user?.email === props.author?.email;
-  const postBelongsToUser = true;
+  const postBelongsToUser = user?.email === book.User.email;
+  // const postBelongsToUser = true;
+
+  console.log(book);
 
   const deleteBook = async () => {
     toast.promise(
@@ -65,6 +72,7 @@ const Book: React.FC<Props> = ({ book }) => {
   };
 
   const ratingChanged = (starValue: number) => {
+    if (!postBelongsToUser) return;
     saveBook(book.id, { rating: starValue });
   };
 
@@ -92,6 +100,15 @@ const Book: React.FC<Props> = ({ book }) => {
             <div>
               <h3>{book.title || "Untitled"}</h3>
               <p>By {author}</p>
+              <div
+                style={{
+                  fontSize: "14px",
+                  color: "#333",
+                  paddingBottom: "8px",
+                }}
+              >
+                {book.pageCount} pages
+              </div>
               <ReactStars
                 count={5}
                 value={book.rating}
@@ -99,16 +116,37 @@ const Book: React.FC<Props> = ({ book }) => {
                 size={24}
                 color2={"#ffd700"}
               />
-              <input type="checkbox" checked={display} /> Display
+              {/* <input type="checkbox" checked={display} /> Display */}
               {/* <div>(hidden toggle)</div> */}
             </div>
           </div>
 
-          <RichText bookId={book.id} initialContent={book.userContent} />
+          <RichText
+            bookId={book.id}
+            initialContent={book.userContent}
+            postBelongsToUser={postBelongsToUser}
+          />
 
-          <div className="flex-center" style={{ margin: "20px auto" }}>
-            <button onClick={deleteBook}>Remove Book</button>
-          </div>
+          {postBelongsToUser && (
+            <div
+              className="flex-center"
+              style={{ margin: "20px auto", marginTop: "auto" }}
+            >
+              <div
+                style={{
+                  color: "#555",
+                  fontSize: "12px",
+                  borderRadius: "7px",
+                  border: "1px solid #ccc",
+                  padding: "5px 10px",
+                  cursor: "pointer",
+                }}
+                onClick={deleteBook}
+              >
+                Remove Book
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </Layout>

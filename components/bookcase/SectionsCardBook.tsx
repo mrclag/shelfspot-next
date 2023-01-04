@@ -1,6 +1,7 @@
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import React, { useEffect } from "react";
 
+
 const SectionsCardBook = ({ book }) => {
   let width;
   if (book && book.pageCount) {
@@ -29,13 +30,24 @@ const SectionsCardBook = ({ book }) => {
             {...provided2.dragHandleProps}
           >
             <div
-              className="section-card-book"
+              className="flex-col"
               style={{
-                width: width,
-                background: book.color[0],
-                height: imageHeight,
+                height: "100%",
+                position: "relative",
+                display: "flex",
+                alignContent: "flex-end",
+                flexDirection: "column",
               }}
-            ></div>
+            >
+              <div
+                className="section-card-book"
+                style={{
+                  width: width,
+                  background: book.color[0],
+                  height: imageHeight,
+                }}
+              ></div>
+            </div>
           </div>
         );
       }}

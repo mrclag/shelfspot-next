@@ -10,10 +10,16 @@ const BLOCK_TYPES = [
   // { label: "H4", style: "header-four" },
   // { label: "H5", style: "header-five" },
   // { label: "H6", style: "header-six" },
-  { label: "Blockquote", style: "blockquote" },
-  { label: "UL", style: "unordered-list-item" },
-  { label: "OL", style: "ordered-list-item" },
-  { label: "Code Block", style: "code-block" },
+  { label: '"quote"', style: "blockquote" },
+  {
+    label: <i title="Unordered List" className="fas fa-list-ul"></i>,
+    style: "unordered-list-item",
+  },
+  {
+    label: <div title="Ordered List" className="fas fa-list-ol"></div>,
+    style: "ordered-list-item",
+  },
+  // { label: "Code Block", style: "code-block" },
 ];
 
 type Props = {
@@ -30,9 +36,9 @@ const BlockStyleControls = ({ editorState, onToggle }: Props) => {
 
   return (
     <div className="RichEditor-controls">
-      {BLOCK_TYPES.map((type) => (
+      {BLOCK_TYPES.map((type, i) => (
         <StyleButton
-          key={type.label}
+          key={i}
           active={type.style === blockType}
           label={type.label}
           onToggle={onToggle}

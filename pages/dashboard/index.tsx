@@ -82,14 +82,12 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
   const [newTitle, setNewTitle] = useState(selectedSection.title);
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [showSliderModal, setShowSliderModal] = useState(false);
-
   const [mobileDisplayShelf, setMobileDisplayShelf] = useState(false);
+  const [books, setBooks] = useState(bookcase.books);
 
-  const books = bookcase.books;
   const sectionBooks = books?.filter(
     (book) => book.categoryId === selectedSection.id
   );
-  console.log("books", books);
 
   const titleRef = useRef();
 
@@ -198,6 +196,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
             <SectionsCard
               bookcase={bookcase}
               selectedSection={selectedSection}
+              setBooks={setBooks}
               setSelectedSection={(bool) => {
                 setMobileDisplayShelf(true);
                 setSelectedSection(bool);
@@ -210,15 +209,15 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
           <div className={`col2 ${mobileDisplayShelf ? "disMob" : ""}`}>
             {!isMobile && <div className="dashboard-topright"></div>}
             {/* <button onClick={refreshData}>Refresh</button> */}
-            {mobileDisplayShelf && (
-              <div
-                className="back-to-shelf"
-                onClick={() => setMobileDisplayShelf(false)}
-              >
-                <i className="fas fa-chevron-left"></i>
-              </div>
-            )}
             <div style={{ display: "flex", flexDirection: "row" }}>
+              {mobileDisplayShelf && (
+                <div
+                  className="back-to-shelf"
+                  onClick={() => setMobileDisplayShelf(false)}
+                >
+                  <i className="fas fa-chevron-left"></i>
+                </div>
+              )}
               {editTitle ? (
                 <form className="section-title">
                   <input

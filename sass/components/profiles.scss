@@ -167,10 +167,12 @@
   display: inline-block;
   margin: 0 auto;
   position: relative;
+  box-sizing: border-box;
   background-color: #946947;
   background: linear-gradient(175deg, #fff, rgb(255, 255, 255)); /*#C9A8A1*/
   width: 650px;
   min-width: none;
+  max-width: 100vw;
   // height: 580px;
   min-height: 600px;
   box-shadow: 1px -1px 5px #555;
@@ -179,7 +181,11 @@
   flex-direction: column;
   // justify-content: center;
   border-radius: 7px;
-  padding: 30px 40px;
+  padding: 2rem;
+
+  @media screen and (max-width: 800px) {
+    padding: 20px 10px;
+  }
 }
 
 .notebook:after {

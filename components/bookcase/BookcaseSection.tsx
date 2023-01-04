@@ -16,14 +16,11 @@ const BookcaseSection = ({
   sectionIndex,
 }) => {
   const sectionBooks = books?.filter((book) => book.categoryId === section.id);
+  const sectionIsSelected = section?.title === selectedSection?.title;
 
   return (
     <div
-      className={
-        section?.title === selectedSection?.title
-          ? "section selected"
-          : "section"
-      }
+      className={sectionIsSelected ? "section selected" : "section"}
       onClick={() => setSelectedSection(section)}
     >
       <Droppable droppableId={section.id} direction="horizontal">
@@ -36,17 +33,7 @@ const BookcaseSection = ({
             {sectionBooks
               .sort((a, b) => a.orderIndex - b.orderIndex)
               .map((book, i) => {
-                return (
-                  <div
-                    style={{
-                      height: "100%",
-                      display: "flex",
-                      alignItems: "flex-end",
-                    }}
-                  >
-                    <SectionsCardBook key={i} book={book} />
-                  </div>
-                );
+                return <SectionsCardBook key={i} book={book} />;
               })}
             {provided.placeholder}
           </div>

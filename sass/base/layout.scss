@@ -35,6 +35,10 @@
   align-items: center;
   padding-top: 30px;
 
+  @media screen and (max-width: 800px) {
+    padding-top: 0px;
+  }
+
   &-content {
     width: 600px;
     max-width: 100vw;
@@ -51,6 +55,7 @@
 
     h3 {
       color: #333;
+      font-size: 18px;
     }
     p {
       color: #555;

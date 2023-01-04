@@ -83,14 +83,13 @@ const reorder = (list: Book[], source, destination) => {
 
 const Bookcase = ({
   bookcase,
-  books: initialBooks,
+  books,
   selectedSection,
   setSelectedSection,
   isUsers = true,
+  setBooks,
 }) => {
   const [newSectionTitle, setNewSectionTitle] = useState("");
-  const [books, setBooks] = useState(initialBooks);
-  console.log(books);
 
   const router = useRouter();
 

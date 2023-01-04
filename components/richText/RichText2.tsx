@@ -24,9 +24,14 @@ type Props = {
   // setContent: (state: RawDraftContentState) => void;
   initialContent: any;
   bookId: string;
+  postBelongsToUser: boolean;
 };
 
-const RTEditor = ({ bookId, initialContent = "" }: Props) => {
+const RTEditor = ({
+  bookId,
+  initialContent = "",
+  postBelongsToUser,
+}: Props) => {
   const editorRef = useRef(null);
   const [editorState, setEditorState] = useState(
     EditorState.createWithContent(convertFromRaw(JSON.parse(initialContent)))
@@ -78,57 +83,69 @@ const RTEditor = ({ bookId, initialContent = "" }: Props) => {
     }
     return "not-handled";
   };
+  console.log(editorState.getCurrentContent());
 
   const toggleBlockType = (blockType: string) => {
     onChange(RichUtils.toggleBlockType(editorState, blockType));
+    setTimeout(() => editorRef.current.focus(), 200);
   };
 
   const toggleInlineStyle = (inlineStyle: string) => {
     onChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
+    setTimeout(() => editorRef.current.focus(), 200);
   };
 
   return (
-    <>
-      <div className="RichEditor-root">
-        {editorRef && (
-          <div className="RichEditor-control-group">
-            <BlockStyleControls
-              editorState={editorState}
-              onToggle={toggleBlockType}
-            />
-            <InlineStyleControls
-              editorState={editorState}
-              onToggle={toggleInlineStyle}
-            />
-          </div>
-        )}
+    <div>
+      <div
+        className={`RichEditor-root ${!postBelongsToUser ? "non-user" : ""}`}
+      >
+        <div className="flex">
+          {editorRef && (
+            <div className="RichEditor-control-group">
+              <BlockStyleControls
+                editorState={editorState}
+                onToggle={toggleBlockType}
+              />
+              <InlineStyleControls
+                editorState={editorState}
+                onToggle={toggleInlineStyle}
+              />
+            </div>
+          )}
+          <button
+            className={`button ${loading ? "disabled" : ""}`}
+            style={{
+              marginLeft: "auto",
+              borderRadius: "10px",
+            }}
+            onClick={() =>
+              saveBook(
+                bookId,
+                { content: editorState.getCurrentContent() },
+                setLoading
+              )
+            }
+            disabled={loading}
+          >
+            Save
+          </button>
+        </div>
+
         <Editor
           ref={editorRef}
           editorState={editorState}
-          placeholder="Tell a story..."
+          // placeholder={"What I learned..."}
           customStyleMap={styleMap}
           blockStyleFn={(block: ContentBlock) => getBlockStyle(block)}
           keyBindingFn={(e) => mapKeyToEditorCommand(e)}
           onChange={onChange}
           spellCheck={true}
           handleKeyCommand={handleKeyCommand}
+          readOnly={!postBelongsToUser}
         />
       </div>
-      <button
-        className={`button ${loading ? "disabled" : ""}`}
-        style={{ margin: "0 auto" }}
-        onClick={() =>
-          saveBook(
-            bookId,
-            { content: editorState.getCurrentContent() },
-            setLoading
-          )
-        }
-        disabled={loading}
-      >
-        Save
-      </button>
-    </>
+    </div>
   );
 };
 
