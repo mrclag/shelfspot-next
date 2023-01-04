@@ -21,7 +21,7 @@ import useMediaQuery from "../../utils/useMediaQuery";
 export const getServerSideProps = async ({ req, res, params }) => {
   const bookcase = await prisma.bookcase.findMany({
     where: {
-      User: { id: String(params?.id) }, 
+      User: { id: String(params?.id) },
     },
     include: {
       books: {
@@ -74,7 +74,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
 
   const [mobileDisplayShelf, setMobileDisplayShelf] = useState(false);
 
-  const books = bookcase.books;
+  const [books, setBooks] = useState(bookcase.books);
   const sectionBooks = books?.filter(
     (book) => book.categoryId === selectedSection.id
   );

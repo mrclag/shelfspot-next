@@ -56,10 +56,10 @@
     display: flex;
     flex-direction: row;
     position: absolute;
+    min-width: 100%;
     overflow-x: scroll;
     bottom: 0;
     height: 100%;
-    /* Firefox */
   }
 
   .menu-item {

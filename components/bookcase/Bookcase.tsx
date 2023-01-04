@@ -87,7 +87,7 @@ const Bookcase = ({
   selectedSection,
   setSelectedSection,
   isUsers = true,
-  setBooks,
+  setBooks = (bool) => {},
 }) => {
   const [newSectionTitle, setNewSectionTitle] = useState("");
 
