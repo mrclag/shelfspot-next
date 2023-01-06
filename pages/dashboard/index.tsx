@@ -18,6 +18,12 @@ import toast, { Toaster } from "react-hot-toast";
 import { Loader } from "../../components/layout/Loader";
 import useMediaQuery from "../../utils/useMediaQuery";
 import Dnd from "../../components/bookcase/Dnd";
+import bin from "../../public/static/img/bin.png";
+import SectionsCardBook, {
+  getImageHeight,
+  getImageWidth,
+} from "../../components/bookcase/SectionsCardBook";
+import { Droppable, Draggable } from "react-beautiful-dnd";
 
 export const getServerSideProps = withPageAuthRequired({
   returnTo: "/",
@@ -88,6 +94,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
   const sectionBooks = books?.filter(
     (book) => book.categoryId === selectedSection.id
   );
+  const unsortedBooks = books?.filter((book) => book.categoryId === null);
 
   const titleRef = useRef();
 
@@ -179,6 +186,29 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
                 </div>
               </Link>
               <div style={{ width: "40px" }}></div>
+
+              {/* <div className="flex-col">
+                <div style={{ width: "fit-content", position: "relative" }}>
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: "-10px",
+                      right: "0",
+                      background: "white",
+                      // height: "24px",
+                      // width: "24px",
+                      border: "1px solid #ccc",
+                      borderRadius: "50%",
+                      zIndex: "50",
+                      padding: "8px",
+                      fontSize: "14px",
+                    }}
+                  >
+                    {unsortedBooks.length}
+                  </div>
+                  <Image src={bin} height="80px" width="70px"></Image>
+                </div>
+              </div> */}
               {/* <Link href="/edit-profile">Edit Profile</Link> */}
               <div
                 onClick={() => setShowSliderModal(true)}
@@ -207,19 +237,33 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
           {/* <Dnd /> */}
 
           <div className={`col2 ${mobileDisplayShelf ? "disMob" : ""}`}>
-            {!isMobile && <div className="dashboard-topright"></div>}
+            {/* {!isMobile && <div className="dashboard-topright"></div>} */}
             {/* <button onClick={refreshData}>Refresh</button> */}
-            <div style={{ display: "flex", flexDirection: "row" }}>
-              {mobileDisplayShelf && (
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                borderBottom: "1px solid #ddd",
+                padding: "5px",
+              }}
+            >
+              {mobileDisplayShelf && isMobile && (
                 <div
                   className="back-to-shelf"
                   onClick={() => setMobileDisplayShelf(false)}
                 >
-                  <i className="fas fa-chevron-left"></i>
+                  <i className="fas fa-arrow-left"></i>
                 </div>
               )}
               {editTitle ? (
-                <form className="section-title">
+                <form
+                  className="section-title"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    updateSectionName(selectedSection.id);
+                  }}
+                >
                   <input
                     type="text"
                     value={newTitle}
@@ -227,20 +271,21 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
                     onChange={(e) => setNewTitle(e.target.value)}
                   />
                   <i
-                    className="fas fa-check check-title"
+                    className="fas fa-check section-delete"
                     onClick={() => updateSectionName(selectedSection.id)}
                   ></i>
                 </form>
               ) : (
-                <div className="section-title">
-                  {selectedSection.title}
-                  <i
-                    ref={titleRef}
-                    className="fas fa-pen edit-title"
-                    onClick={() => setEditTitle(true)}
-                  ></i>
-                </div>
+                <div className="section-title">{selectedSection.title}</div>
               )}
+
+              <div
+                ref={titleRef}
+                className="section-delete"
+                onClick={() => setShowSearchModal(true)}
+              >
+                <i className="fas fa-plus"></i>
+              </div>
               <div
                 className="section-delete"
                 onClick={() => setShowSectionModal(true)}
@@ -274,7 +319,19 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
                   >
                     <div
                       className="menu-item"
-                      onClick={() => deleteSection(selectedSection.id)}
+                      onClick={() => {
+                        setEditTitle(true);
+                        setShowSectionModal(false);
+                      }}
+                    >
+                      Rename
+                    </div>
+                    <div
+                      className="menu-item"
+                      onClick={() => {
+                        deleteSection(selectedSection.id);
+                        setShowSectionModal(false);
+                      }}
                     >
                       Delete
                     </div>
@@ -282,18 +339,16 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
                 </Modal>
               )}
             </div>
-            <div>
-              <div className="books-section">
-                {sectionBooks.map((book, i) => {
-                  return <Book2 key={i} book={book} />;
-                })}
-                <div
-                  onClick={(showModal) => setShowSearchModal(true)}
-                  className="add-new-book"
-                >
-                  {/* <i className="fas fa-plus-circle"></i> */}
-                  Add Book
-                </div>
+            <div className="books-section">
+              {sectionBooks.map((book, i) => {
+                return <Book2 key={i} book={book} />;
+              })}
+              <div
+                onClick={(showModal) => setShowSearchModal(true)}
+                className="add-new-book"
+              >
+                {/* <i className="fas fa-plus-circle"></i> */}
+                Add Book
               </div>
             </div>
           </div>

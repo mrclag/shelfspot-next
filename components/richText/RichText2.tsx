@@ -37,6 +37,7 @@ const RTEditor = ({
     EditorState.createWithContent(convertFromRaw(JSON.parse(initialContent)))
   );
   const [loading, setLoading] = useState(false);
+  const [currentlyEditing, setCurrentlyEditing] = useState(false);
 
   const styleMap = {
     CODE: {
@@ -96,41 +97,57 @@ const RTEditor = ({
   };
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
+      {!currentlyEditing && (
+        <button
+          style={{
+            position: "absolute",
+            right: "0",
+            bottom: "0",
+            zIndex: "999",
+          }}
+          onClick={() => setCurrentlyEditing(!currentlyEditing)}
+        >
+          edit
+        </button>
+      )}
       <div
         className={`RichEditor-root ${!postBelongsToUser ? "non-user" : ""}`}
       >
-        <div className="flex">
-          {editorRef && (
-            <div className="RichEditor-control-group">
-              <BlockStyleControls
-                editorState={editorState}
-                onToggle={toggleBlockType}
-              />
-              <InlineStyleControls
-                editorState={editorState}
-                onToggle={toggleInlineStyle}
-              />
-            </div>
-          )}
-          <button
-            className={`button ${loading ? "disabled" : ""}`}
-            style={{
-              marginLeft: "auto",
-              borderRadius: "10px",
-            }}
-            onClick={() =>
-              saveBook(
-                bookId,
-                { content: editorState.getCurrentContent() },
-                setLoading
-              )
-            }
-            disabled={loading}
-          >
-            Save
-          </button>
-        </div>
+        {currentlyEditing && (
+          <div className="flex">
+            {editorRef && (
+              <div className="RichEditor-control-group">
+                <BlockStyleControls
+                  editorState={editorState}
+                  onToggle={toggleBlockType}
+                />
+                <InlineStyleControls
+                  editorState={editorState}
+                  onToggle={toggleInlineStyle}
+                />
+              </div>
+            )}
+            <button
+              className={`button ${loading ? "disabled" : ""}`}
+              style={{
+                marginLeft: "auto",
+                borderRadius: "10px",
+              }}
+              onClick={() => {
+                saveBook(
+                  bookId,
+                  { content: editorState.getCurrentContent() },
+                  setLoading
+                );
+                setCurrentlyEditing(false);
+              }}
+              disabled={loading}
+            >
+              Save
+            </button>
+          </div>
+        )}
 
         <Editor
           ref={editorRef}

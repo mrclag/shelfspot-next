@@ -89,7 +89,7 @@ const Book: React.FC<Props> = ({ book }) => {
         <title>ShelfSpot {book.title && `- ${book.title}`}</title>
       </Head>
       <div className="page-wrapper book-page">
-        <div className="book-page-content notebook">
+        <div className="book-page-content">
           <div className="book-page-info">
             <img
               // @ts-ignore
@@ -139,6 +139,8 @@ const Book: React.FC<Props> = ({ book }) => {
                   borderRadius: "7px",
                   border: "1px solid #ccc",
                   padding: "5px 10px",
+                  margin: "20px auto",
+                  background: "white",
                   cursor: "pointer",
                 }}
                 onClick={deleteBook}

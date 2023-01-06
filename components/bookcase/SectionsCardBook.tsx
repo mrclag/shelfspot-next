@@ -2,6 +2,7 @@ import { Droppable, Draggable } from "react-beautiful-dnd";
 import React, { useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0";
 import { useRouter } from "next/router";
+import { Book } from "@prisma/client";
 
 const SectionsCardBook = ({ book }) => {
   const { user } = useUser();
@@ -9,23 +10,9 @@ const SectionsCardBook = ({ book }) => {
   const router = useRouter();
   const { id } = router.query;
 
-  let width;
-  if (book && book.pageCount) {
-    const num = Math.min(Math.max(book.pageCount / 7, 25), 45);
-    width = num + "px";
-  } else {
-    width = "20px";
-  }
+  const imageHeight = getImageHeight(book.imageLinks[0]?.smallThumbnail);
+  const imageWidth = getImageWidth(book);
 
-  const bookImg = new Image();
-  let bookImage = book.imageLinks[0]?.smallThumbnail;
-  bookImg.src = bookImage;
-  const bookImgHeight = bookImg.height;
-  const bookImgWidth = bookImg.width;
-  const ratio = bookImgHeight / bookImgWidth;
-  const distFromOne = bookImgHeight > bookImgWidth ? ratio - 1 : 1 - ratio;
-  const imageHeight = Math.max(Math.min(70 + distFromOne * 60, 120), 60) + "px";
-  console.log(book);
   return (
     <Draggable
       key={book.id}
@@ -54,7 +41,7 @@ const SectionsCardBook = ({ book }) => {
               <div
                 className="section-card-book"
                 style={{
-                  width: width,
+                  width: imageWidth,
                   background: book.color[0],
                   height: imageHeight,
                 }}
@@ -68,3 +55,27 @@ const SectionsCardBook = ({ book }) => {
 };
 
 export default SectionsCardBook;
+
+export const getImageHeight = (bookImage) => {
+  const bookImg = new Image();
+  bookImg.src = bookImage;
+  const bookImgHeight = bookImg.height;
+  const bookImgWidth = bookImg.width;
+  const ratio = bookImgHeight / bookImgWidth;
+  const distFromOne = bookImgHeight > bookImgWidth ? ratio - 1 : 1 - ratio;
+  const imageHeight = Math.max(Math.min(70 + distFromOne * 60, 120), 60) + "px";
+
+  return imageHeight;
+};
+
+export const getImageWidth = (book: Book) => {
+  let width;
+  if (book && book.pageCount) {
+    const num = Math.min(Math.max(book.pageCount / 7, 25), 45);
+    width = num + "px";
+  } else {
+    width = "20px";
+  }
+
+  return width;
+};

@@ -137,9 +137,15 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
 
           <div className={`col2 ${mobileDisplayShelf ? "disMob" : ""}`}>
             {/* <button onClick={refreshData}>Refresh</button> */}
-            {!isMobile && <div className="dashboard-topright"></div>}
-            <div style={{ display: "flex", flexDirection: "row" }}>
-              {mobileDisplayShelf && (
+            {/* {!isMobile && <div className="dashboard-topright"></div>} */}
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                borderBottom: "1px solid #ddd",
+              }}
+            >
+              {mobileDisplayShelf && isMobile && (
                 <div
                   className="back-to-shelf"
                   onClick={() => setMobileDisplayShelf(false)}

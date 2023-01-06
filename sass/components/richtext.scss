@@ -1,5 +1,4 @@
 .RichEditor-root {
-  background: #fff;
   font-family: "Georgia", serif;
   font-size: 14px;
   padding-bottom: 10px;
@@ -25,8 +24,10 @@
 .public-DraftEditor-content {
   min-height: 150px;
   padding: 10px;
+  background: #fff;
   border: 1px solid #ccc;
   border-radius: 0px 0px 10px 10px;
+  border-radius: 8px;
 }
 
 .RichEditor-hidePlaceholder .public-DraftEditorPlaceholder-root {
@@ -54,6 +55,7 @@
 
 .RichEditor-control-group {
   display: flex;
+  background: #fff;
   border: 1px solid #ccc;
   // width: 600px;
   // max-width: 900px;
@@ -61,6 +63,7 @@
   width: fit-content;
   // margin: 0 auto;
   border-radius: 10px 10px 0px 0px;
+  border-radius: 8px;
   border-bottom: none;
 
   .RichEditor-controls {
