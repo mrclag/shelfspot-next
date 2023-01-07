@@ -64,7 +64,12 @@
 
     &.right {
       justify-content: right;
-      direction: rtl;
+      // direction: rtl;
+    }
+
+    &.left {
+      justify-content: left;
+      direction: ltr;
     }
   }
 
@@ -109,15 +114,11 @@
       // left: 50%;
       left: 0;
       opacity: 0.8;
+      border: 1px solid #ccc;
       transition: 0.2s;
       // transform: translate(-50%, -50%);
       color: #333;
       top: 0;
-
-      // &.selected {
-      //   opacity: 0;
-      //   z-index: -1;
-      // }
 
       &.align-button {
         opacity: 0;
@@ -135,7 +136,7 @@
           &:hover {
             color: black;
             // transform: scale(1.1);
-            // border: 1px solid red;
+            border: 1px solid #333;
           }
         }
       }

@@ -1,11 +1,8 @@
-import { Book } from "@prisma/client";
-import Image from "next/image";
 import React, { useState } from "react";
-import { Droppable, Draggable } from "react-beautiful-dnd";
+import { Droppable } from "react-beautiful-dnd";
 import SectionsCardBook from "./SectionsCardBook";
-import defaultImage from "../../public/static/img/shelfdecorations/leafy.png";
-
-import robot from "../../public/static/img/robotbookend.png";
+import axios from "axios";
+import SmallSpinner from "../layout/SmallSpinner";
 // type Props = {
 //   books: Book[];
 //   section
@@ -20,8 +17,20 @@ const BookcaseSection = ({
 }) => {
   const sectionBooks = books?.filter((book) => book.categoryId === section.id);
   const sectionIsSelected = section?.title === selectedSection?.title;
-  const [direction, setDirection] = useState("left");
+  const [direction, setDirection] = useState(section.alignment);
   console.log("section", section);
+  const [loadingAlign, setLoadingAlign] = useState(false);
+
+  const selectAlignment = async (val) => {
+    setLoadingAlign(true);
+    const res = await axios.post(`/api/category/align`, {
+      categoryId: selectedSection.id,
+      alignment: val,
+    });
+    setLoadingAlign(false);
+
+    setDirection(val);
+  };
 
   return (
     <div
@@ -32,7 +41,7 @@ const BookcaseSection = ({
         {(provided, snapshot) => (
           <div
             className={`books 
-            ${direction === "right" ? "right" : ""}`}
+            ${direction === "right" ? "right" : "left"}`}
             ref={provided.innerRef}
             {...provided.droppableProps}
           >
@@ -53,21 +62,23 @@ const BookcaseSection = ({
 
       {/* Section label */}
       <div className={`section-label`}>
-        <div className="section-title">{section.title}</div>
+        <div className="section-title">{section.title} </div>
       </div>
+      {loadingAlign && <SmallSpinner />}
       <div
         className={`section-label align-button flex ${
           sectionIsSelected ? "selected" : ""
         }`}
       >
-        <div className="section-title" onClick={() => setDirection("left")}>
+        <div className="section-title" onClick={() => selectAlignment("left")}>
           <i className="fas fa-chevron-left"></i>
         </div>
         <div
           className="section-title"
-          onClick={() => setDirection("right")}
+          onClick={() => selectAlignment("right")}
           style={{
             borderLeft: "1px solid #aaa",
+            cursor: "pointer",
           }}
         >
           <i className="fas fa-chevron-right"></i>

@@ -61,6 +61,7 @@ model Categories {
   createdAt  DateTime  @default(now()) @map(name: "created_at")
   updatedAt  DateTime  @default(now()) @updatedAt @map(name: "updated_at")
   alignment  String    @default("left")
+  orderIndex Int       @unique @default(autoincrement())
   // orderIndex Int       @unique // ordering of the category sections in db
 
   @@unique([bookcaseId, title]) // category for each bookcase must have unique titles

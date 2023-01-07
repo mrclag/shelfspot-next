@@ -14,16 +14,9 @@ import Modal from "../../components/layout/Modal";
 import Image from "next/image";
 import SearchBooks from "../../components/search";
 import Head from "next/head";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { Loader } from "../../components/layout/Loader";
 import useMediaQuery from "../../utils/useMediaQuery";
-import Dnd from "../../components/bookcase/Dnd";
-import bin from "../../public/static/img/bin.png";
-import SectionsCardBook, {
-  getImageHeight,
-  getImageWidth,
-} from "../../components/bookcase/SectionsCardBook";
-import { Droppable, Draggable } from "react-beautiful-dnd";
 
 export const getServerSideProps = withPageAuthRequired({
   returnTo: "/",
@@ -166,17 +159,13 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
     );
   }
 
-  // when on mobile, default show bookshelf.
-  // when click on shelf, show shelf
-  // display a back button on the shelf
-  // new shelf design on mobile
-
   return (
     <Layout>
       <Head>
         <title>Dashboard - ShelfSpot</title>
       </Head>
       <div className="dashboard flex">
+        <div className="col0"></div>
         <div className="dashboard-wrap">
           <div className={`col1 ${!mobileDisplayShelf ? "disMob" : ""}`}>
             <div className="dashboard-topleft">
