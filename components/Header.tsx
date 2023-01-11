@@ -76,9 +76,9 @@ const Header: React.FC = () => {
                 className={isOpen ? "term-menu visible" : "term-menu"}
                 role="menu"
               >
-                <div className="term-menu__item" {...itemProps[0]}>
+                {/* <div className="term-menu__item" {...itemProps[0]}>
                   <Link href={`/profile`}>My Profile</Link>
-                </div>
+                </div> */}
                 <div className="term-menu__item" {...itemProps[1]}>
                   <Link href="/api/auth/logout">
                     <a data-active={isActive("/signup")}>Logout</a>

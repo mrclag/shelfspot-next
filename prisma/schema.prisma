@@ -69,6 +69,7 @@ model Categories {
 
 model Book {
   id                  String      @id @default(cuid())
+  // data from google books api
   title               String
   authors             String[]
   imageLinks          Json[]
@@ -77,18 +78,22 @@ model Book {
   industryIdentifiers Json[]
   description         String?
   subtitle            String?
-  Category            Categories? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  categoryId          String?
-  hidden              Boolean     @default(false)
-  sections            String[]
-  orderIndex          Int         @default(0)
-  rating              Float       @default(0)
-  color               String[]
-  userContent         String      @default("")
+  // relations
   User                User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId              String?
   Bookcase            Bookcase?   @relation(fields: [bookcaseId], references: [id], onDelete: Cascade)
   bookcaseId          String?
+  Category            Categories? @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId          String?
+  // user input
+  hidden              Boolean     @default(false)
+  sections            String[]
+  orderIndex          Int         @default(0)
+  rating              Float       @default(0)
+  userContent         String      @default("")
+  status              Int         @default(0)
+  // meta
+  color               String[]
   createdAt           DateTime    @default(now()) @map(name: "created_at")
   updatedAt           DateTime    @default(now()) @updatedAt @map(name: "updated_at")
 }

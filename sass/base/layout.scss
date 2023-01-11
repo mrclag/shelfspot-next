@@ -1,3 +1,5 @@
+@use "../abstracts" as *;
+
 .flex {
   display: flex;
 
@@ -35,7 +37,7 @@
   align-items: center;
   padding-top: 30px;
 
-  @media screen and (max-width: 800px) {
+  @media screen and ($MOBILE_VIEW) {
     padding-top: 0px;
   }
 
@@ -54,15 +56,24 @@
     .book-page-image {
       height: 140px;
       margin-right: 20px;
-    }
 
-    h3 {
+      @media screen and ($MOBILE_VIEW) {
+        height: 120px;
+      }
+    }
+    .book-title {
       color: #333;
       font-size: 18px;
     }
+
     p {
       color: #555;
-      margin: 10px 0px;
+      margin: 8px 0px;
+    }
+
+    @media screen and ($MOBILE_VIEW) {
+      margin-bottom: 0px;
+      border-radius: 0px;
     }
   }
 }

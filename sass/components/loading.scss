@@ -1,6 +1,6 @@
 $lightorange: rgb(249, 163, 3);
-$orange: #FC7A1E;
-$darkorange: rgb(204, 114, 3);
+$orange: #fc7a1e;
+$darkorange: rgb(154, 114, 3);
 
 .book-loader {
   border: 4px solid #333;
@@ -28,84 +28,85 @@ $darkorange: rgb(204, 114, 3);
     transform-origin: left center;
 
     &:nth-child(1) {
-      -webkit-animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 2.2s infinite;
-      animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 2.2s infinite;
+      -webkit-animation: pageTurn 1.8s cubic-bezier(0, 0.39, 1, 0.68) 2.2s
+        infinite;
+      animation: pageTurn 1.8s cubic-bezier(0, 0.39, 1, 0.68) 2.2s infinite;
     }
     &:nth-child(2) {
-      -webkit-animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 2.0s infinite;
-      animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 2.0s infinite;
+      -webkit-animation: pageTurn 1.8s cubic-bezier(0, 0.39, 1, 0.68) 2s
+        infinite;
+      animation: pageTurn 1.8s cubic-bezier(0, 0.39, 1, 0.68) 2s infinite;
     }
     &:nth-child(3) {
-      -webkit-animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 1.8s infinite;
-      animation: pageTurn 1.8s cubic-bezier(0, .39, 1, .68) 1.8s infinite;
+      -webkit-animation: pageTurn 1.8s cubic-bezier(0, 0.39, 1, 0.68) 1.8s
+        infinite;
+      animation: pageTurn 1.8s cubic-bezier(0, 0.39, 1, 0.68) 1.8s infinite;
     }
   }
-
 }
-
-
 
 /* Page turn */
 
 @-webkit-keyframes pageTurn {
   0% {
-    -webkit-transform: rotateY( 0deg);
-    transform: rotateY( 0deg);
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
   }
   20% {
     background: $darkorange;
   }
   40% {
     background: orange;
-    -webkit-transform: rotateY( -180deg);
-    transform: rotateY( -180deg);
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
   }
   100% {
     background: orange;
-    -webkit-transform: rotateY( -180deg);
-    transform: rotateY( -180deg);
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
   }
 }
 
 @keyframes pageTurn {
   0% {
-    transform: rotateY( 0deg);
+    transform: rotateY(0deg);
   }
   20% {
     background: $darkorange;
   }
   40% {
     background: orange;
-    transform: rotateY( -180deg);
+    transform: rotateY(-180deg);
   }
   100% {
     background: orange;
-    transform: rotateY( -180deg);
+    transform: rotateY(-180deg);
   }
 }
-
 
 .loader-page {
   display: flex;
   justify-content: center;
   margin-top: 30vh;
-  
 }
-
 
 .lds-ring {
   display: inline-block;
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 15px;
+  &.left {
+    margin-left: -3px;
+    margin-right: 3px;
+  }
   div {
     box-sizing: border-box;
     display: block;
     position: absolute;
-    width: 16px;
-    height: 16px;
+    width: 12px;
+    height: 12px;
     margin: 4px;
-    border: 4px solid #ccc;
+    border: 4px solid #9ebbf7;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
     border-color: #ccc transparent transparent transparent;

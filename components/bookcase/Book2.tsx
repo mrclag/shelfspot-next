@@ -27,12 +27,12 @@ const Book2 = ({ book }) => {
           <div className="book-info">
             <div className="book-title">{title}</div>
             <div className="book-author">{author}</div>
-            {progress === "C" ? (
+            {book.status === 0 ? (
               <div className="book-status read">
                 <i className="fas fa-check"></i>
                 Read
               </div>
-            ) : progress === "IP" ? (
+            ) : book.status === 1 ? (
               <div className="book-status ip">
                 <i className="fas fa-book-open"></i>
                 In Progress

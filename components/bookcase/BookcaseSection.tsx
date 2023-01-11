@@ -22,9 +22,10 @@ const BookcaseSection = ({
   const [loadingAlign, setLoadingAlign] = useState(false);
 
   const selectAlignment = async (val) => {
+    if (loadingAlign) return;
     setLoadingAlign(true);
     const res = await axios.post(`/api/category/align`, {
-      categoryId: selectedSection.id,
+      categoryId: section.id,
       alignment: val,
     });
     setLoadingAlign(false);
@@ -64,25 +65,30 @@ const BookcaseSection = ({
       <div className={`section-label`}>
         <div className="section-title">{section.title} </div>
       </div>
-      {loadingAlign && <SmallSpinner />}
       <div
         className={`section-label align-button flex ${
           sectionIsSelected ? "selected" : ""
-        }`}
+        } ${loadingAlign ? "disabled" : ""}`}
       >
-        <div className="section-title" onClick={() => selectAlignment("left")}>
-          <i className="fas fa-chevron-left"></i>
-        </div>
-        <div
-          className="section-title"
-          onClick={() => selectAlignment("right")}
-          style={{
-            borderLeft: "1px solid #aaa",
-            cursor: "pointer",
-          }}
-        >
-          <i className="fas fa-chevron-right"></i>
-        </div>
+        {loadingAlign ? (
+          <div className="section-title">
+            <SmallSpinner style="left" />
+          </div>
+        ) : direction === "right" ? (
+          <div
+            className="section-title"
+            onClick={() => selectAlignment("left")}
+          >
+            <i className="fas fa-arrow-left"></i>
+          </div>
+        ) : (
+          <div
+            className="section-title"
+            onClick={() => selectAlignment("right")}
+          >
+            <i className="fas fa-arrow-right"></i>
+          </div>
+        )}
       </div>
     </div>
   );

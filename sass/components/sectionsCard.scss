@@ -32,7 +32,7 @@
     height: 1rem;
   }
 
-  *::-webkit-scrollbar-track {
+  *::-webkit-scrollbar-strack {
     background-color: #3d1800;
     background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
   }
@@ -127,23 +127,28 @@
         // background: red;
         border: 1px solid rgb(251, 232, 213);
         &:hover {
-          border: 1px solid #555;
+          border: 1px solid rgb(251, 232, 213);
         }
         &.selected {
           opacity: 1 !important;
         }
         .section-title {
+          border: 1px solid rgb(251, 232, 213);
+
           &:hover {
             color: black;
-            // transform: scale(1.1);
-            border: 1px solid #333;
+            border-radius: 5px;
           }
         }
+      }
+
+      &.disabled {
+        background: #eee;
+        cursor: default;
       }
     }
 
     .bookend {
-      // min-width: 100px;
       min-height: 80px;
       max-height: 100px;
       min-width: 50px;
@@ -202,10 +207,6 @@
       }
       &:focus {
         outline: none;
-      }
-      &:hover {
-        /* background-color: #c98d62;
-        background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png'); */
       }
     }
   }

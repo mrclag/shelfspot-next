@@ -43,11 +43,10 @@ export default function Home({ loading }) {
             <div className="landing-welcome">
               <div className="welcome-content">
                 <div className="welcome-text">
-                  <div className="welcome-title">Welcome to Shelfspot</div>
+                  {/* <div className="welcome-title">Welcome to Shelfspot</div> */}
                   <div className="welcome-heading">Your Digital Bookshelf</div>
                   <div className="welcome-subheading">
-                    Easily organize, summarize, and share what you read with the
-                    world.
+                    Organize, summarize, and share what you read with the world.
                   </div>
                   <div className="or-login">
                     <Link href="/api/auth/login">

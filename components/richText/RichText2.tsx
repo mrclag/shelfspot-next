@@ -19,6 +19,7 @@ import axios from "axios";
 
 import BlockStyleControls from "./BlockStyleControls";
 import InlineStyleControls from "./InlineStyleControls";
+import { useRouter } from "next/router";
 
 type Props = {
   // setContent: (state: RawDraftContentState) => void;
@@ -38,6 +39,12 @@ const RTEditor = ({
   );
   const [loading, setLoading] = useState(false);
   const [currentlyEditing, setCurrentlyEditing] = useState(false);
+  const toggleEdit = () => {
+    setCurrentlyEditing(true);
+    setTimeout(() => editorRef.current.focus(), 200);
+  };
+
+  const { query } = useRouter();
 
   const styleMap = {
     CODE: {
@@ -106,7 +113,7 @@ const RTEditor = ({
             bottom: "0",
             zIndex: "999",
           }}
-          onClick={() => setCurrentlyEditing(!currentlyEditing)}
+          onClick={toggleEdit}
         >
           edit
         </button>
@@ -153,13 +160,14 @@ const RTEditor = ({
           ref={editorRef}
           editorState={editorState}
           // placeholder={"What I learned..."}
+
           customStyleMap={styleMap}
           blockStyleFn={(block: ContentBlock) => getBlockStyle(block)}
           keyBindingFn={(e) => mapKeyToEditorCommand(e)}
           onChange={onChange}
           spellCheck={true}
           handleKeyCommand={handleKeyCommand}
-          readOnly={!postBelongsToUser}
+          readOnly={!postBelongsToUser || !currentlyEditing}
         />
       </div>
     </div>

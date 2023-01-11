@@ -98,7 +98,7 @@ const Book: React.FC<Props> = ({ book }) => {
               alt="book"
             />
             <div>
-              <h3>{book.title || "Untitled"}</h3>
+              <h3 className="book-title">{book.title || "Untitled"}</h3>
               <p>By {author}</p>
               <div
                 style={{

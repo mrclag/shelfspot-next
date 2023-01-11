@@ -1,26 +1,27 @@
+@use "../abstracts" as *;
 .search-books {
   position: relative;
   display: flex;
   flex-direction: column;
   max-height: 85vh;
-  @media screen and (max-width: 800px) {
+  @media screen and ($MOBILE_VIEW) {
     margin-top: 30px;
   }
- 
+
   .search-form {
     text-align: center;
     padding: 20px 50px;
     border-bottom: 1px solid #c3c3c3;
     background: white;
     border-radius: 4px;
-    @media screen and (max-width: 800px) {
+    @media screen and ($MOBILE_VIEW) {
       margin-top: 0px;
       padding: 20px 20px;
     }
   }
   .search-title {
     font-size: 20px;
-    margin-bottom: 8px; 
+    margin-bottom: 8px;
   }
   .search-bar {
     display: flex;
@@ -28,16 +29,15 @@
     height: auto;
   }
 
-.num-results {
-  padding: 5px 20px;
-  color: #444;
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  height: 20px;
-}
+  .num-results {
+    padding: 5px 20px;
+    color: #444;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    height: 20px;
+  }
 
- 
   .bg-icon {
     text-align: center;
     margin-top: 20px;
@@ -59,10 +59,7 @@
     overflow-y: auto;
     flex-grow: 1;
   }
-
-  
 }
-
 
 .book-result {
   overflow: visible;
@@ -73,9 +70,9 @@
   .book-img {
     min-width: 100px;
     display: flex;
-    justify-content: center; 
- }
-  
+    justify-content: center;
+  }
+
   img {
     height: 100px;
     width: auto;
@@ -90,23 +87,21 @@
     margin-top: 8px;
   }
 
-
-
-.book-info {
-  margin-left: 10px;
-  max-width: 300px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  .book-title {
-    font-size: 16px;
-    color: #333;
+  .book-info {
+    margin-left: 10px;
+    max-width: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    .book-title {
+      font-size: 16px;
+      color: #333;
+    }
+    .book-author {
+      font-size: 14px;
+      color: #555;
+    }
   }
-  .book-author {
-    font-size: 14px;
-    color: #555;
-  }
-}
 
   .tooltip {
     position: relative;

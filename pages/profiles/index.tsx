@@ -72,11 +72,12 @@ const Profiles = ({ initialProfiles }) => {
             </button>
           </div>
         </form>
-
-        {results.length > 0 &&
-          results.map((profile) => (
-            <ProfileItem key={profile._id} profile={profile} />
-          ))}
+        <div className="profile-items">
+          {results.length > 0 &&
+            results.map((profile) => (
+              <ProfileItem key={profile._id} profile={profile} />
+            ))}
+        </div>
       </div>
     </Layout>
   );

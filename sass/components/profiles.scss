@@ -1,11 +1,13 @@
+@use "../abstracts" as *;
 .profiles-page {
   text-align: center;
   background: white;
   width: fit-content;
   margin: 20px auto;
+  min-width: 900px;
   padding: 0px;
   border-radius: 7px;
-  @media screen and (max-width: 800px) {
+  @media screen and ($MOBILE_VIEW) {
     margin-top: 10px;
   }
   .search-bar {
@@ -21,14 +23,15 @@
     background: transparent;
     display: flex;
     align-items: center;
-    @media screen and (max-width: 800px) {
+    @media screen and ($MOBILE_VIEW) {
       padding: 20px 10px;
     }
   }
 
   .search-results {
     width: 65%;
-    @media screen and (max-width: 800px) {
+    // padding: 20px;
+    @media screen and ($MOBILE_VIEW) {
       width: 100%;
     }
   }
@@ -62,7 +65,7 @@
   .search-page-content {
     display: flex;
     flex-direction: row;
-    @media screen and (max-width: 800px) {
+    @media screen and ($MOBILE_VIEW) {
       display: unset;
     }
   }
@@ -79,12 +82,18 @@
     margin-left: 10px;
     font-size: 16px;
   }
-  @media screen and (max-width: 800px) {
+  @media screen and ($MOBILE_VIEW) {
     .other-content {
       display: none;
       background: blue;
     }
   }
+}
+
+.profile-items {
+  display: flex;
+  padding-bottom: 20px;
+  flex-direction: column;
 }
 
 .profile-item {
@@ -102,7 +111,7 @@
     background: #fafafa;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and ($MOBILE_VIEW) {
     width: 90vw;
   }
 
@@ -148,7 +157,7 @@
     padding: 0 5px;
   }
 
-  @media screen and (max-width: 800px) {
+  @media screen and ($MOBILE_VIEW) {
     .avatar {
       height: 80px;
       width: 80px;

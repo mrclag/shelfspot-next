@@ -1,3 +1,5 @@
+@use "../abstracts" as *;
+
 .search-input {
   font-size: 16px;
   width: 400px;
@@ -6,7 +8,7 @@
   border: 1px solid #555;
   // border-right: 0px;
   // border-radius: 5px 0px 0px 5px;
-  @media screen and (max-width: 800px) {
+  @media screen and ($MOBILE_VIEW) {
     width: 80vw;
   }
 }
@@ -24,7 +26,7 @@
   }
   // border-right: 0px;
   border-radius: 5px 0px 0px 5px;
-  @media screen and (max-width: 800px) {
+  @media screen and ($MOBILE_VIEW) {
     width: 80vw;
   }
 }
@@ -42,7 +44,7 @@
   &:hover {
     background: #31ccb9;
   }
-  // @media screen and (max-width: 800px) {
+  // @media screen and ($MOBILE_VIEW) {
   //   display: none;
   // }
 }
