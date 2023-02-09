@@ -112,8 +112,6 @@ const Book: React.FC<Props> = ({ book }) => {
       </Head>
       <div className="page-wrapper book-page">
         <div className="book-page-content">
-          {display ? "display" : "nd"}
-          {book.hidden ? "hidden" : "nh"}
           <div className="book-page-info">
             <img
               // @ts-ignore
@@ -160,21 +158,10 @@ const Book: React.FC<Props> = ({ book }) => {
           />
 
           {postBelongsToUser && (
-            <div
-              className="flex-center"
-              style={{ margin: "20px auto", marginTop: "auto" }}
-            >
+            <div className="flex-center">
               <div
-                style={{
-                  color: "#555",
-                  fontSize: "12px",
-                  borderRadius: "7px",
-                  border: "1px solid #ccc",
-                  padding: "5px 10px",
-                  margin: "20px auto",
-                  background: "white",
-                  cursor: "pointer",
-                }}
+                className="button-basic-sm"
+                style={{ margin: "20px auto" }}
                 onClick={deleteBook}
               >
                 Remove Book

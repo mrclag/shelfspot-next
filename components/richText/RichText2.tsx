@@ -110,9 +110,10 @@ const RTEditor = ({
           style={{
             position: "absolute",
             right: "0",
-            bottom: "0",
+            top: "0",
             zIndex: "999",
           }}
+          className="button-basic-sm"
           onClick={toggleEdit}
         >
           edit
