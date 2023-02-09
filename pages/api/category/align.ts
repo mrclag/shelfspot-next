@@ -6,8 +6,6 @@ import prisma from '../../../lib/prisma';
 // Optional fields in body: content
 export default async function handle(req, res) {
   const { alignment, categoryId } = req.body;
-  console.log('categoryId', categoryId)
-  console.log('alignment', alignment)
 
   const result = await prisma.categories.update({
     where: {

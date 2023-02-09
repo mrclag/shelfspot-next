@@ -5,8 +5,7 @@ import prisma from '../../../lib/prisma';
 
 export default async function handle(req, res) {
   const { sourceBooks, destinationBooks } = req.body;
-  const session = await getSession(req, res);
-console.log(sourceBooks)
+  
   try {
 
     for (let i = 0; i < sourceBooks.length; i++) {

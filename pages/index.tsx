@@ -1,21 +1,14 @@
-import { useState, useEffect } from "react";
-import {
-  getServerSidePropsWrapper,
-  getSession,
-  useUser,
-} from "@auth0/nextjs-auth0";
+import { getSession, useUser } from "@auth0/nextjs-auth0";
 import { useRouter } from "next/router";
-import Landing from "../components/Landing2";
 import { Loader } from "../components/layout/Loader";
 import Layout from "../components/Layout";
-
 import Link from "next/link";
 import Image from "next/image";
-import landingImgDash from "../assets/landing-img-dash.png";
-import iconBooks from "../assets/icon-books.png";
-import iconPlant from "../assets/icon-plant.png";
-import iconWrite from "../assets/icon-write.png";
-import iconStats from "../assets/icon-stats.png";
+import landingImgDash from "../public/static/assets/landing-img-dash.png";
+import iconBooks from "../public/static/assets/icon-books.png";
+import iconPlant from "../public/static/assets/icon-plant.png";
+import iconWrite from "../public/static/assets/icon-write.png";
+import iconStats from "../public/static/assets/icon-stats.png";
 import Head from "next/head";
 
 export const getServerSideProps = ({ req, res }) => {

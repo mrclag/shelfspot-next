@@ -2,26 +2,16 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import BookcaseSection from "./BookcaseSection";
-import SectionsCardBook from "./SectionsCardBook";
 import toast, { Toaster } from "react-hot-toast";
 import { DragDropContext } from "react-beautiful-dnd";
 import { Book } from "@prisma/client";
-import prisma from "../../lib/prisma";
 
-// import { swapBookend, bookends } from '../../utils/swapBookend';
-// import {
-//   addSection,
-//   deleteSection,
-//   // changeBookend,
-// } from '../../actions/profile';
-// import Modal from '../layout/Modal'
 window["__react-beautiful-dnd-disable-dev-warnings"] = true;
 
 // a little function to help us with reordering the result
 const reorder = (list: Book[], source, destination) => {
   const destId = destination.droppableId;
   const sourceId = source.droppableId;
-  const newValues = {};
 
   console.log("source", source);
   console.log("destination", destination);

@@ -7,11 +7,6 @@ type Props = {};
 export const Loader = (props: Props) => {
   return (
     <div className="loader-page">
-      {/* <figure className="page"></figure>
-      <figure className="page"></figure>
-      <figure className="page"></figure>
-    */}
-
       <div
         style={{
           display: "flex",

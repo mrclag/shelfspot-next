@@ -1,6 +1,6 @@
 import { getSession } from '@auth0/nextjs-auth0';
-import { Book } from '@prisma/client';
 import { ContentState, convertToRaw } from 'draft-js';
+import { getImageHeight } from '../../../components/bookcase/BookcaseBook';
 import prisma from '../../../lib/prisma';
 import getCommonImgColor from '../../../utils/getCommonImgColor'
 
@@ -9,7 +9,6 @@ import getCommonImgColor from '../../../utils/getCommonImgColor'
 // Optional fields in body: content
 export default async function handle(req, res) {
   const newBook = req.body;
-  // const categoryId = 'clbbkzqbn0000pg0z6kdu0f65'
   const categoryId = req.body.categoryId;
   const bookcaseId = req.body.bookcaseId;
   const HIDDEN = false
@@ -22,6 +21,8 @@ export default async function handle(req, res) {
     color = col || ['red'];
   }
 
+  const imageHeight = getImageHeight(newBook.imageLinks[0]?.smallThumbnail);
+
 
   const session = await getSession(req, res);
   const result = await prisma.book.create({
@@ -33,6 +34,7 @@ export default async function handle(req, res) {
       industryIdentifiers: newBook.industryIdentifiers,
       description: newBook.description,
       subtitle: newBook.subtitle,
+      // heightMultiplier: imageHeight,
       hidden: HIDDEN,
       color,
       Category: { connect: { id: categoryId} },

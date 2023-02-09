@@ -3,6 +3,11 @@ import axios from "axios";
 import BookResult from "./BookResult";
 import SmallSpinner from "../layout/SmallSpinner";
 
+// TODO:
+// - This should be a panel, not a modal
+//   that way it is easier to see books being added
+//   will need to make context for modals
+
 const SearchBooks = ({ bookcase, selectedCategory }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResult, setSearchResult] = useState([]);

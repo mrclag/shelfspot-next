@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Droppable } from "react-beautiful-dnd";
-import SectionsCardBook from "./SectionsCardBook";
+import BookcaseBook from "./BookcaseBook";
 import axios from "axios";
 import SmallSpinner from "../layout/SmallSpinner";
-// type Props = {
-//   books: Book[];
-//   section
-// };
+
+// TODO:
+// put bookcase into context
 
 const BookcaseSection = ({
   books,
@@ -18,7 +17,6 @@ const BookcaseSection = ({
   const sectionBooks = books?.filter((book) => book.categoryId === section.id);
   const sectionIsSelected = section?.title === selectedSection?.title;
   const [direction, setDirection] = useState(section.alignment);
-  console.log("section", section);
   const [loadingAlign, setLoadingAlign] = useState(false);
 
   const selectAlignment = async (val) => {
@@ -39,7 +37,7 @@ const BookcaseSection = ({
       onClick={() => setSelectedSection(section)}
     >
       <Droppable droppableId={section.id} direction="horizontal">
-        {(provided, snapshot) => (
+        {(provided) => (
           <div
             className={`books 
             ${direction === "right" ? "right" : "left"}`}
@@ -49,14 +47,9 @@ const BookcaseSection = ({
             {sectionBooks
               .sort((a, b) => a.orderIndex - b.orderIndex)
               .map((book, i) => {
-                return <SectionsCardBook key={i} book={book} />;
+                return <BookcaseBook key={i} book={book} />;
               })}
             {provided.placeholder}
-            {/* <div
-              className={`bookend ${direction === "right" ? "flipped" : ""}`}
-            >
-              <Image src={robot} alt="" width="100px" height="100px" />
-            </div> */}
           </div>
         )}
       </Droppable>

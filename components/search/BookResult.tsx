@@ -46,9 +46,6 @@ const BookResult = ({ categoryId, bookcaseId, result }) => {
     <div className="book-result">
       <div className="book-content tooltip">
         <div className="book-img">
-          {/* <span className="tooltiptext">
-            {title} by {author}
-          </span> */}
           <img src={bookPicture} alt="Book result" />
         </div>
       </div>

@@ -5,15 +5,7 @@ import Link from "next/link";
 
 const Book2 = ({ book }) => {
   const { id, imageLinks, authors, title } = book;
-  const author =
-    authors?.length > 0
-      ? authors?.join(", ")
-      : Array.isArray(authors)
-      ? authors[0]
-      : "No author";
-
-  const rand = Math.random();
-  const progress = rand > 0.7 ? "IP" : rand > 0.3 ? "C" : "N";
+  const author = getAuthorName(authors);
 
   return (
     <div className="book-2">
@@ -51,3 +43,10 @@ const Book2 = ({ book }) => {
 };
 
 export default Book2;
+
+const getAuthorName = (authorField) =>
+  authorField?.length > 0
+    ? authorField?.join(", ")
+    : Array.isArray(authorField)
+    ? authorField[0]
+    : "No author";

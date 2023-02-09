@@ -1,16 +1,11 @@
-import { Droppable, Draggable } from "react-beautiful-dnd";
-import React, { useEffect } from "react";
+import { Draggable } from "react-beautiful-dnd";
+import React from "react";
 import { useUser } from "@auth0/nextjs-auth0";
-import { useRouter } from "next/router";
 import { Book } from "@prisma/client";
 
-const SectionsCardBook = ({ book }) => {
+const BookcaseBook = ({ book }) => {
   const { user } = useUser();
-
-  const router = useRouter();
-  const { id } = router.query;
-
-  const imageHeight = getImageHeight(book.imageLinks[0]?.smallThumbnail);
+  const imageHeight = getImageHeight(book.imageLinks[0]?.smallThumbnail) + "px";
   const imageWidth = getImageWidth(book);
 
   return (
@@ -20,7 +15,7 @@ const SectionsCardBook = ({ book }) => {
       draggableId={book.id}
       isDragDisabled={book.User?.email === user?.email}
     >
-      {(provided2, snapshot) => {
+      {(provided2) => {
         return (
           <div
             ref={provided2.innerRef}
@@ -54,7 +49,7 @@ const SectionsCardBook = ({ book }) => {
   );
 };
 
-export default SectionsCardBook;
+export default BookcaseBook;
 
 export const getImageHeight = (bookImage) => {
   const bookImg = new Image();
@@ -63,7 +58,10 @@ export const getImageHeight = (bookImage) => {
   const bookImgWidth = bookImg.width;
   const ratio = bookImgHeight / bookImgWidth;
   const distFromOne = bookImgHeight > bookImgWidth ? ratio - 1 : 1 - ratio;
-  const imageHeight = Math.max(Math.min(70 + distFromOne * 60, 120), 60) + "px";
+  // the max image height is 120, min height is 60
+  // height = 70 (default height) + # * multiplier
+
+  const imageHeight = Math.max(Math.min(70 + distFromOne * 60, 120), 60);
 
   return imageHeight;
 };

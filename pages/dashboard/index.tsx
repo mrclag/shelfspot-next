@@ -176,29 +176,7 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
               </Link>
               <div style={{ width: "40px" }}></div>
 
-              {/* <div className="flex-col">
-                <div style={{ width: "fit-content", position: "relative" }}>
-                  <div
-                    style={{
-                      position: "absolute",
-                      top: "-10px",
-                      right: "0",
-                      background: "white",
-                      // height: "24px",
-                      // width: "24px",
-                      border: "1px solid #ccc",
-                      borderRadius: "50%",
-                      zIndex: "50",
-                      padding: "8px",
-                      fontSize: "14px",
-                    }}
-                  >
-                    {unsortedBooks.length}
-                  </div>
-                  <Image src={bin} height="80px" width="70px"></Image>
-                </div>
-              </div> */}
-              {/* <Link href="/edit-profile">Edit Profile</Link> */}
+
               <div
                 onClick={() => setShowSliderModal(true)}
                 style={{ height: "120px", cursor: "pointer" }}
@@ -226,8 +204,6 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
           {/* <Dnd /> */}
 
           <div className={`col2 ${mobileDisplayShelf ? "disMob" : ""}`}>
-            {/* {!isMobile && <div className="dashboard-topright"></div>} */}
-            {/* <button onClick={refreshData}>Refresh</button> */}
             <div
               style={{
                 display: "flex",
@@ -332,17 +308,10 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
               {sectionBooks.map((book, i) => {
                 return <Book2 key={i} book={book} />;
               })}
-              <div
-                onClick={(showModal) => setShowSearchModal(true)}
-                className="add-new-book"
-              >
-                {/* <i className="fas fa-plus-circle"></i> */}
-                Add Book
-              </div>
+
             </div>
           </div>
         </div>
-        {/* <div className="side-panel">test</div> */}
         <Modal showModal={showSearchModal} setShowModal={setShowSearchModal}>
           <SearchBooks bookcase={bookcase} selectedCategory={selectedSection} />
         </Modal>{" "}

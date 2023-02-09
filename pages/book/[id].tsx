@@ -116,7 +116,10 @@ const Book: React.FC<Props> = ({ book }) => {
                 size={24}
                 color2={"#ffd700"}
               />
-              {/* <input type="checkbox" checked={display} /> Display */}
+              <div className="flex-center">
+                <input type="checkbox" checked={display} />
+                <div>Hide</div>
+              </div>
               {/* <div>(hidden toggle)</div> */}
             </div>
           </div>
