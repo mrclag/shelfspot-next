@@ -74,12 +74,13 @@ const Book: React.FC<Props> = ({ book }) => {
 
   const ratingChanged = (starValue: number) => {
     if (!postBelongsToUser) return;
-    saveBook(book.id, { rating: starValue, display: display });
+    saveBook(book.id, { rating: starValue });
   };
 
-  const displayChanged = (value: boolean) => {
+  const displayChanged = async (displayValue: boolean) => {
     if (!postBelongsToUser) return;
-    saveBook(book.id, { display: value });
+    await saveBook(book.id, { display: displayValue });
+    setDisplay(displayValue);
   };
 
   const author =

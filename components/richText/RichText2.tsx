@@ -193,7 +193,7 @@ export const saveBook = async (
         bookId,
         content: content ? JSON.stringify(convertToRaw(content)) : undefined,
         rating: rating,
-        hidden: true,
+        hidden: !display,
       })
       .then(() => setLoading(false)),
     {
