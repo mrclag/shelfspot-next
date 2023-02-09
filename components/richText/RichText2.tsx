@@ -178,10 +178,14 @@ export default React.memo(RTEditor);
 
 export const saveBook = async (
   bookId: string,
-  bookUpdates: { content?: ContentState | undefined; rating?: number },
+  bookUpdates: {
+    content?: ContentState | undefined;
+    rating?: number;
+    display?: boolean;
+  },
   setLoading: React.Dispatch<React.SetStateAction<boolean>> = () => {}
 ) => {
-  const { content, rating } = bookUpdates;
+  const { content, rating, display } = bookUpdates;
   setLoading(true);
   toast.promise(
     axios
@@ -189,6 +193,7 @@ export const saveBook = async (
         bookId,
         content: content ? JSON.stringify(convertToRaw(content)) : undefined,
         rating: rating,
+        hidden: true,
       })
       .then(() => setLoading(false)),
     {

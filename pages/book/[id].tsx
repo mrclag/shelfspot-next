@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Router from "next/router";
 import Layout from "../../components/Layout";
@@ -10,6 +10,7 @@ import Head from "next/head";
 import toast from "react-hot-toast";
 import axios from "axios";
 import ReactStars from "react-stars";
+import Switch from "react-switch";
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await prisma.book.findMany({});
@@ -49,7 +50,7 @@ const Book: React.FC<Props> = ({ book }) => {
   if (isLoading) {
     return <div>Authenticating ...</div>;
   }
-  const display = true;
+  const [display, setDisplay] = useState(!book.hidden);
   const userHasValidSession = Boolean(user);
   const postBelongsToUser = user?.email === book.User.email;
   // const postBelongsToUser = true;
@@ -73,7 +74,12 @@ const Book: React.FC<Props> = ({ book }) => {
 
   const ratingChanged = (starValue: number) => {
     if (!postBelongsToUser) return;
-    saveBook(book.id, { rating: starValue });
+    saveBook(book.id, { rating: starValue, display: display });
+  };
+
+  const displayChanged = (value: boolean) => {
+    if (!postBelongsToUser) return;
+    saveBook(book.id, { display: value });
   };
 
   const author =
@@ -83,6 +89,21 @@ const Book: React.FC<Props> = ({ book }) => {
       ? book.authors
       : "Unknown author";
 
+  const checkedIcon = (
+    <div
+      style={{
+        display: "flex",
+        height: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+        color: "white",
+        fontSize: "14px",
+      }}
+    >
+      <i className="fas fa-book-open"></i>
+    </div>
+  );
+
   return (
     <Layout>
       <Head>
@@ -90,6 +111,8 @@ const Book: React.FC<Props> = ({ book }) => {
       </Head>
       <div className="page-wrapper book-page">
         <div className="book-page-content">
+          {display ? "display" : "nd"}
+          {book.hidden ? "hidden" : "nh"}
           <div className="book-page-info">
             <img
               // @ts-ignore
@@ -116,11 +139,16 @@ const Book: React.FC<Props> = ({ book }) => {
                 size={24}
                 color2={"#ffd700"}
               />
-              <div className="flex-center">
-                <input type="checkbox" checked={display} />
-                <div>Hide</div>
+              <div className="flex-center" style={{ margin: "6px 0px" }}>
+                <Switch
+                  onChange={displayChanged}
+                  checked={display}
+                  checkedIcon={checkedIcon}
+                />
+                <div style={{ marginLeft: "8px", fontSize: "14px" }}>
+                  {display ? "Public" : " Hidden"}
+                </div>
               </div>
-              {/* <div>(hidden toggle)</div> */}
             </div>
           </div>
 

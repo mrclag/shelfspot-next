@@ -25,6 +25,7 @@
     "react-hot-toast": "^2.4.0",
     "react-markdown": "8.0.0",
     "react-stars": "^2.2.5",
+    "react-switch": "^7.0.0",
     "sass": "^1.56.1"
   },
   "devDependencies": {
