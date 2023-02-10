@@ -26,6 +26,7 @@
     "react-markdown": "8.0.0",
     "react-stars": "^2.2.5",
     "react-switch": "^7.0.0",
+    "react-tooltip": "^5.7.5",
     "sass": "^1.56.1"
   },
   "devDependencies": {
