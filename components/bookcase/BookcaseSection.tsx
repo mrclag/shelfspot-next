@@ -19,10 +19,10 @@ const BookcaseSection = ({
   const [direction, setDirection] = useState(section.alignment);
   const [loadingAlign, setLoadingAlign] = useState(false);
 
-  const selectAlignment = async (val) => {
+  const selectAlignment = async (val: "left" | "right") => {
     if (loadingAlign) return;
     setLoadingAlign(true);
-    const res = await axios.post(`/api/category/align`, {
+    await axios.post(`/api/category/align`, {
       categoryId: section.id,
       alignment: val,
     });

@@ -8,12 +8,16 @@ const BookcaseBook = ({ book }) => {
   const imageHeight = getImageHeight(book.imageLinks[0]?.smallThumbnail) + "px";
   const imageWidth = getImageWidth(book);
 
+  const postBelongsToUser = user?.email === book.User?.email;
+
+  // if (postBelongsToUser && book.hidden) return <div></div>;
+
   return (
     <Draggable
       key={book.id}
       index={book.orderIndex}
       draggableId={book.id}
-      isDragDisabled={book.User?.email === user?.email}
+      isDragDisabled={book.User?.email !== user?.email}
     >
       {(provided2) => {
         return (

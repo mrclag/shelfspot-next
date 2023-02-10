@@ -40,8 +40,9 @@ export const getServerSideProps = withPageAuthRequired({
       include: {
         books: {
           include: {
-            Category: true,
+            Category: true, User: { select: { email: true } },
           },
+          
         },
         categories: {
           orderBy: [

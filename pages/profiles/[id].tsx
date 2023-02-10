@@ -25,20 +25,13 @@ export const getServerSideProps = async ({ req, res, params }) => {
     },
     include: {
       books: {
-        include: {
-          Category: true,
-        },
+        include: { Category: true },
       },
       categories: {
-        orderBy: [
-          {
-            updatedAt: "desc",
-          },
-        ],
+        orderBy: [{ updatedAt: "desc" }],
       },
       User: {
-        select: {
-          imageUrl: true,
+        select: {imageUrl: true,
         },
       },
     },
@@ -62,14 +55,15 @@ type Props = {
   };
 };
 
+// TO DO Friday
+// Make this a separate page, reused with different views available if logged in user - reuse component 
+
+
 const Dashboard: React.FC<Props> = ({ bookcase }) => {
   const { user, isLoading } = useUser();
   const [selectedSection, setSelectedSection] = useState(
     bookcase.categories[0]
   );
-  const [showSectionModal, setShowSectionModal] = useState(false);
-  const [editTitle, setEditTitle] = useState(false);
-  const [newTitle, setNewTitle] = useState(selectedSection.title);
   const [showSearchModal, setShowSearchModal] = useState(false);
 
   const [mobileDisplayShelf, setMobileDisplayShelf] = useState(false);
@@ -80,11 +74,6 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
   );
 
   const isMobile = useMediaQuery("(max-width: 800px)");
-
-  useEffect(() => {
-    setEditTitle(false);
-    setNewTitle(selectedSection.title);
-  }, [selectedSection]);
 
   const router = useRouter();
 
