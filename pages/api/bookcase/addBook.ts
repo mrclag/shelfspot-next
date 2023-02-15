@@ -1,8 +1,7 @@
 import { getSession } from '@auth0/nextjs-auth0';
 import { ContentState, convertToRaw } from 'draft-js';
-import { getImageHeight } from '../../../components/bookcase/BookcaseBook';
+import { getImageHeight, getCommonImgColor } from '../../../utils/images';
 import prisma from '../../../lib/prisma';
-import getCommonImgColor from '../../../utils/getCommonImgColor'
 
 // POST /api/post
 // Required fields in body: title

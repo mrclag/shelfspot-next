@@ -3,6 +3,7 @@ import { UserProvider } from "@auth0/nextjs-auth0";
 import { Toaster } from "react-hot-toast";
 import Head from "next/head";
 import "../sass/style.scss";
+import "react-tooltip/dist/react-tooltip.css";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (

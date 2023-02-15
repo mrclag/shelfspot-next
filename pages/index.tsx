@@ -43,9 +43,7 @@ export default function Home({ loading }) {
                   </div>
                   <div className="or-login">
                     <Link href="/api/auth/login">
-                      <div className="create-account-button">
-                        Start Stacking
-                      </div>
+                      <div className="create-account-button">Sign Up</div>
                     </Link>
                   </div>
                 </div>
