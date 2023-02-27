@@ -98,27 +98,24 @@
     &:hover {
       background-color: #c98d62;
       // background-image: url("https://www.transparenttextures.com/patterns/wood-pattern.png");
-      cursor: pointer;
+      // cursor: pointer;
     }
 
     .section-label {
-      background: white;
+      left: 0;
+      top: 0;
+      cursor: pointer;
       margin: auto;
       opacity: 0.9;
       border-radius: 5px;
       min-width: fit-content;
       white-space: nowrap;
       position: absolute;
-      top: 10%;
       background: rgb(251, 232, 213);
-      // left: 50%;
-      left: 0;
       opacity: 0.8;
       border: 1px solid #ccc;
       transition: 0.2s;
-      // transform: translate(-50%, -50%);
       color: #333;
-      top: 0;
 
       &.align-button {
         opacity: 0;

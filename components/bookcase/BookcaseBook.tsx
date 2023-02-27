@@ -15,51 +15,53 @@ const BookcaseBook = ({ book }) => {
   // if (postBelongsToUser && book.hidden) return <div></div>;
 
   return (
-    <Draggable
-      key={book.id}
-      index={book.orderIndex}
-      draggableId={book.id}
-      isDragDisabled={book.User?.email !== user?.email}
-    >
-      {(provided2) => {
-        return (
-          <>
-            <div
-              ref={provided2.innerRef}
-              {...provided2.draggableProps}
-              {...provided2.dragHandleProps}
-            >
+    <>
+      <Draggable
+        key={book.id}
+        index={book.orderIndex}
+        draggableId={book.id}
+        isDragDisabled={book.User?.email !== user?.email}
+      >
+        {(provided2) => {
+          return (
+            <>
               <div
-                className="flex-col"
-                style={{
-                  height: "100%",
-                  position: "relative",
-                  display: "flex",
-                  alignContent: "flex-end",
-                  flexDirection: "column",
-                  marginRight: "auto",
-                }}
+                ref={provided2.innerRef}
+                {...provided2.draggableProps}
+                {...provided2.dragHandleProps}
               >
                 <div
-                  className="section-card-book"
+                  className="flex-col"
                   style={{
-                    width: imageWidth,
-                    background: book.color[0],
-                    height: imageHeight,
+                    height: "100%",
+                    position: "relative",
+                    display: "flex",
+                    alignContent: "flex-end",
+                    flexDirection: "column",
+                    marginRight: "auto",
                   }}
-                ></div>
+                >
+                  <div
+                    className="section-card-book"
+                    style={{
+                      width: imageWidth,
+                      background: book.color[0],
+                      height: imageHeight,
+                    }}
+                  ></div>
+                </div>
               </div>
-            </div>
-            <Tooltip
-              anchorId={book.id}
-              place="bottom"
-              variant="info"
-              content="I'm a info tooltip"
-            />
-          </>
-        );
-      }}
-    </Draggable>
+              <Tooltip
+                anchorId={book.id}
+                place="bottom"
+                variant="info"
+                content="I'm a info tooltip"
+              />
+            </>
+          );
+        }}
+      </Draggable>
+    </>
   );
 };
 
