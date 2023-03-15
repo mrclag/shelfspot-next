@@ -8,7 +8,7 @@ import { getImageHeight, getImageWidth } from "../../utils/images";
 const BookcaseBook = ({ book }) => {
   const { user } = useUser();
   const imageHeight = getImageHeight(book.imageLinks[0]?.smallThumbnail) + "px";
-  const imageWidth = getImageWidth(book);
+  const imageWidth = getImageWidth(book) + "px";
 
   const postBelongsToUser = user?.email === book.User?.email;
 

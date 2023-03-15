@@ -1,6 +1,6 @@
 import { getSession } from '@auth0/nextjs-auth0';
 import { ContentState, convertToRaw } from 'draft-js';
-import { getImageHeight, getCommonImgColor } from '../../../utils/images';
+import { getImageHeight, getCommonImgColor, getImageWidth } from '../../../utils/images';
 import prisma from '../../../lib/prisma';
 
 // POST /api/post
@@ -21,6 +21,7 @@ export default async function handle(req, res) {
   }
 
   const imageHeight = getImageHeight(newBook.imageLinks[0]?.smallThumbnail);
+  const imageWidth = getImageWidth(newBook);
 
 
   const session = await getSession(req, res);

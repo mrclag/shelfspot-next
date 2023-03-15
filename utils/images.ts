@@ -33,9 +33,9 @@ export const getImageWidth = (book: Book) => {
   let width;
   if (book && book.pageCount) {
     const num = Math.min(Math.max(book.pageCount / 7, 25), 45);
-    width = num + "px";
+    width = num
   } else {
-    width = "20px";
+    width = 20
   }
 
   return width;

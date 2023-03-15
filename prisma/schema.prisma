@@ -74,7 +74,8 @@ model Book {
   industryIdentifiers Json[]
   description         String?
   subtitle            String?
-  heightMultiplier    Float       @default(1)
+  height              Float       @default(70)
+  width               Float       @default(20)
   // relations
   User                User?       @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId              String?

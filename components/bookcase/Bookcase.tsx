@@ -13,8 +13,6 @@ const reorder = (list: Book[], source, destination) => {
   const destId = destination.droppableId;
   const sourceId = source.droppableId;
 
-  console.log("source", source);
-  console.log("destination", destination);
 
   if (sourceId === destId) {
     const sourceBooks = Array.from(
