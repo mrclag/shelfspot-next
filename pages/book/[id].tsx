@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Router from "next/router";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layout/Layout";
 import prisma from "../../lib/prisma";
 import { useUser } from "@auth0/nextjs-auth0";
 import { Book, User } from "@prisma/client";

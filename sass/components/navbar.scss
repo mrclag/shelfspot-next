@@ -1,7 +1,8 @@
 @use "../abstracts" as *;
+
 nav {
   position: relative;
-  // z-index: 500;
+
   i {
     cursor: pointer;
     font-size: 20px;
@@ -39,13 +40,12 @@ nav {
   }
 
   a[data-active="true"] {
-    color: #333;
+    color: $dark-font-3;
   }
 
   .nav-logo {
     display: flex;
     align-items: center;
-    // margin-right: 20px;
     cursor: pointer;
     z-index: 99;
     height: 30px !important;
@@ -66,7 +66,6 @@ nav {
   }
 
   .mobile-menu {
-    // display: none;
     position: absolute;
     top: 0;
     height: 100vh;

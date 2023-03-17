@@ -30,17 +30,7 @@ const BookcaseBook = ({ book }) => {
                 {...provided2.draggableProps}
                 {...provided2.dragHandleProps}
               >
-                <div
-                  className="flex-col"
-                  style={{
-                    height: "100%",
-                    position: "relative",
-                    display: "flex",
-                    alignContent: "flex-end",
-                    flexDirection: "column",
-                    marginRight: "auto",
-                  }}
-                >
+                <div className="flex-col book-slot">
                   <div
                     className="section-card-book"
                     style={{
@@ -48,15 +38,15 @@ const BookcaseBook = ({ book }) => {
                       background: book.color[0],
                       height: imageHeight,
                     }}
-                  ></div>
+                  />
                 </div>
               </div>
-              <Tooltip
+              {/* <Tooltip
                 anchorId={book.id}
                 place="bottom"
                 variant="info"
                 content="I'm a info tooltip"
-              />
+              /> */}
             </>
           );
         }}

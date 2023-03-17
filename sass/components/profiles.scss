@@ -128,12 +128,12 @@
     text-align: left;
     .name {
       font-size: 16px;
-      color: #2a9d8f;
-      /* color: #333; */
+      color: $color-teal-1;
+      /* color: $dark-font-3; */
       font-weight: bold;
     }
     p {
-      color: #333;
+      color: $dark-font-3;
       font-size: 14px;
       line-height: 16px;
     }
@@ -149,9 +149,9 @@
 
   .skill {
     font-size: 14px;
-    color: #2a9d8f;
+    color: $color-teal-1;
     line-height: 20px;
-    border: 0.5px solid #2a9d8f;
+    border: 0.5px solid $color-teal-1;
     border-radius: 5px;
     margin: 5px;
     padding: 0 5px;

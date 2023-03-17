@@ -6,8 +6,6 @@
   height: 25px;
   padding-left: 5px;
   border: 1px solid #555;
-  // border-right: 0px;
-  // border-radius: 5px 0px 0px 5px;
   @media screen and ($MOBILE_VIEW) {
     width: 80vw;
   }
@@ -15,7 +13,6 @@
 
 .search-input {
   font-size: 16px;
-  // width: 400px;
   flex: 1;
   height: 40px;
   padding: 0px;
@@ -24,7 +21,6 @@
   &:focus {
     outline: 1px solid lightblue;
   }
-  // border-right: 0px;
   border-radius: 5px 0px 0px 5px;
   @media screen and ($MOBILE_VIEW) {
     width: 80vw;
@@ -34,15 +30,15 @@
 .search-button {
   color: white;
   border-radius: 0px 5px 5px 0px;
-  background: #2a9d8f;
-  border: 1px solid #2a9d8f;
+  background: $color-teal-1;
+  border: 1px solid $color-teal-1;
   height: 42px;
   padding: 0px;
   width: 40px !important;
   cursor: pointer;
   border: none;
   &:hover {
-    background: #31ccb9;
+    background: $color-teal-2;
   }
   // @media screen and ($MOBILE_VIEW) {
   //   display: none;
@@ -67,13 +63,13 @@
 .button {
   color: white;
   border-radius: 0px 5px 5px 0px;
-  background: #2a9d8f;
+  background: $color-teal-1;
   padding: 10px 20px;
   cursor: pointer;
   border: none;
   width: fit-content;
   &:hover {
-    background: #31ccb9;
+    background: $color-teal-2;
   }
 
   &.disabled {
@@ -151,7 +147,7 @@
   font-size: 14px;
   padding: 10px 20px;
   cursor: pointer;
-  background: #e8692d;
+  background: $color-orange-1;
   color: white !important;
   box-shadow: rgba(60, 64, 67, 0.2) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 2px 0px;
@@ -161,7 +157,7 @@
   transition: 0.2s;
 
   &:hover {
-    background: #ff7000;
+    background: $color-orange-2;
   }
   @media screen and (max-width: 1000px) {
     margin: auto;

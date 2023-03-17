@@ -1,3 +1,6 @@
+@use "../abstracts" as *;
+
+
 .sectionsCard {
   width: 100%;
   background-color: #3d1800;
@@ -115,7 +118,7 @@
       opacity: 0.8;
       border: 1px solid #ccc;
       transition: 0.2s;
-      color: #333;
+      color: $dark-font-3;
 
       &.align-button {
         opacity: 0;

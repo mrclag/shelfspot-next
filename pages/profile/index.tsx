@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Link from "next/link";
 import { getSession, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import prisma from "../../lib/prisma";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layout/Layout";
 import Image from "next/image";
 import defaultProfile from "../../public/static/img/default.jpg";
 

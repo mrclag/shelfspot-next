@@ -2,9 +2,9 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0";
-import logo from "../public/static/img/logo2.png";
+import logo from "../../public/static/img/logo2.png";
 import Image from "next/image";
-import useDropdownMenu from "../utils/useDropdown";
+import useDropdownMenu from "../../utils/useDropdown";
 
 const Header: React.FC = () => {
   const router = useRouter();

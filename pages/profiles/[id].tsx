@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layout/Layout";
 import prisma from "../../lib/prisma";
 import { getSession, useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Router, { useRouter } from "next/router";
@@ -7,8 +7,8 @@ import { Book, Bookcase, Categories, User } from "@prisma/client";
 import axios from "axios";
 import Link from "next/link";
 import SectionsCard from "../../components/bookcase/Bookcase";
-import Book2 from "../../components/bookcase/Book2";
-import Slider from "../../components/Slider";
+import Book2 from "../../components/bookcase/SectionBook";
+import Slider from "../../components/decorations/Slider";
 import { shelfDecorations } from "../../utils/Customizations";
 import Modal from "../../components/layout/Modal";
 import Image from "next/image";
@@ -31,8 +31,7 @@ export const getServerSideProps = async ({ req, res, params }) => {
         orderBy: [{ updatedAt: "desc" }],
       },
       User: {
-        select: {imageUrl: true,
-        },
+        select: { imageUrl: true },
       },
     },
   });
@@ -56,8 +55,7 @@ type Props = {
 };
 
 // TO DO Friday
-// Make this a separate page, reused with different views available if logged in user - reuse component 
-
+// Make this a separate page, reused with different views available if logged in user - reuse component
 
 const Dashboard: React.FC<Props> = ({ bookcase }) => {
   const { user, isLoading } = useUser();
@@ -125,8 +123,6 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
           </div>
 
           <div className={`col2 ${mobileDisplayShelf ? "disMob" : ""}`}>
-            {/* <button onClick={refreshData}>Refresh</button> */}
-            {/* {!isMobile && <div className="dashboard-topright"></div>} */}
             <div
               style={{
                 display: "flex",

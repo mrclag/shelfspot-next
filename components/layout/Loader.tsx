@@ -7,22 +7,10 @@ type Props = {};
 export const Loader = (props: Props) => {
   return (
     <div className="loader-page">
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+      <div className='loader-contetn'
       >
         <Image src={loader} />
-        <div
-          style={{
-            color: "#333",
-            marginTop: "6px",
-            marginLeft: "5px",
-            fontSize: "18px",
-          }}
+        <div className='loader-text'
         ></div>
       </div>
     </div>

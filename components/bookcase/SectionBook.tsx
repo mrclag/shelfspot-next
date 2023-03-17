@@ -3,7 +3,7 @@ import React from "react";
 // import { Link } from 'react-router-dom';
 import Link from "next/link";
 
-const Book2 = ({ book }) => {
+const Book = ({ book }) => {
   const { id, imageLinks, authors, title } = book;
   const author = getAuthorName(authors);
 
@@ -42,7 +42,7 @@ const Book2 = ({ book }) => {
   );
 };
 
-export default Book2;
+export default Book;
 
 const getAuthorName = (authorField) =>
   authorField?.length > 0

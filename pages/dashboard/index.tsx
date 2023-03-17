@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layout/Layout";
 import prisma from "../../lib/prisma";
 import { getSession, useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
 import Router, { useRouter } from "next/router";
@@ -7,8 +7,8 @@ import { Book, Bookcase, Categories, User } from "@prisma/client";
 import axios from "axios";
 import Link from "next/link";
 import SectionsCard from "../../components/bookcase/Bookcase";
-import Book2 from "../../components/bookcase/Book2";
-import Slider from "../../components/Slider";
+import Book2 from "../../components/bookcase/SectionBook";
+import Slider from "../../components/decorations/Slider";
 import { shelfDecorations } from "../../utils/Customizations";
 import Modal from "../../components/layout/Modal";
 import Image from "next/image";
@@ -40,9 +40,9 @@ export const getServerSideProps = withPageAuthRequired({
       include: {
         books: {
           include: {
-            Category: true, User: { select: { email: true } },
+            Category: true,
+            User: { select: { email: true } },
           },
-          
         },
         categories: {
           orderBy: [
@@ -177,7 +177,6 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
               </Link>
               <div style={{ width: "40px" }}></div>
 
-
               <div
                 onClick={() => setShowSliderModal(true)}
                 style={{ height: "120px", cursor: "pointer" }}
@@ -263,26 +262,8 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
                   showModal={showSectionModal}
                   setShowModal={setShowSectionModal}
                 >
-                  <div
-                    style={{
-                      color: "black",
-                      marginBottom: "10px",
-                      padding: "10px 20px",
-                      paddingRight: "40px",
-                      borderBottom: "0.5px solid #555",
-                      fontSize: "20px",
-                    }}
-                  >
-                    {selectedSection.title}
-                  </div>
-                  <div
-                    style={{
-                      width: "100px",
-                      color: "#333",
-                      lineHeight: "50px",
-                      padding: "10px 20px",
-                    }}
-                  >
+                  <div className="modal-title">{selectedSection.title}</div>
+                  <div className='menu-items'>
                     <div
                       className="menu-item"
                       onClick={() => {
@@ -309,7 +290,6 @@ const Dashboard: React.FC<Props> = ({ bookcase }) => {
               {sectionBooks.map((book, i) => {
                 return <Book2 key={i} book={book} />;
               })}
-
             </div>
           </div>
         </div>

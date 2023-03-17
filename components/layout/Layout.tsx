@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import useMediaQuery from "../utils/useMediaQuery";
+import useMediaQuery from "../../utils/useMediaQuery";
 import Header from "./Header";
 import Header2 from "./Header2";
 

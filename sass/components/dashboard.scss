@@ -137,7 +137,7 @@
     font-size: 20px;
     display: flex;
     font-weight: 300;
-    color: #333;
+    color: $dark-font-3;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -173,7 +173,7 @@
     .profile-card {
       display: flex;
       flex-direction: column;
-      color: #333;
+      color: $dark-font-3;
       height: 250px;
       width: auto;
       align-items: center;
@@ -283,7 +283,7 @@
         margin: 15px auto;
         border: 1px solid #ccc;
         width: 120px;
-        color: #333;
+        color: $dark-font-3;
         border-radius: 5px;
         background: white;
         &:hover {
@@ -292,7 +292,7 @@
         }
         i {
           font-size: 36px;
-          color: #333;
+          color: $dark-font-3;
           &:hover {
             color: green;
           }
@@ -315,7 +315,7 @@
       font-size: 20px;
       display: flex;
       align-items: center;
-      color: #333;
+      color: $dark-font-3;
 
       .edit-title {
         font-size: 16px;
@@ -394,6 +394,15 @@
           background: #eee;
         }
       }
+    }
+
+    .book-slot {
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-content: flex-end;
+      flex-direction: column;
+      margin-right: auto;
     }
   }
 }

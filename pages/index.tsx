@@ -1,7 +1,7 @@
 import { getSession, useUser } from "@auth0/nextjs-auth0";
 import { useRouter } from "next/router";
 import { Loader } from "../components/layout/Loader";
-import Layout from "../components/Layout";
+import Layout from "../components/layout/Layout";
 import Link from "next/link";
 import Image from "next/image";
 import landingImgDash from "../public/static/assets/landing-img-dash.png";
@@ -43,7 +43,7 @@ export default function Home({ loading }) {
                   </div>
                   <div className="or-login">
                     <Link href="/api/auth/login">
-                      <div className="create-account-button">Sign Up</div>
+                      <div className="create-account-button">Get Started</div>
                     </Link>
                   </div>
                 </div>
@@ -56,7 +56,9 @@ export default function Home({ loading }) {
           <div className="landing-features">
             <div className="features-box">
               <div className="feature">
-                <Image src={iconBooks} alt="" />
+                <div className="img-circle orange">
+                  <Image src={iconBooks} alt="" />
+                </div>
                 <div className="feature-title">Organize</div>
                 <div className="feature-text">
                   Bring order to your library, by creating sections for topics
@@ -65,7 +67,9 @@ export default function Home({ loading }) {
                 </div>
               </div>
               <div className="feature">
-                <Image src={iconWrite} alt="" />
+                <div className="img-circle blue">
+                  <Image src={iconWrite} alt="" />
+                </div>
                 <div className="feature-title">Summarize</div>
                 <div className="feature-text">
                   Create reviews and chapter summaries as you read with a
@@ -74,7 +78,9 @@ export default function Home({ loading }) {
                 </div>
               </div>
               <div className="feature">
-                <Image src={iconPlant} alt="" />
+                <div className="img-circle teal">
+                  <Image src={iconPlant} alt="" />
+                </div>
                 <div className="feature-title">Customize</div>
                 <div className="feature-text">
                   Make your shelf feel like home by customizing things like
@@ -83,7 +89,9 @@ export default function Home({ loading }) {
                 </div>
               </div>
               <div className="feature">
-                <Image src={iconStats} alt="" />
+                <div className="img-circle purple">
+                  <Image src={iconStats} alt="" />
+                </div>
                 <div className="feature-title">Analyze</div>
                 <div className="feature-text">
                   Track number of books read, amount of notes written, page
@@ -110,6 +118,7 @@ export default function Home({ loading }) {
             </div>
           </div>
         </div> */}
+        {/* TODO: Add better information to this footer. Privacy policy, etc */}
           <div className="footer">Created by Matt Clagett</div>
         </div>
       </Layout>

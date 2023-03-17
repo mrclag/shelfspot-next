@@ -2,10 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useUser } from "@auth0/nextjs-auth0";
-import logo from "../public/static/img/logo2.png";
+import logo from "../../public/static/img/logo2.png";
 import Image from "next/image";
-import useMediaQuery from "../utils/useMediaQuery";
-import useOnClickOutside from "../utils/useOnClickOutside";
+import useOnClickOutside from "../../utils/useOnClickOutside";
 
 const Header: React.FC = () => {
   const router = useRouter();
@@ -16,7 +15,6 @@ const Header: React.FC = () => {
   const navRef = useRef();
 
   useOnClickOutside(navRef, (e) => {
-    console.log(e);
     showMenu && setShowMenu(false);
   });
 

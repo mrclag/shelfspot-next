@@ -5,7 +5,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 import { User } from "@prisma/client";
 import axios from "axios";
 import prisma from "../../lib/prisma";
-import Layout from "../../components/Layout";
+import Layout from "../../components/layout/Layout";
 import Head from "next/head";
 
 export const getServerSideProps = async ({ req, res }) => {
