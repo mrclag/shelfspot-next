@@ -92,7 +92,8 @@ Don't forget to give the project a star! Thanks again!
 ## Contact
 
 Email: mattrclagett@gmail.com
-Project Link: [https://github.com/mrclag/repo_name](https://github.com/mrclag/shelfspot-next)
+LinkedIn: linkedin.com/in/matthewclagett
+Project Link: [https://github.com/mrclag/shelfspot-next](https://github.com/mrclag/shelfspot-next)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
