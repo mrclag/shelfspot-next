@@ -39,7 +39,8 @@ export default function Home({ loading }) {
                   {/* <div className="welcome-title">Welcome to Shelfspot</div> */}
                   <div className="welcome-heading">Your Digital Bookshelf</div>
                   <div className="welcome-subheading">
-                    Organize, summarize, and share what you read with the world.
+                    Organize, create summaries, and share what you read with the
+                    world.
                   </div>
                   <div className="or-login">
                     <Link href="/api/auth/login">
@@ -118,8 +119,7 @@ export default function Home({ loading }) {
             </div>
           </div>
         </div> */}
-        {/* TODO: Add better information to this footer. Privacy policy, etc */}
-          <div className="footer">Created by Matt Clagett</div>
+          <div className="footer">© Matt Clagett 2023</div>
         </div>
       </Layout>
     );

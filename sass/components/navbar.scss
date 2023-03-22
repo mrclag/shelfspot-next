@@ -29,6 +29,7 @@ nav {
     display: flex;
     align-items: center;
     text-align: center;
+    z-index: 100;
     a {
       color: #555;
       border: 1px solid var(--geist-foreground);
