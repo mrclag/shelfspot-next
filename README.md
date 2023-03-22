@@ -67,8 +67,7 @@ Originally this project was created in 2019 using the MERN stack build on CRA, w
 
 - [ ] Profile image upload with AWS
 - [ ] Take photo of bookshelf - Image recognition to auto-add books
-- [ ] Drag and drop books to other sections
-- [ ] Mobile-friendly
+- [ ] Follow Profiles
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -92,7 +91,8 @@ Don't forget to give the project a star! Thanks again!
 ## Contact
 
 Email: mattrclagett@gmail.com
-Project Link: [https://github.com/mrclag/repo_name](https://github.com/mrclag/shelfspot-next)
+LinkedIn: linkedin.com/in/matthewclagett
+Project Link: [https://github.com/mrclag/shelfspot-next](https://github.com/mrclag/shelfspot-next)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
