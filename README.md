@@ -67,8 +67,7 @@ Originally this project was created in 2019 using the MERN stack build on CRA, w
 
 - [ ] Profile image upload with AWS
 - [ ] Take photo of bookshelf - Image recognition to auto-add books
-- [ ] Drag and drop books to other sections
-- [ ] Mobile-friendly
+- [ ] Follow Profiles
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
