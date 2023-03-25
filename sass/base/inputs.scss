@@ -141,7 +141,7 @@
 }
 
 .create-account-button {
-  font-size: 14px;
+  font-size: 16px;
   padding: 10px 20px;
   cursor: pointer;
   background: $color-orange-1;
@@ -158,5 +158,23 @@
   }
   @media screen and (max-width: 1000px) {
     margin: auto;
+  }
+}
+
+.or-login {
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  &-link {
+    color: #e6482c;
+    &:hover {
+      color: #cd4128;
+    }
   }
 }

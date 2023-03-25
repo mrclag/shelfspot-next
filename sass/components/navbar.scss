@@ -2,6 +2,7 @@
 
 nav {
   position: relative;
+  background: white;
 
   i {
     cursor: pointer;
@@ -10,9 +11,10 @@ nav {
 
   .desktop-nav {
     display: flex;
+    margin: 0 auto;
+    max-width: 1080px;
     padding: 0.5rem 30px;
     align-items: center;
-    background: white;
     z-index: 500;
 
     @media screen and ($MOBILE_VIEW) {

@@ -1,6 +1,5 @@
 @use "../abstracts" as *;
 .dashboard {
-
   .profile-img {
     border: solid 2px;
     border-bottom-color: #ffe;
@@ -114,7 +113,7 @@
     margin: auto;
     display: flex;
     flex-direction: row;
-    width: 1200px;
+    width: 1080px;
     margin: 0 auto;
     justify-content: center;
 
@@ -219,8 +218,7 @@
   }
   .col2 {
     width: 600px !important;
-
-    margin: 20px;
+    margin-left: 20px;
     margin-top: 0px;
     padding-left: 10px;
     border-radius: 8px;
@@ -235,7 +233,6 @@
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.16), 0 1px 2px rgba(0, 0, 0, 0.23);
-    // display: none;
 
     @media screen and ($MOBILE_VIEW) {
       display: none;

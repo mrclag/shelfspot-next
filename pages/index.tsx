@@ -4,7 +4,7 @@ import { Loader } from "../components/layout/Loader";
 import Layout from "../components/layout/Layout";
 import Link from "next/link";
 import Image from "next/image";
-import landingImgDash from "../public/static/assets/landing-img-dash.png";
+import landingImgDash from "../public/static/img/safari-mockup.png";
 import iconBooks from "../public/static/assets/icon-books.png";
 import iconPlant from "../public/static/assets/icon-plant.png";
 import iconWrite from "../public/static/assets/icon-write.png";
@@ -101,10 +101,6 @@ export default function Home({ loading }) {
                 <div className="feature-comingsoon">Coming Soon</div>
               </div>
             </div>
-          </div>
-          <div className="extra-feature">
-            {/* <div className="feature-comingsoon">Coming Soon</div>
-          <div className="feature-content"></div> */}
           </div>
           {/* <div className="demo-section">
           <div className="demo-content">

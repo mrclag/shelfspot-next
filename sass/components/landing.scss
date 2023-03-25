@@ -7,35 +7,34 @@
 
   .slanted {
     background-color: white;
-    height: 850px;
+    min-height: 100vh;
   }
   .landing-welcome {
-    margin-top: 180px;
     display: flex;
     justify-content: center;
+    margin-top: 180px;
+    padding-bottom: 100px;
+    text-align: center;
+
     @media screen and ($MOBILE_VIEW) {
-      text-align: center;
       margin-top: 80px;
     }
 
     .welcome-content {
       display: flex;
-      flex-direction: row;
       max-width: 1000px;
-      @media screen and (max-width: 1080px) {
-        flex-direction: column;
-      }
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     .welcome-text {
-      width: 50%;
       padding-top: 10px;
       color: $dark-font-3;
       z-index: 99;
+      width: 80%;
+      margin: auto;
+      margin-bottom: 30px;
 
-      @media screen and (max-width: 1080px) {
-        width: 80%;
-        margin: auto;
-      }
       .welcome-title {
         font-size: 16px;
         margin-bottom: 8px;
@@ -52,28 +51,13 @@
         line-height: 30px;
         color: #777;
       }
-
-      .or-login {
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 10px;
-        margin-bottom: 20px;
-
-        &-link {
-          color: #e6482c;
-          &:hover {
-            color: #cd4128;
-          }
-        }
-        @media screen and (max-width: 1000px) {
-          text-align: center;
-        }
-      }
     }
     .welcome-img {
       width: auto;
+      // width: 500px;
+      max-width: 800px;
+      margin: auto 40px;
       @media screen and ($MOBILE_VIEW) {
-        width: 300px;
         height: unset;
         margin: auto;
         margin-top: 40px;
@@ -83,9 +67,8 @@
   .landing-features {
     display: flex;
     justify-content: center;
-    margin-top: -100px;
     width: 100%;
-    background: $color-background-lb;
+    background: $color-background-lb2;
 
     .features-box {
       padding-left: 10px;
@@ -98,11 +81,13 @@
       justify-content: center;
       z-index: 2;
       border-radius: 5px;
+      margin: 40px;
 
       @media screen and ($MOBILE_VIEW) {
         flex-direction: column;
         width: 375px;
         height: auto;
+        margin: 20px 5px;
       }
 
       .feature {
@@ -119,6 +104,8 @@
 
         @media screen and ($MOBILE_VIEW) {
           padding-top: 30px;
+          max-width: 90vw;
+          margin: 5px auto;
         }
         .img-circle {
           border-radius: 50%;
@@ -158,20 +145,6 @@
     margin-top: 20px;
     font-style: italic;
     color: $color-orange-1;
-  }
-  .extra-feature {
-    height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: $color-background-lb;
-    text-align: center;
-    @media screen and ($MOBILE_VIEW) {
-      height: unset;
-      padding-top: 30px;
-      padding-bottom: 30px;
-    }
   }
 
   .demo-section {
@@ -239,13 +212,13 @@
 }
 
 .shape-blob {
-  background: #f78854;
+  background: $color-background-tan;
   height: 200px;
   width: 200px;
   border-radius: 30% 50% 20% 40%;
   animation: transform 20s ease-in-out infinite both alternate,
     movement_one 40s ease-in-out infinite both;
-  opacity: 0.3;
+  opacity: 0.8;
   position: absolute;
   left: 70%;
   top: 50%;
